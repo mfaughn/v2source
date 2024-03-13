@@ -1,0 +1,4 @@
+= Message - Multiple Laboratory Orders for a Singel Container of a Specimen
+:render_as: Message Page
+:v291_section: 4.4.7 (minus 4.4.7.1; 4.4.7.2)
+

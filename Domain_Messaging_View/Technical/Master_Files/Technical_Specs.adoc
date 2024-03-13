@@ -1,0 +1,40 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 1516
+
+xref:Technical_Specs/Message_-_M13_Master_File_Notification_-_General.adoc[Message - M13 Master File Notification - General ]
+
+xref:Technical_Specs/Message_-_M14_Master_File_Notification_-_Site_Defined.adoc[Message - M14 Master File Notification - Site Defined]
+
+xref:Technical_Specs/Message_-_M02_StaffPractitioner_Master_File.adoc[Message - M02 Staff/Practitioner Master File]
+
+xref:Technical_Specs/Message_-_M08_Master_File_Notification_-_TestObservation_(Numeric).adoc[Message - M08 Master File Notification - Test/Observation (Numeric)]
+
+xref:Technical_Specs/Message_-_M09_Master_File_Notification_-_TestObservation_(Categorical).adoc[Message - M09 Master File Notification - Test/Observation (Categorical)]
+
+xref:Technical_Specs/Message_-_M10_Master_File_Notification_-_TestObservation_Batteries.adoc[Message - M10 Master File Notification - Test/Observation Batteries]
+
+xref:Technical_Specs/Message_-_M11_Master_File_Notification_-_TestCalculated_Observations.adoc[Message - M11 Master File Notification - Test/Calculated Observations]
+
+xref:Technical_Specs/Message_-_M12_Master_File_Notification_-_Additional_Basic_ObservationService_Attributes.adoc[Message - M12 Master File Notification - Additional Basic Observation/Service Attributes]
+
+xref:Technical_Specs/Message_-_M18_Master_File_Notification_–_TestObservation_(Payer).adoc[Message - M18 Master File Notification – Test/Observation (Payer)]
+
+xref:Technical_Specs/Message_-_M05_Patient_Location_Master_File.adoc[Message - M05 Patient Location Master File]
+
+xref:Technical_Specs/Message_-_M04_Charge_Description_Master_File_Message.adoc[Message - M04 Charge Description Master File Message ]
+
+xref:Technical_Specs/Message_-_M06_Clinical_Trials_Master_File.adoc[Message - M06 Clinical Trials Master File]
+
+xref:Technical_Specs/Message_-_M07_Clinical_Trials_Master_File.adoc[Message - M07 Clinical Trials Master File]
+
+xref:Technical_Specs/Message_-_M15_Inventory_Item_Master_File_Message.adoc[Message - M15 Inventory Item Master File Message]
+
+xref:Technical_Specs/Message_-_M16_Inventory_Item_Master_File_–_Enhanced.adoc[Message - M16 Inventory Item Master File – Enhanced ]
+
+xref:Technical_Specs/Message_-_M17_DRG_Master_File.adoc[Message - M17 DRG Master File]
+
+xref:Technical_Specs/Message_-_M19_Contract_Master_File.adoc[Message - M19 Contract Master File]
+

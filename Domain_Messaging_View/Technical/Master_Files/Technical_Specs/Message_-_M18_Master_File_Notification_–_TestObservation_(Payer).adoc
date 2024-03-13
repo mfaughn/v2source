@@ -1,0 +1,134 @@
+= Message - M18 Master File Notification – Test/Observation (Payer)
+:render_as: Message Page
+:v291_section: 8.8.1; 8.8.8
+
+These segments define the format for the general information about the observations that a clinical or diagnostic service produces and sends to its "clients." This format can be used to send the producer's entire service/test/observation definition or a few of the producer's observations, such as those with procedure, technique, or interpretation changes.
+
+In anticipation of an object-oriented organization of segments in future releases of this Standard, the attributes of observations/batteries have been grouped into seven different segments:
+
+OM1 contains the attributes that apply to all observations
+
+OM2 applies to numerically-valued observations
+
+OM3 applies to text or code-valued observations
+
+OM4 applies to observations or batteries that require specimens
+
+OM5 contains the attributes of batteries, or sets of observations or other batteries
+
+OM6 contains the quantities (observations in a most general sense) that are calculated from one or more other observations
+
+OM7 contains additional basic attributes that apply to the definition of most observations/services.
+
+Thus, the full definition of a numerically-valued laboratory observation would require the transmission of OM1, OM2, and OM4.
+
+In the following discussion, we use OMx to refer to any of the seven observation-defining segments. Each instance of an OMx segment contains the information about one observation or observation battery. These OMx segments are designed to be "inclusive" and accommodate the attributes of many kinds of observations. Thus, the fact that a field is listed in a particular segment should not be construed as meaning that a producer must include information about that item in its definition transmission. Many fields will apply to some terms; others will not. One observation producer may choose to populate one set of fields; another may choose to populate a different set of fields, according to the requirements of that producer's "client."
+
+Most of the fields of data type TX in those segments are intended to include information typically contained in a diagnostic service's user manual. Such fields should describe how the data is to be interpreted or used, and are not intended for computer interpretation.
+
+Remember that the magnitude of a treatment can also be regarded as an observation and, as such, can be represented as an observation within these segments. Many examples exist. When a blood gas is transmitted, the requesting service usually transmits the amount of inspired O2 (a treatment) on requisition. (In an electronic transmission, the service would send this as an OBX segment, along with the electronic order for the test.) When blood levels are drawn, the amount and time of the last dose are routinely included as observations on the request for service. A pharmacy system could routinely send to a medical record system the average daily dose of each outpatient medication it dispenses. In such cases, the treatment amounts would be observations to the receiving system and would be transmitted as OBX segments. When received, they would be treated like any other observation. A medical record system could then create, for example, a flowchart of lab results, or lab results mixed with relevant treatments.
+
+MFN^M18^MFN_M18: Master File Notification – Test/Observation (Payer)
+
+[width="100%",cols="33%,47%,9%,11%",options="header",]
+
+|===
+
+|Segments |Description |Status |Chapter
+
+|MSH |Message Header | |2
+
+|[\{ SFT }] |Software | |2
+
+|[ UAC ] |User Authentication Credential | |2
+
+|link:#MFI[MFI] |Master File Identification | |8
+
+|\{ |--- MF_PAYER begin | |
+
+|link:#MFE[MFE] |Master File Entry | |8
+
+|\{ |--- PAYER_MF_ENTRY begin | |
+
+|PM1 |link:#pm1-payer-master-file-segment[Payer Master File] | |8
+
+|\{ |--- PAYER_MF_COVERAGE begin | |
+
+|link:#OM7[MCP] |link:#mcp-master-file-coverage-policy-segment[Master File Coverage Policy] | |8
+
+|[\{ DPS }] |link:#dps-diagnosis-and-procedure-code-segment[Diagnosis and Procedure] | |8
+
+|} |--- PAYER_MF_COVERAGE end | |
+
+|} |--- PAYER_MF_ENTRY end | |
+
+|} |--- MF_PAYER end | |
+
+|===
+
+[width="100%",cols="17%,21%,4%,16%,21%,21%",options="header",]
+
+|===
+
+|Acknowledgement Choreography | | | | |
+
+|MFN^M18^MFN_M18 | | | | |
+
+|Field name |Field Value: Original mode |Field value: Enhanced mode | | |
+
+|MSH-15 |Blank |NE |AL, SU, ER |NE |AL, SU, ER
+
+|MSH-16 |Blank |NE |NE |AL, SU, ER |AL, SU, ER
+
+|Immediate Ack |- |- |ACK^M18^ACK |- |ACK^M18^ACK
+
+|Application Ack |MFK^M18^MFK_M01 |- |- |MFK^M18^MFK_M01 |MFK^M18^MFK_M01
+
+|===
+
+MFK^M18^MFK_M01: Master File Application Acknowledgment
+
+[width="100%",cols="33%,47%,9%,11%",options="header",]
+
+|===
+
+|Segments |Description |Status |Chapter
+
+|MSH |Message Header | |2
+
+|[\{ SFT }] |Software | |2
+
+|[ UAC ] |User Authentication Credential | |2
+
+|MSA |Acknowledgment | |2
+
+|[\{ ERR }] |Error | |2
+
+|link:#MFI[MFI] |Master File Identification | |8
+
+|[\{ link:#MFA[MFA] }] |Master File ACK segment | |8
+
+|===
+
+[width="100%",cols="23%,37%,10%,30%",options="header",]
+
+|===
+
+|Acknowledgement Choreography | | |
+
+|MFK^M18^MFK_M01 | | |
+
+|Field name |Field Value: Original mode |Field value: Enhanced mode |
+
+|MSH-15 |Blank |NE |AL, SU, ER
+
+|MSH-16 |Blank |NE |NE
+
+|Immediate Ack |- |- |ACK^M18^ACK
+
+|Application Ack |- |- |-
+
+|===
+
+[message-tabs, ["MFN^M18^MFN_M18", "MFN Interaction", "ACK^M18^ACK", "ACK Interaction", "MFK^M18^MFK_M01", "MFK Interaction"]]
+

@@ -1,0 +1,14 @@
+= Lab Automation
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Lab Automation | Index: 1388
+
+xref:Lab_Automation/Introduction.adoc[Introduction]
+
+xref:Lab_Automation/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Lab_Automation/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Lab_Automation/Technical_Specs.adoc[Technical Specs]
+

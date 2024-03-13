@@ -1,0 +1,120 @@
+= PRA
+:render_as: Level3
+:v291_section: 15.4.6+
+
+== PRA - Practitioner Detail Segment 
+
+The Technical Steward for the PRA segment is PA and Personnel Management.
+
+The PRA segment adds detailed medical practitioner information to the personnel identified by the STF segment. A PRA segment may optionally follow an STF segment. A PRA segment must always have been preceded by a corresponding STF segment. The PRA segment may also be used for staff who work in healthcare who are not practitioners but need to be certified, e.g., "medical records staff."
+
+[#PRA .anchor]####HL7 Attribute Table – PRA – Practitioner Detail
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |CWE |C | |0681 |00685 |Primary Key Value - PRA
+
+|2 | | |CWE |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70358[0358] |00686 |Practitioner Group
+
+|3 | | |CWE |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70186[0186] |00687 |Practitioner Category
+
+|4 |1..1 | |ID |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70187[0187] |00688 |Provider Billing
+
+|5 | | |SPD |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70337[0337] |00689 |Specialty
+
+|6 | | |PLN |B |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70338[0338] |00690 |Practitioner ID Numbers
+
+|7 | | |PIP |O |Y | |00691 |Privileges
+
+|8 | | |DT |O | | |01296 |Date Entered Practice
+
+|9 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70537[0537] |01613 |Institution
+
+|10 | | |DT |O | | |01348 |Date Left Practice
+
+|11 | | |CWE |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70401[0401] |01388 |Government Reimbursement Billing Eligibility
+
+|12 |1..4 | |SI |C | | |01616 |Set ID - PRA
+
+|===
+
+=== PRA-1 Primary Key Value - PRA (CWE) 00685
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: For MFN Master File Notification, this field is required and must match _MFE-4 Primary Key Value_ to identify which entry is being referenced. For all other messages, this field should not be used. Refer to Table 0681 - Primary Key Value - PRA in Chapter 2C for valid values.
+
+=== PRA-2 Practitioner Group (CWE) 00686
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the name and/or code of a group of practitioners to which this practitioner belongs. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70358[_User-defined Table 0358 Practitioner Group_] for suggested values.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70358[_User.defined Table 0358 – Practitioner Group_] in Chapter 2C, Code Tables, for valid values. This table contains no suggested values.
+
+=== PRA-3 Practitioner Category (CWE) 00687
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the category of practitioner. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70186[_User-defined Table 0186 - Practitioner Category_] for suggested values. Values may include codes for staff physician, courtesy physician, resident, physician assistant, physical therapist, psychiatrist, psychologist, pharmacist, registered nurse, licensed practical nurse, licensed vocational nurse, nurse practitioner, etc. If the provider works in different Practitioner Categories in different organization units, then this information should be recorded separately in ORG-6,7,8.
+
+[#HL70186 .anchor]####Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70186[_User.defined Table 0186 – Practitioner Category_] in Chapter 2C, Code Tables, for valid values. This table contains no suggested values.
+
+=== PRA-4 Provider Billing (ID) 00688
+
+Definition: This field indicates how provider services are billed. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70187[_HL7 Table 0187 - Provider Billing_] for valid values.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70187[_HL7 Table 0187 – Provider Billing_] for valid values. This table contains values for provider or institutional billing.
+
+=== PRA-5 Specialty (SPD) 00689
+
+Components: <Specialty Name (ST)> ^ <Governing Board (ST)> ^ <Eligible or Certified (ID)> ^ <Date of Certification (DT)>
+
+Definition: This repeating field is made up of multiple components to record the practitioner's specialties. The multiple components of each specialty are: (1) specialty name or abbreviation, identifies provider's specialty, (2) name of specialty governing board, (3) Certification Status, (4) certified date contains the date of certification, if certified. Refer to E:\\V2\\v2.9 final Nov from Frank\\V29_CH02C_Tables.docx#HL70337[_HL7 Table 0337 – Certification Status_] for valid values.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70337[_HL7 Table 0337 – Certification Status_] in Chapter 2C, Code Tables, for valid values. This table contains values for certified or eligible.
+
+=== PRA-6 Practitioner ID Numbers (PLN) 00690
+
+Components: <ID Number (ST)> ^ <Type of ID Number (CWE)> ^ <State/other Qualifying Information (ST)> ^ <Expiration Date (DT)>
+
+Subcomponents for Type of ID Number (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: *_As of version 2.5, this field has been retained for backward compatibility only._* Practitioner ID numbers should be contained in _STF-2 Staff Identifier List_. This repeating field contains this practitioner's license numbers and other ID numbers. This is a field made up of the following components: (1) the ID number, and (2) the type of number, and optionally (3) the state or province in which it is valid, if relevant, or other qualifying information. It is recommended that state qualifications use the abbreviations from the postal service of the country. The practitioner ID number type (component 2) is a user-defined table (file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70338[_User-defined Table 0338 – Practitioner ID Number_] in Chapter 2C, Code Tables).
+
+=== PRA-7 Privileges (PIP) 00691
+
+Components: <Privilege (CWE)> ^ <Privilege Class (CWE)> ^ <Expiration Date (DT)> ^ <Activation Date (DT)> ^ <Facility (EI)>
+
+Subcomponents for Privilege (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Privilege Class (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Facility (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains the institutional privileges which this provider may exercise. Depends upon institutional needs. For example, admit, transfer, discharge, place orders, verify orders, review results, etc. Can also be used for privileges other than patient services. This is a repeating field, with each privilege made up of the following components: (1) privilege; (2) privilege class; (3) privilege expiration date, if any; (4) privilege activation date, if any, and (5) facility. Note that the privilege and privilege class components are CWE data types, and thus they are encoded with the subcomponent delimiter (&) rather than the component delimiter (^). The facility component is an EI data type specifying the facility to which the privilege applies and is encoded with the subcomponent delimiter (&) rather than the component delimiter (^). The facility component is an EI data type specifying the facility to which the privilege applies and is encoded with the subcomponent delimiter (&) rather than the component delimiter (^).
+
+=== PRA-8 Date Entered Practice (DT) 01296
+
+=== PRA-9 Institution (CWE) 01613
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the institution the practitioner began or intends to begin practicing at (e.g., at hospital, at physician organization, at managed care network). Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70537[_User-defined Table 0537 - Institution_] for valid values.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70537[_User-defined Table 0537 – Institution_] in Chapter 2C, Code Tables, for valid values. This table contains no suggested values.
+
+=== PRA-10 Date Left Practice (DT) 01348
+
+=== PRA-11 Government Reimbursement Billing Eligibility (CWE) 01388
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains a code that indicates the agency that the practitioner is authorized to bill for medical services. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70401[_User-defined Table 0401 – Government Reimbursement Program_] in Chapter 2C, Code Tables,for valid values. This table contains the associated code values for medicaid and medical. This is a repeating field.
+
+=== PRA-12 Set ID - PRA (SI) 01616
+

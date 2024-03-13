@@ -1,0 +1,16 @@
+= Clinical Trials
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Clinical Trials | Index: 1039
+
+xref:Clinical_Trials/Introduction.adoc[Introduction]
+
+xref:Clinical_Trials/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Clinical_Trials/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Clinical_Trials/Technical_Specs.adoc[Technical Specs]
+
+xref:Clinical_Trials/Examples.adoc[Examples]
+

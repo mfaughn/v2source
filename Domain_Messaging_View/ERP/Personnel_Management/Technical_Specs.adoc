@@ -1,0 +1,24 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 1338
+
+xref:Technical_Specs/Message_-_B01_Add_Personnel_Record.adoc[Message - B01 Add Personnel Record]
+
+xref:Technical_Specs/Message_-_B02_Update_Personnel_Record.adoc[Message - B02 Update Personnel Record]
+
+xref:Technical_Specs/Message_-_B03_Delete_Personnel_Record.adoc[Message - B03 Delete Personnel Record]
+
+xref:Technical_Specs/Message_-_B04_Activate_Practicing_Person.adoc[Message - B04 Activate Practicing Person]
+
+xref:Technical_Specs/Message_-_B05_Deactivate_Practicing_Person.adoc[Message - B05 Deactivate Practicing Person]
+
+xref:Technical_Specs/Message_-_B06_Terminate_Practicing_Person.adoc[Message - B06 Terminate Practicing Person]
+
+xref:Technical_Specs/Message_-_Q25K25_Query_Personnel_Information.adoc[Message - Q25/K25 Query Personnel Information]
+
+xref:Technical_Specs/Message_-_B07_Grant_CertificatePermission.adoc[Message - B07 Grant Certificate/Permission ]
+
+xref:Technical_Specs/Message_-_B08_Revoke_CertificatePermission.adoc[Message - B08 Revoke Certificate/Permission]
+

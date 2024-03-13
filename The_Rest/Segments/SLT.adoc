@@ -1,0 +1,50 @@
+= SLT
+:render_as: Level3
+:v291_section: 17.8.2+
+
+== SLT – Sterilization Lot Segment
+
+The SLT segment defines requests, responses, and notifications of sterilization lots and supply item descriptions. This message may be used for CPD (Central Supply) and OR (Sub-sterile area outside of an Operating Room) mode.
+
+HL7 Attribute Table – SLT – Sterilization Lot
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |R/O/C |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |EI |O | | |02094 |Device Number
+
+|2 | |999= |ST |O | | |02280 |Device Name
+
+|3 | | |EI |O | | |02095 |Lot Number
+
+|4 | | |EI |O | | |02096 |Item Identifier
+
+|5 | |30= |ST |O | | |02097 |Bar Code
+
+|===
+
+=== SLT-1 Device Number (EI) 02094
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: The unique identifier of the device (assigned by user, not assigned by the software application; e.g.: 01).
+
+=== SLT-2 Device Name (ST) 02280
+
+=== SLT-3 Lot Number (EI) 02095
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.
+
+=== SLT-4 Item Identifier (EI) 02096
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: The Item Identifier is a unique code assigned to the material item by the Instrument-tracking software application to identify the item being sterilized or decontaminated.
+
+=== SLT-5 Bar Code (ST) 02097
+

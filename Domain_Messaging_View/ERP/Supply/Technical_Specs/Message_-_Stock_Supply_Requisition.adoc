@@ -1,0 +1,6 @@
+= Message - Stock Supply Requisition
+:render_as: Message Page
+:v291_section: 4.10.3
+
+[message-tabs, ["OMN^O07^OMN_O07", "OMN^O07 Interaction", "ACK^O07^ACK", "ORN^O08^ORN_O08", "OSU^O52^OSU_O52", "OSU Interaction", "ACK^O52^ACK"]]
+

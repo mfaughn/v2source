@@ -1,0 +1,6 @@
+= Message - I15 Request Patient Referral Status
+:render_as: Message Page
+:v291_section: 11.5; 11.5.5
+
+[message-tabs, ["REF^I15^REF_I12", "REF Interaction", "ACK^I15^ACK", "ACK Interaction", "RRI^I15^RRI_I12", "RRI Interaction"]]
+

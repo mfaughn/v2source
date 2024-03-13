@@ -1,0 +1,206 @@
+= PRD
+:render_as: Level3
+:v291_section: 11.8.3+
+
+== PRD - provider data segment
+
+This segment will be employed as part of a patient referral message and its related transactions. The PRD segment contains data specifically focused on a referral, and it is inter-enterprise in nature. The justification for this new segment comes from the fact that we are dealing with referrals that are external to the facilities that received them. Therefore, using a segment such as the current PV1 would be inadequate for all the return information that may be required by the receiving facility or application. In addition, the PV1 does not always provide information sufficient to enable the external facility to make a complete identification of the referring entity. The information contained in the PRD segment will include the referring provider, the referred‑to provider, the referred‑to location or service, and the referring provider clinic address.
+
+[#PRD .anchor]####HL7 Attribute Table - PRD – Provider Data
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |CWE |R |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70286[0286] |01155 |Provider Role
+
+|2 | | |XPN |O |Y | |01156 |Provider Name
+
+|3 | | |XAD |O |Y | |01157 |Provider Address
+
+|4 | | |PL |O | | |01158 |Provider Location
+
+|5 | | |XTN |O |Y | |01159 |Provider Communication Information
+
+|6 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70185[0185] |00684 |Preferred Method of Contact
+
+|7 | | |PLN |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70338[0338] |01162 |Provider Identifiers
+
+|8 | | |DTM |O | | |01163 |Effective Start Date of Provider Role
+
+|9 | | |DTM |O |Y | |01164 |Effective End Date of Provider Role
+
+|10 | | |XON |O |N | |02256 |Provider Organization Name and Identifier
+
+|11 | | |XAD |O |Y | |02257 |Provider Organization Address
+
+|12 | | |PL |O |Y | |02258 |Provider Organization Location Information
+
+|13 | | |XTN |O |Y | |02259 |Provider Organization Communication Information
+
+|14 | | |CWE |O |N |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70185[0185] |02260 |Provider Organization Method of Contact
+
+|===
+
+=== PRD-1 Provider Role (CWE) 01155
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the contact role that defines the relationship of the person or organization described in this segment to the patient being referred. When a referral is inter-enterprise in nature, there are several important relationships that must be identified. For example, the proper identification of both the referring and the referred-to provider is critical for proper processing of a referral. In addition, some enterprises may want information regarding a consulting provider or the identity of the person who actually prepared the referral. This contact role may also expand to represent affiliated persons to whom information regarding this referral must be forwarded or copied. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70286[_User-defined Table 0286 - Provider Role_] for suggested values.
+
+=== PRD-2 Provider Name (XPN) 01156
+
+Components: <Family Name (FN)> ^ <Given Name (ST)> ^ <Second and Further Given Names or Initials Thereof (ST)> ^ <Suffix (e.g., JR or III) (ST)> ^ <Prefix (e.g., DR) (ST)> ^ <WITHDRAWN Constituent> ^ <Name Type Code (ID)> ^ <Name Representation Code (ID)> ^ <Name Context (CWE)> ^ <WITHDRAWN Constituent> ^ <Name Assembly Order (ID)> ^ <Effective Date (DTM)> ^ <Expiration Date (DTM)> ^ <Professional Suffix (ST)> ^ <Called By (ST)>
+
+Subcomponents for Family Name (FN): <Surname (ST)> & <Own Surname Prefix (ST)> & <Own Surname (ST)> & <Surname Prefix from Partner/Spouse (ST)> & <Surname from Partner/Spouse (ST)>
+
+Subcomponents for Name Context (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the name of the provider identified in this segment. Generally, this field will describe a physician associated with the referral. However, it is not limited to physicians. If the provider is an organization then _PRD-10 – Provider Organization Name and Identifier_ will be used. This field may contain the name of any valid healthcare provider associated with this referral. If this Provider Name is a physician's name, you may refer to _PRD-7-Provider identifiers_ for the physician identifier.
+
+=== PRD-3 Provider Address (XAD) 01157
+
+Components: <Street Address (SAD)> ^ <Other Designation (ST)> ^ <City (ST)> ^ <State or Province (ST)> ^ <Zip or Postal Code (ST)> ^ <Country (ID)> ^ <Address Type (ID)> ^ <Other Geographic Designation (ST)> ^ <County/Parish Code (CWE)> ^ <Census Tract (CWE)> ^ <Address Representation Code (ID)> ^ <WITHDRAWN Constituent> ^ <Effective Date (DTM)> ^ <Expiration Date (DTM)> ^ <Expiration Reason (CWE)> ^ <Temporary Indicator (ID)> ^ <Bad Address Indicator (ID)> ^ <Address Usage (ID)> ^ <Addressee (ST)> ^ <Comment (ST)> ^ <Preference Order (NM)> ^ <Protection Code (CWE)> ^ <Address Identifier (EI)>
+
+Subcomponents for Street Address (SAD): <Street or Mailing Address (ST)> & <Street Name (ST)> & <Dwelling Number (ST)>
+
+Subcomponents for County/Parish Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Census Tract (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Expiration Reason (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Protection Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Address Identifier (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains the mailing address of the provider identified in this segment. One of the key components to completing the "circle of care" and provider/institution bonding is the issuance of follow‑up correspondence to the referring provider.
+
+=== PRD-4 Provider Location (PL) 01158
+
+Components: <Point of Care (HD)> ^ <Room (HD)> ^ <Bed (HD)> ^ <Facility (HD)> ^ <Location Status (IS)> ^ <Person Location Type (IS)> ^ <Building (HD)> ^ <Floor (HD)> ^ <Location Description (ST)> ^ <Comprehensive Location Identifier (EI)> ^ <Assigning Authority for Location (HD)>
+
+Subcomponents for Point of Care (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Room (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Bed (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Facility (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Building (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Floor (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Comprehensive Location Identifier (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Assigning Authority for Location (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains the location of the provider as needed when a provider that may be external to a given enterprise must be referenced. For example, if this provider represented the referred-to physician, the _PRD-4-Provider location_ should identify the clinic of the physician or provider to whom this referral has been sent. An application and facility identifier carried in the facility field specifies the identification of the provider's location. The application ID and facility ID would be used in the same manner as their corresponding fields in the MSH segment (_MSH-3-Sending application, MSH-5-Receiving application,_ _MSH-4-Sending facility, MSH-6-Receiving facility_). That is, the facility field will contain an application identifier and facility identifier which describe the location of this provider. However, it should be noted that they may describe a different location because the provider location being referenced in this field _may not be_ the location from which the message originated, which is being described by the MSH.
+
+=== PRD-5 Provider Communication Information (XTN) 01159
+
+Components: <WITHDRAWN Constituent> ^ <Telecommunication Use Code (ID)> ^ <Telecommunication Equipment Type (ID)> ^ <Communication Address (ST)> ^ <Country Code (SNM)> ^ <Area/City Code (SNM)> ^ <Local Number (SNM)> ^ <Extension (SNM)> ^ <Any Text (ST)> ^ <Extension Prefix (ST)> ^ <Speed Dial Code (ST)> ^ <Unformatted Telephone number (ST)> ^ <Effective Start Date (DTM)> ^ <Expiration Date (DTM)> ^ <Expiration Reason (CWE)> ^ <Protection Code (CWE)> ^ <Shared Telecommunication Identifier (EI)> ^ <Preference Order (NM)>
+
+Subcomponents for Expiration Reason (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Protection Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Shared Telecommunication Identifier (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains information, such as the phone number or electronic mail address, used to communicate with the provider or organization.
+
+=== PRD-6 Preferred Method of Contact (CWE) 00684
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the preferred method to use when communicating with the provider. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70185[_User-defined Table 0185 - Preferred Method of Contact_] in Chapter 2C, "Code Tables", for suggested values.
+
+=== PRD-7 Provider Identifiers (PLN) 01162
+
+Components: <ID Number (ST)> ^ <Type of ID Number (CWE)> ^ <State/other Qualifying Information (ST)> ^ <Expiration Date (DT)>
+
+Subcomponents for Type of ID Number (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This repeating field contains the provider's unique identifiers such as UPIN, Medicare and Medicaid numbers. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70338[_User-defined Table 0338 - Practitioner ID Number Type_] (in Chapter 2C, "Code Tables") for suggested values.
+
+=== PRD-8 Effective Start Date of Provider Role (DTM) 01163
+
+=== PRD-9 Effective End Date of Provider Role (DTM) 01164
+
+Definition: This field contains the date that the role of the provider effectively ended. For example, this date may represent the date that a physician was removed as a patient's primary care provider.
+
+*Note:* The _PRD-8-Effective Start Date of Role_ and _PRD-9-Effective End Date of Role_ fields should _not_ be used as trigger events. For example, they should not be used to trigger a change in role. These two dates are for informational purposes only.
+
+=== PRD-10 Provider Organization Name and Identifier (XON) 02256
+
+Components: <Organization Name (ST)> ^ <Organization Name Type Code (CWE)> ^ <WITHDRAWN Constituent> ^ <WITHDRAWN Constituent> ^ <WITHDRAWN Constituent> ^ <Assigning Authority (HD)> ^ <Identifier Type Code (ID)> ^ <Assigning Facility (HD)> ^ <Name Representation Code (ID)> ^ <Organization Identifier (ST)>
+
+Subcomponents for Organization Name Type Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Assigning Authority (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Assigning Facility (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains the name of the provider where the provider is an organization.
+
+=== PRD-11 Provider Organization Address (XAD) 02257
+
+Components: <Street Address (SAD)> ^ <Other Designation (ST)> ^ <City (ST)> ^ <State or Province (ST)> ^ <Zip or Postal Code (ST)> ^ <Country (ID)> ^ <Address Type (ID)> ^ <Other Geographic Designation (ST)> ^ <County/Parish Code (CWE)> ^ <Census Tract (CWE)> ^ <Address Representation Code (ID)> ^ <WITHDRAWN Constituent> ^ <Effective Date (DTM)> ^ <Expiration Date (DTM)> ^ <Expiration Reason (CWE)> ^ <Temporary Indicator (ID)> ^ <Bad Address Indicator (ID)> ^ <Address Usage (ID)> ^ <Addressee (ST)> ^ <Comment (ST)> ^ <Preference Order (NM)> ^ <Protection Code (CWE)> ^ <Address Identifier (EI)>
+
+Subcomponents for Street Address (SAD): <Street or Mailing Address (ST)> & <Street Name (ST)> & <Dwelling Number (ST)>
+
+Subcomponents for County/Parish Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Census Tract (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Expiration Reason (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Protection Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Address Identifier (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains the address of the provider if it is an organization.
+
+=== PRD-12 Provider Organization Location Information (PL) 02258
+
+Components: <Point of Care (HD)> ^ <Room (HD)> ^ <Bed (HD)> ^ <Facility (HD)> ^ <Location Status (IS)> ^ <Person Location Type (IS)> ^ <Building (HD)> ^ <Floor (HD)> ^ <Location Description (ST)> ^ <Comprehensive Location Identifier (EI)> ^ <Assigning Authority for Location (HD)>
+
+Subcomponents for Point of Care (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Room (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Bed (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Facility (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Building (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Floor (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Comprehensive Location Identifier (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Assigning Authority for Location (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains the location details of the provider if it is an organization.
+
+=== PRD-13 Provider Organization Communication Information (XTN) 02259
+
+Components: <WITHDRAWN Constituent> ^ <Telecommunication Use Code (ID)> ^ <Telecommunication Equipment Type (ID)> ^ <Communication Address (ST)> ^ <Country Code (SNM)> ^ <Area/City Code (SNM)> ^ <Local Number (SNM)> ^ <Extension (SNM)> ^ <Any Text (ST)> ^ <Extension Prefix (ST)> ^ <Speed Dial Code (ST)> ^ <Unformatted Telephone number (ST)> ^ <Effective Start Date (DTM)> ^ <Expiration Date (DTM)> ^ <Expiration Reason (CWE)> ^ <Protection Code (CWE)> ^ <Shared Telecommunication Identifier (EI)> ^ <Preference Order (NM)>
+
+Subcomponents for Expiration Reason (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Protection Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Shared Telecommunication Identifier (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains information, such as the phone number or electronic mail address, used to communicate with the provider if it is an organization.
+
+=== PRD-14 Provider Organization Method of Contact (CWE) 02260
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the preferred method to use when communicating with the provider if provider is an organization. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70185[_User-defined Table 0185 - Preferred Method of Contact_] in Chapter 2C, "Code Tables", for suggested values.
+

@@ -1,0 +1,34 @@
+= ECR
+:render_as: Level3
+:v291_section: 13.3.6+
+
+== ECR - Equipment Command Response Segment 
+
+The equipment command response segment contains the receiving component's response to the previously received command.
+
+HL7 Attribute Table – ECR[#ECR .anchor]#### – Equipment Command Response
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM # |ELEMENT NAME
+
+|1 | | |CWE |R | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70387[0387] |01395 |Command Response
+
+|2 | | |DTM |R | | |01396 |Date/Time Completed
+
+|3 | | |TX |O |Y | |01397 |Command Response Parameters
+
+|===
+
+=== ECR-1 Command Response (CWE) 01395
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field identifies the response of the previously issued command. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70387[_User-defined Table 0387 – Command Response_] in Chapter 2C, Code Tables, for valid values.
+
+=== ECR-2 Date/Time Completed (DTM) 01396
+
+=== ECR-3 Command Response Parameters (TX) 01397
+

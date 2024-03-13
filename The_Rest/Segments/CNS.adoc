@@ -1,0 +1,50 @@
+= CNS
+:render_as: Level3
+:v291_section: 13.3.8+
+
+== CNS – Clear Notification Segment 
+
+The clear equipment notification segment contains the data necessary to allow the receiving equipment to clear any associated notifications.
+
+HL7 Attribute Table – CNS[#CNS .anchor]#### – Clear Notification
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM # |ELEMENT NAME
+
+|1 | |10= |NM |O | | |01402 |Starting Notification Reference Number
+
+|2 | |10= |NM |O | | |01403 |Ending Notification Reference Number
+
+|3 | | |DTM |O | | |01404 |Starting Notification Date/Time
+
+|4 | | |DTM |O | | |01405 |Ending Notification Date/Time
+
+|5 | | |CWE |O | |0585 |01406 |Starting Notification Code
+
+|6 | | |CWE |O | |0586 |01407 |Ending Notification Code
+
+|===
+
+=== CNS-1 Starting Notification Reference Number (NM) 01402
+
+=== CNS-2 Ending Notification Reference Number (NM) 01403
+
+=== CNS-3 Starting Notification Date/Time (DTM) 01404
+
+=== CNS-4 Ending Notification Date/Time (DTM) 01405
+
+=== CNS-5 Starting Notification Code (CWE) 01406
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the starting notification code that is to be cleared (see _13.3.7.4_, "_NDS-4 Notification Code (CWE) 01401_").Refer to Table 0585 - Starting Notification Code in Chapter 2C for valid values.
+
+=== CNS-6 Ending Notification Code (CWE) 01407
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the ending notification code that is to be cleared (see _13.3.7.4_, "_NDS-4 Notification Code (CWE) 01401_"). If empty, then only notification with Starting Notification Code will be cleared. Refer to Table 0586 - Ending Notification Code in Chapter 2C for valid values.
+

@@ -1,0 +1,50 @@
+= QSC
+:render_as: Level3
+:v291_section: 2A.2.61+
+
+== QSC - query selection criteria
+
+HL7 Component Table - QSC – Query Selection Criteria
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | | |ST |R | |Segment Field Name | |2A.2.76
+
+|2 |2..2 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70209[0209] |Relational Operator | |2A.2.35
+
+|3 | |199# |ST |O | |Value | |2A.2.76
+
+|4 |3..3 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70210[0210] |Relational Conjunction | |2A.2.35
+
+|===
+
+*Definition:* This field indicates the conditions that qualify the rows to be returned in the query response.
+
+*Note*: This field conveys the same information as the "WHERE" clause in the corresponding SQL expression of the query, but is formatted differently.
+
+Example:
+
+|@PID.5.1^EQ^EVANS|
+
+=== Segment Field Name (ST)
+
+=== Relational Operator (ID)
+
+=== Value (ST)
+
+=== Relational Conjunction (ID)
+
+Definition: Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70210[_HL7 Table 0210 - Relational Conjunction_] for valid values. The relational conjunction is defined as follows: If more than one comparison is to be made to select qualifying rows, a conjunction relates this repetition of the field to the next.
+
+• When applied to strings, the relational operators LT, GT, LE, and GE imply an alphabetic comparison.
+
+• A "generic" comparison selects a record for inclusion in the response when the beginning of the designated field matches the select string.
+
+• Where a repeating field is specified as an operand, a match on any instance of that field qualifies the row for inclusion in the response message.
+
+• AND takes precedence over OR. More sophisticated precedence rules require that the query be expressed as an embedded query language message or a stored procedure query message (see Chapter 5, "Query").
+

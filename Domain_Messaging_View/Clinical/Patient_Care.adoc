@@ -1,0 +1,16 @@
+= Patient Care
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Patient Care | Index: 971
+
+xref:Patient_Care/Introduction.adoc[Introduction]
+
+xref:Patient_Care/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Patient_Care/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Patient_Care/Technical_Specs.adoc[Technical Specs]
+
+xref:Patient_Care/Examples.adoc[Examples]
+

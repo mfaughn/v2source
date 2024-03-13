@@ -1,0 +1,210 @@
+= Examples
+:render_as: Level4
+:v291_section: 3.5+
+
+== Example Transactions
+
+=== Admit/visit notification ‑ event A01 (admitted patient)
+
+MSH|^~\&|ADT1|GOOD HEALTH HOSPITAL|GHH LAB, INC.|GOOD HEALTH HOSPITAL|202101011126|SECURITY|ADT­^A01^ADT_A01|MSG00001­|P|2.9.1||<cr>
+
+EVN|A01|202101011123||<cr>
+
+PID|1||PATID1234^5^M11^ADT1^MR^GOOD HEALTH HOSPITAL~123456789^^^USSSA^SS||EVERYMAN^ADAM^A^III||19610615|M­||C|2222 HOME STREET^^GREENSBORO^NC^27401‑1020|GL|(555) 555‑2004|(555)555‑2004||S||
+
+PATID12345001^2^M10^ADT1^AN^A|444333333|9­87654^NC|<­cr>
+
+GSP|1|S||76691-5^Gender identity^LN|446151000124109^Identifies as male gender^SCT|20210101<cr>
+
+GSP|2|S||90778-2^Personal pronouns – Reported^LN|LA29518-0^he/him/his/his/himself^LN|20210101<cr>
+
+GSP|3|S||76690-7^Sexual orientation^LN|42035005^Bisexual^SCT|20210101<cr>
+
+NK1|1|NUCLEAR^NELDA^W|SPO^SPOUSE||||NK^NEXT OF KIN<cr>
+
+PV1|1|I|2000^2012^01||||004777^ATTEND^AARON^A|||SUR||­||ADM|A0­|<cr>
+
+Patient Adam A. Everyman, III was admitted on January 1, 2021 at 11:23 a.m. by Doctor Aaron A. Attending (#004777) for surgery (SUR). He has been assigned to room 2012, bed 01 on nursing unit 2000.
+
+The message was sent from system ADT1 at the Good Health Hospital site to system GHH Lab, also at the Good Health Hospital site, on the same date as the admission took place, but three minutes after the admit.
+
+=== Pre-admit notification - event A05 (nonadmitted patient)
+
+MSH|^~\&|REGADT|GOOD HEALTH HOSPITAL|GHH LAB||200701061000||ADT^A05^ADT_A05|000001|P|2.8||||<cr>
+
+EVN|A05|200701061000|200701101400|01||200701061000<cr>
+
+PID|1|| PATID1234^^^GOOD HEALTH HOSPITAL^MR^GOOD HEALTH HOSPITAL~123456789^^^USSSA^SS|253763|EVERYMAN^ADAM^A||19560129|M|||2222 HOME STREET^^ISHPEMING^MI^49849^""^||(555) 555‑2004|(555)555‑2004||S|C|99999^^^GOOD HEALTH HOSPITAL^AN|444-33-3333||<cr>
+
+NK1|1|NUCLEAR^NELDA^W|SPO^SPOUSE|6666 HOME STREET ^^ISHPEMING^MI^49849^""^|555-555-5001|555-555-5001555-555-5001|EC^EMERGENCY CONTACT<cr>
+
+NK1|2|MUM^MARTHA^M|MOTHER|4444 HOME STREET ^^ISHPEMING^MI^49849^""^|555-555-2006|555-555-2006~555-555-2006|EC^EMERGENCY CONTACT<cr>
+
+NK1|3<cr>
+
+NK1|4|||6666 WORKER LOOP^^ISHPEMING^MI^49849|555-555-3003|EM^EMPLOYER|19940605||PROGRAMMER|||WORK IS FUN, INC.<cr>
+
+PV1||O|||||0148^ATTEND^AARON^A|0148^SENDER^SAM||AMB|||||||0148^ATTEND^AARON^A|S|1400|A|||||||||||||||||||GOOD HEALTH HOSPITAL||||||<cr>
+
+PV2||||||||200301101400||||||||||||||||||||||||||200301101400<cr>
+
+OBX||ST|1010.1^BODY WEIGHT||62|kg|||||F<cr>
+
+OBX||ST|1010.1^HEIGHT||190|cm|||||F<cr>
+
+DG1|1|19||BIOPSY||00<cr>
+
+GT1|1||EVERYMAN^ADAM^A^""^""^""^""^||2222 HOME STREET ^ISHPEMING^MI^49849^""^|(555) 555‑2004|555 555‑2004||||SE^SELF|444-33 3333|||| |2222 HOME STREET^^ISHPEMING^MI^49849^""|555-555‑2004 |||||||||||||||||||||||||||||||||AUTO CLINIC<cr>
+
+IN1|1|0|UA1|UARE INSURED, INC.|8888 INSURERS CIRCLE^^ISHPEMING^M1^49849^^||555-555-3015|90||||||50 OK<cr>
+
+IN1|2|""|""<cr>
+
+Patient Adam A. Everyman was pre-admitted on January 6^th^, 2007 for ambulatory surgery, which is scheduled for January 10, 2007 at 1400. As part of the pre-admission process, he specified two emergency contacts as well as employer, insurance, and guarantor information. He also was measured and weighed.
+
+*Note:* Above, the REGADT system supports the entry of four NK1 type records: first, second, and third emergency contacts and employer information. A third emergency contact was not provided for Adam A. Everyman. However, an NK1 record must be sent to support "snapshot" mode of update. The REGADT system also supports entry of two insurance plans, one guarantor, and one diagnosis.
+
+=== Register a patient - event A04 (nonadmitted patient)
+
+MSH|^~\&|REGADT|GOOD HEALTH HOSPITAL|GHH LAB||200712311501||ADT^A04^ADT_A01|000001|P|2.8||||<cr>
+
+EVN|A04|200701101500|200701101400|01||200701101410<cr>
+
+PID|||191919^^^GOOD HEALTH HOSPITAL^MR^GOOD HEALTH HOSPITAL^^^USSSA^SS|253763|EVERYMAN^ADAM^A||19560129|M|||2222 HOME STREET^^ISHPEMING^MI^49849^""^||555-555-2004|555-555- 2004||S|C|10199925^^^GOOD HEALTH HOSPITAL^AN|371-66-9256||<cr>
+
+NK1|1|NUCLEAR^NELDA|SPOUSE|6666 HOME STREET^^ISHPEMING^MI^49849^""^|555-555-5001|555-555-5001~555-555-5001|EC1^FIRST EMERGENCY CONTACT<cr>
+
+NK1|2|MUM^MARTHA|MOTHER|4444 HOME STREET^^ISHPEMING^MI^49849^""^|555-555 2006|555-555-2006~555-555-2006|EC2^SECOND EMERGENCY CONTACT<cr>
+
+NK1|3<cr>
+
+NK1|4|||6666 WORKER LOOP^^ISHPEMING^MI^49849^""^||(900)545-1200|EM^EMPLOYER|19940605||PROGRAMMER|||WORK IS FUN, INC.<cr>
+
+PV1||O|O/R||||0148^ATTEND^AARON^A|0148^ATTEND^AARON^A|0148^ATTEND^AARON^A|AMB|||||||0148^ATTEND^AARON^A|S|1400|A|||||||||||||||||||GOOD HEALTH HOSPITAL|||||199501101410|<cr>
+
+PV2||||||||200701101400||||||||||||||||||||||||||200301101400<cr>
+
+OBX||ST|1010.1^BODY WEIGHT||62|kg|||||F<cr>
+
+OBX||ST|1010.1^HEIGHT||190|cm|||||F<cr>
+
+DG1|1|19||BIOPSY||00|<cr>
+
+GT1|1||EVERYMAN^ADAM^A||2222 HOME STREET^^ISHPEMING^MI^49849^""^|444-33 3333|555-555-2004||||SE^SELF|444-33 3333||||AUTO CLINIC|2222 HOME STREET^^ISHPEMING^MI^49849^""|555-555-2004|<cr>
+
+IN1|0|0|UA1|UARE INSURED, INC.|8888 INSURERS CIRCLE^^ISHPEMING^M149849^""^||555-555-3015|90||||||50 OK|<cr>
+
+IN1|2|""|""<cr>
+
+Patient Adam A. Everyman arrived at location O/R for surgery on January 10^th^, 2007 at 1410 for ambulatory surgery which was scheduled for January 10, 2007 at 1400. The visit event was recorded into the Good Health Hospital system on January 10, 2007 at 1500. It was sent to the interface engine (IFENG) at 1501.
+
+=== Change an outpatient to an inpatient - event A06
+
+MSH|^~\&|REGADT|MCM|IFENG||200701110025||ADT^A06^ADT_A06|000001|P|2.8||||<cr>
+
+EVN|A06|200701100250||01||200701102300<cr>
+
+PID|||191919^^^GOOD HEALTH HOSPITAL^MR^FAC1~11111^^^USSSA^SS|253763|MASSIE^JAMES^A||19560129|M|||2222 HOME STREET^^ISHPEMING^MI^49849^""^||555-555-2004|555-555-2004||S|C|10199925^^^GOOD HEALTH HOSPITAL^AN|371-66-9256||<cr>
+
+NK1|1|MASSIE^ELLEN|SPOUSE|2222 HOME STREET^^ISHPEMING^MI^49849^""^|555) 555 2004|555-555-5001~555-555-5001|EC1^FIRST EMERGENCY CONTACT<cr>
+
+NK1|2|MASSIE^MARYLOU|MOTHER|300 ZOBERLEIN^^ISHPEMING^MI^49849^""^|555) 555 2004|555-555-5001~555-555-5001|EC2^SECOND EMERGENCY CONTACT<cr>
+
+NK1|3<cr>
+
+NK1|4|||6666 WORKER LOOP^^ISHPEMING^MI^49849^""^||(900)545-1200|EM^EMPLOYER|19940605||PROGRAMMER|||WORK IS FUN, INC.<cr>
+
+PV1||I|6N^1234^A^GOOD HEALTH HOSPITAL||||0100^SENDER,SAM|0148^ATTEND^AARON^A||SUR|||||||0148^SENDER,SAM|S|1400|A|||||||||||||||||||GOOD HEALTH HOSPITAL|||||199501102300|<cr>
+
+OBX||ST|1010.1^BODY WEIGHT||62|kg|||||F<cr>
+
+OBX||ST|1010.1^HEIGHT||190|cm|||||F<cr>
+
+DG1|1|19||BIOPSY||00<cr>
+
+GT1|1||EVERYMAN^ADAM^A||2222 HOME STREET^^ISHPEMING^MI^49849^""^|444-33 3333|555-555-2004||||SE^SELF|444-33 3333||||AUTO CLINIC|2222 HOME STREET^^ISHPEMING^MI^49849^""|555-555-2004<cr>
+
+IN1|0|0|UA1|UARE INSURED, INC.|8888 INSURERS CIRCLE^^ISHPEMING^M149849^""^||555-555-3015|90||||||50 OK<cr>
+
+IN1|2|""|""<cr>
+
+Patient Adam A. Everyman was later converted to an inpatient on January 10^th^, 2007 at 2300 to recover from the operation. The change from outpatient to inpatient was recorded on the MCM system on January 11, 2007 at 0020. He was assigned to room 1234, bed A on unit 6N. When Patient Adam A. Everyman was converted to an inpatient on January 10^th^, 2007 at 2300, his hospital service changed to SUR. His attending doctor and admitting doctors changed to Dr Sam Sender. As a result of the conversion, his account number changed from 10199923 to 10199925
+
+=== Transfer patient - event A02 (first example)
+
+MSH|^~\&|REGADT|GOOD HEALTH HOSPITAL|IFENG||200701110500||ADT^A02^ADT_A02|000001|P|2.8||||<cr>
+
+EVN|A02|200701110520||01||200701110500<cr>
+
+PID|||191919^^^GOOD HEALTH HOSPITAL^MR~111111^^^USSSA^SS|253763|EVERYMAN^ADAM^A||19560129|M|||2222 HOME STREET^^ISHPEMING^MI^49849^""^||555-555-2004|555-555-2004||S|C|10199925^^^GOOD HEALTH HOSPITAL^AN|444-33-3333|||||||||<cr>
+
+PV1||I|SICU^0001^01^GOOD HEALTH HOSPITAL|||6N^1234^A^GOOD HEALTH HOSPITAL|0200^ATTEND^AARON^A|0148^ SENDER^SAM||ICU|||||||0148^SENDER^SAM|S|1400|A|||||||||||||||||||GOOD HEALTH HOSPITAL|||||200701102300|<cr>
+
+On January 11^th^, 2007 at 0500, Adam A. Everyman condition became worse due to a complication. As a result, he was transferred to the surgical ICU (SICU). The transfer was recorded on the Good Health Hospital system on January 11, 2007 at 0520. He was assigned to room 0001, bed 1. When Patient Adam A. Everyman was transferred to SICU, his hospital service changed to ICU and his attending doctor changed to Dr. Sam Sender.
+
+=== Cancel transfer - event A12
+
+MSH|^~\&|REGADT|GOOD HEALTH HOSPITAL|IFENG||200701110600||ADT^A12^ADT_A12|000001|P|2.8||||<cr>
+
+EVN|A02|200701110600||01||200701110500<cr>
+
+PID|||191919^^^GOOD HEALTH HOSPITAL|253763|EVERYMAN^ADAM^A||19560129|M|||2222 HOME STREET^^ISHPEMING^MI^49849^""^||555-555-2004|555-555-2004||S|C|10199925|444-33-3333||
+
+PV1||I|6N^1234^A^GOOD HEALTH HOSPITAL|||SICU^0001^1^GOOD HEALTH HOSPITAL|0100^ATTEND^AARON^A|0148^ATTEND^AARON^A||SUR|||||||0148^ATTEND^AARON^A|S|1400|A|||||||||||||||||||GOOD HEALTH HOSPITAL|||||200701102300|<cr>
+
+It was determined that Adam A. Everyman was transferred to the wrong room in the SICU. Therefore, the transfer was cancelled.
+
+=== Transfer patient - event A02 (second example)
+
+MSH|^~\&|REGADT|GOOD HEALTH HOSPITAL|IFENG||200701110603||ADT^A02^ADT_A02|000001|P|2.8||||<cr>
+
+EVN|A02|200701110603||01||200701110500<cr>
+
+PID|||191919^^^GOOD HEALTH HOSPITAL^MR^FAC1~1111^^^USSSA^SS|253763|EVERYMAN^ADAM^A||19560129|M|||2222 HOME STREET^^ISHPEMING^MI^49849^""^||555-555-2004|555-555-2004||S|C|10199925^^^GOOD HEALTH HOSPITAL^AN|444-33-3333||
+
+PV1||I|SICU^0001^02^GOOD HEALTH HOSPITAL|||6N^1234^A^GOOD HEALTH HOSPITAL|0100^ATTEND^AARON^A|0148^ATTEND^AARON^A||SUR|||||||0148^ATTEND^AARON^A|S|1400|A|||||||||||||||||||GOOD HEALTH HOSPITAL|||||200701102300|<cr>
+
+The transfer is then repeated, this time to the correct bed: bed 2 of room 0001 in the SICU.
+
+=== Discharge patient - event A03
+
+MSH|^~\&|REGADT|GOOD HEALTH HOSPITAL|IFENG||200701121005||ADT^A03^ADT_A03|000001|P|2.8||||<cr>
+
+EVN|A03|200701121005||01||200701121000<cr>
+
+PID|||191919^^^GOOD HEALTH HOSPITAL^MR~11111^^^USSSA^SS|253763|EVERYMAN^ADAM^A||19560129|M|||2222 HOME STREET^^ISHPEMING^MI^49849^""^||555-555-2004|555-555-2004||S|C|10199925^^^GOOD HEALTH HOSPITAL^AN|444-33-3333|||||||||<cr>
+
+PV1||I|6N||||0100^ATTEND^AARON^A|0148^ATTEND^AARON^A||SUR|||||||0148^ATTEND^AARON^A|S|1400|A||||||||||||||||SNF|ISH^GREEN ACRES RETIREMENT HOME||GOOD HEALTH HOSPITAL|||||200701102300|200791121005<cr>
+
+When Adam A. Everyman's condition became more stable, he returned to 6N for another day (transfer not shown) and then was discharged to the Green Acres Retirement Home.
+
+=== Update adverse reaction info - unique identifier is provided - event A60 (where unique identifier is provided)
+
+MSH|^~\&|ADT|CA.SCA|IE|200701310815-0800|200702010101||ADT^A60^ADT_A60|6757498734|P|2.8|
+
+EVN||200701310815-0800
+
+PID|||987654321098||EVERYWOMAN^EVE^E||19530406|F
+
+PV1||O
+
+PV2||||||||200701310800-0800
+
+IAM|1|DA|^Penicillin|SV^^HL70128|^rash on back|A^^HL70323|12345||AL^^HL70436| +
+
+19990127||200301311015|NUCLEAR^NEVILLE^H|^Husband||C^^HL70438|MLEE^ATTEND^AARON^A^^^MD||
+
+=== Update adverse reaction info - allergen code provides unique identifier - event A60 (where the allergen code provides unique identifier)
+
+MSH|^~\&|ADT|CA.SCA|IE|200701310815-0800|200702010101||ADT^A60^ADT_A60|6757498734|P|2.8|
+
+EVN||200701310815-0800
+
+PID|||987654321098||EVERYWOMAN^EVE^E||19530406|F
+
+PV1||O
+
+PV2||||||||200701310800-0800
+
+IAM|1|DA|PHM1345^Penicillin^local|SV^^HL70128|^rash on back|A^^HL70323|||AL^^HL70436| 01^Penicillins,Cephalosporins^NDDF DAC|20070127||200701311015| NUCLEAR^NEVILLE^H|^Husband||C^^HL70438|MLEE^ATTEND^AARON^A^^^MD||
+

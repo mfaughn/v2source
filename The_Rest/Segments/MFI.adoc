@@ -1,0 +1,58 @@
+= MFI
+:render_as: Level3
+:v291_section: 8.5.1+
+
+== MFI - Master File Identification Segment
+
+The Technical Steward for the MFI segment is Infrastructure and Messaging.
+
+The fields in the MFI segment are defined in HL7 Attribute Table - MFI.
+
+[#MFI .anchor]####HL7 Attribute Table - MFI - Master File Identification
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |CWE |R | |file:///D:\AppData\Local\Microsoft\AppData\Local\Microsoft\Windows\INetCache\Content.Outlook\0BI8VTYA\V282_CH02C_CodeTables.doc#0175[0175] |00658 |Master File Identifier
+
+|2 | | |HD |O |y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70361[0361] |00659 |Master File Application Identifier
+
+|3 |3..3 | |ID |R | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70178[0178] |00660 |File-Level Event Code
+
+|4 | | |DTM |O | | |00661 |Entered Date/Time
+
+|5 | | |DTM |O | | |00662 |Effective Date/Time
+
+|6 |2..2 | |ID |R | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70179[0179] |00663 |Response Level Code
+
+|===
+
+=== MFI-1 Master File Identifier (CWE) 00658
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field is a CWE data type that identifies a standard HL7 master file. This table may be extended by local agreement during implementation to cover site-specific master files (z-master files). HL7 recommends use of the HL7 assigned table number as the master file identifier code if one is not specified in Table 0175. For example, a master file of Marital Status codes would be identified by HL70002 as the _MFI-1 - Master file identifier_. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70175[HL7 Table 0175 – Master File Identifier Code] in Chapter 2C, Code Tables, for valid values.
+
+=== MFI-2 Master File Application Identifier (HD) 00659
+
+Components: <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: This field contains an optional code of up to 180 characters which (if applicable) uniquely identifies the application responsible for maintaining this file at a particular site. A group of intercommunicating applications may use more than a single instance of a master file of certain type (e.g., charge master or physician master). The particular instance of the file is identified by this field. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70361[User-defined table 0361 - Applications].
+
+=== MFI-3 File-Level Event Code (ID) 00660
+
+Definition: This field defines the file-level event code. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70178[HL7 Table 0178 – File Level Event Code] in Chapter 2C, Code Tables, for valid values.
+
+*Note*: The replace option allows the sending system to replace a file without sending delete record-level events for each record in that file. UPD means that the events are defined according to the record-level event code contained in each MFE segment in that message.
+
+If the _MFI-3 - File-Level Event Code_ is "REP" (replace file), then each MFE segment must have an _MFE-1 - Record-Level Event Code_ of "MAD" (add record to master file).
+
+=== MFI-4 Entered Date/Time (DTM) 00661
+
+=== MFI-5 Effective Date/Time (DTM) 00662
+
+=== MFI-6 Response Level Code (ID) 00663
+

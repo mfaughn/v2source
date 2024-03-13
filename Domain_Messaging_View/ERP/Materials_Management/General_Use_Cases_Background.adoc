@@ -1,0 +1,84 @@
+= General Use Cases / Background
+:render_as: Level4
+:v291_section: 17.3.1+; 17.3.2;17.3.3
+
+== Inventory Item Master Updates
+
+=== Item Master Catalog
+
+=== Inventory Locations
+
+Inventory locations contain a list of items that are stocked at the location, or that can be ordered from the location (but not stocked on a regular basis). Inventory locations receive updates to the attributes of supply items from the general supply location's item master catalog. Even though the general supply location's item master catalog and the other inventory locations item master both share the majority of the supply item attributes, those attributes can have a different value in each location. For example, the status of a supply item (active, inactive, pending inactive), can be inactive in the general supply location item master catalog (meaning it cannot be ordered), but the same item may be pending inactive at another inventory location that still has the supply item in stock, and will issue the supply item until the stock is depleted, but cannot order to replenish the stock at this location.
+
+The following are the primary attributes of a supply item:
+
+____
+
+Unique identification code
+
+• The unique identification code for a supply item describes a relation to a supply that can be ordered. This would likely be a catalog number specific to a manufacturer of the supply item.
+
+Supply Item Description
+
+• The name or text description of the supply item provides a human-readable identification of the supply.
+
+Supply Item Type
+
+• This attribute describes a type or class of supply items. This would typically be a supply type such as office supplies, OR supplies, or laboratory supplies.
+
+____
+
+== Sterilization and Decontamination
+
+Sterilization and decontamination messages in this chapter are exchanged between a sterilizer or washer and an Instrument-tracking System.  The main focus of the sterilization and decontamination process is a load or grouping of _supply items_. These messages communicate sterilizer configuration, sterilizer lot, and device and cycle data messages related to instances of sterilizing and decontaminating supply items.
+
+_Sterilization_ is a process used to render a product free from viable microorganisms in order to meet infection prevention standards. Sterilizers are defined as apparatus used to sterilize medical devices, equipment and supplies by direct exposure to the sterilizing agent. The typical sterilizing agent for high temperature sterilization is saturated steam under pressure; low temperature sterilizing agents are peracetic acid or ethylene oxide gas.
+
+_Decontamination_ is defined by the Occupational Safety and Health Administration (OSHA) as the use of physical or chemical means to remove, inactivate or destroy blood-borne pathogens on a surface or item to the point where they are no longer capable of transmitting infectious particles and the surface or item is rendered safe for handling, use or disposal. \{29 CFR 1910.1030} Washers provide decontamination services in order to render items safe for handling.
+
+Steam sterilizers have defined cycles that achieve sterilization by attaining certain temperatures for specific lengths of time. These cycles are validated using AAMI (Association for Advancement of Medical Instrumentation) standards.
+
+Ethylene Oxide gas and peracetic acid sterilizers have defined cycles that are validated by the manufacturer's research to achieve sterilization at specific temperatures and exposure times to the sterilant.
+
+Sterilization and decontamination cycles are defined as a sequence of steps or phases that are designed to achieve sterilization or decontamination.
+
+Typical phases for steam sterilization include Condition, Sterilize and Exhaust. Phases for Ethylene Oxide sterilization include Condition, Sterilize, Exhaust and Aerate. Peracetic acid sterilizers also have similar phases.
+
+The following tables contain examples of typical cycles for sterilizers and washers.
+
+Representative Steam Sterilization Cycles
+
+[width="100%",cols="16%,18%,13%,15%,38%",options="header",]
+
+|===
+
+|Cycles |Sterilize Temperature |Sterilize Time |Dry Time |Recommended Load
+
+|Express |270°F (132°C) |4.0 Min |3.0 MIN. |Single wrapped instrument tray with a single instrument. Non-porous good, only.
+
+|Flash |270°F (132°C) |3.0 MIN |1.0 MIN |Unwrapped instrument tray with a single instrument
+
+|===
+
+Prevacuum Testing Cycles for Steam Sterilizers
+
+[width="100%",cols="22%,20%,17%,17%,24%",options="header",]
+
+|===
+
+|Prevacuum Testing Cycles |Sterilizer Temperature |Sterilize Time |Dry Time |Recommended Load
+
+|Leak Test |270°F (132°C) |N/A |N/A |N/A
+
+|Dart Test |270°F (132°C) |3½ MIN. |1.0 MIN |Bowie-Dick Test or DART
+
+|Dart Warmup |270°F (132°C) |3.0 MIN. |1.0 MIN. |N/A
+
+|===
+
+== Application roles
+
+In the sterilization and decontamination specification, there are two roles that an application can assume: a filler application role, and a placer application role. These application roles define the interaction that an application will have with other applications in the messaging environment. In many environments, any one application may take on more than one application role.
+
+In this specification, the definition of application roles is not intended to define or limit the functionality of specific products developed by vendors of such applications. Instead, this information is provided to help define the model used to develop this specification, and to provide an unambiguous way for applications to communicate with each other.
+

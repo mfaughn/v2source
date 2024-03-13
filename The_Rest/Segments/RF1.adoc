@@ -1,0 +1,228 @@
+= RF1
+:render_as: Level3
+:v291_section: 11.8.1+
+
+== RF1 - Referral Information Segment
+
+*_Attention: Retained for backwards compatibility as of V2.9. Refer to 7.4.4 for the PRT segment instead._*
+
+This segment represents information that may be useful when sending referrals from the referring provider to the referred-to provider.
+
+[#RFI .anchor]####HL7 Attribute Table - RF1 –Referral Information
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70283[0283] |01137 |Referral Status
+
+|2 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70280[0280] |01138 |Referral Priority
+
+|3 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70281[0281] |01139 |Referral Type
+
+|4 | | |CWE |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70282[0282] |01140 |Referral Disposition
+
+|5 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70284[0284] |01141 |Referral Category
+
+|6 | | |EI |R | | |01142 |Originating Referral Identifier
+
+|7 | | |DTM |O | | |01143 |Effective Date
+
+|8 | | |DTM |O | | |01144 |Expiration Date
+
+|9 | | |DTM |O | | |01145 |Process Date
+
+|10 | | |CWE |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70336[0336] |01228 |Referral Reason
+
+|11 | | |EI |O |Y | |01300 |External Referral Identifier
+
+|12 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70865[0865] |02262 |Referral Documentation Completion Status
+
+|13 |24 | |DTM |O |N | |03400 |Planned Treatment Stop Date
+
+|14 |60 | |ST |O |N | |03401 |Referral Reason Text
+
+|15 |721 | |CQ |O |N | |03402 |Number of Authorized Treatments/Units
+
+|16 |721 | |CQ |O |N | |03403 |Number of Used Treatments/Units
+
+|17 |721 | |CQ |O |N | |03404 |Number of Schedule Treatments/Units
+
+|18 |20 | |MO |O |N | |03405 |Remaining Benefit Amount
+
+|19 |250 | |XON |O |N | |03406 |Authorized Provider
+
+|20 |250 | |XCN |O |N | |03407 |Authorized Health Professional
+
+|21 |60 | |ST |O |N | |03408 |Source Text
+
+|22 |24 | |DTM |O |N | |03409 |Source Date
+
+|23 |250 | |XTN |O |N | |03410 |Source Phone
+
+|24 |250 | |ST |O |N | |03411 |Comment
+
+|25 |1..1 | |ID |O |N |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70206[0206] |03412 |Action Code
+
+|===
+
+=== RF1-1 Referral Status (CWE) 01137
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the status of the referral as defined by either the referred-to or the referred-by provider. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70283[_User-defined Table_ _0283 - Referral Status_] in Chapter 2C, Code Tables, for suggested values.
+
+=== RF1-2 Referral Priority (CWE) 01138
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the urgency of the referral. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70280[_User-defined Table 0280 - Referral Priority_] in Chapter 2C, Code Tables, for suggested values__.__
+
+=== RF1-3 Referral Type (CWE) 01139
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the type of referral. It is loosely associated with a clinical specialty or type of resource. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70281[_User-defined Table 0281 - Referral Type_] in Chapter 2C, Code Tables, for suggested values.
+
+=== RF1-4 Referral Disposition (CWE) 01140
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the type of response or action that the referring provider would like from the referred-to provider. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70282[_User-defined Table 0282 - Referral Disposition_] for suggested values.
+
+=== RF1-5 Referral Category (CWE) 01141
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the location at which the referral will take place. Refer to _file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70284[User-defined Table 0284 - Referral Categor]y_ for suggested values.
+
+=== RF1-6 Originating Referral Identifier (EI) 01142
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: This field contains the originating application's permanent identifier for the referral. This is a composite field.
+
+The first component is a string of up to 15 characters that identifies an individual referral. It is assigned by the originating application, and it identifies a referral, and the subsequent referral transactions, uniquely among all such referrals from a particular processing application.
+
+The second component is optional because this field, itself, is already defined as a _referral identifier_.
+
+The third component is optional. If used, it should contain the application identifier for the referred-to or external applications (i.e., _not_ the originating application). The application identifier is a string of up to 15 characters that is uniquely associated with an application. A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications. This list of application identifiers becomes one of the healthcare provider facility's master dictionary lists. Since applications fulfilling different application roles can send and receive referral messages, the assigning authority application identifier may not identify the application sending or receiving a particular message. Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications.
+
+=== RF1-7 Effective Date (DTM) 01143
+
+=== RF1-8 Expiration Date (DTM) 01144
+
+=== RF1-9 Process Date (DTM) 01145
+
+=== RF1-10 Referral Reason (CWE) 01228 
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the reason for which the referral will take place. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70336[_User-defined Table 0336 - Referral Reason_] for suggested values.
+
+=== RF1-11 External Referral Identifier (EI) 01300
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: This field contains an external application's permanent identifier for the referral. That is, this referral identifier does not belong to the application that originated the referral and assigned the originating referral identifier.
+
+The first component is a string of up to 15 characters that identifies an individual referral. It is typically assigned by the referred-to provider application responding to a referral originating from a referring provider application, and it identifies a referral, and the subsequent referral transactions, uniquely among all such referrals for a particular referred-to provider processing application. For example, when a primary care provider (referring provider) sends a referral to a specialist (referred-to provider), the specialist's application system may accept the referral and assign it a new referral identifier which uniquely identifies that particular referral within the specialist's application system. This new referral identifier would be placed in the external referral identifier field when the specialist responds to the primary care physician.
+
+The second component is optional because this field, itself, is already defined as a _referral identifier_.
+
+The third component is optional. If used, it should contain the application identifier for the referred-to or external application (i.e., not the originating application). The application identifier is a string of up to 15 characters that is uniquely associated with an application. A given healthcare provider facility, or group of intercommunicating healthcare provider facilities, should establish a unique list of applications that may be potential originators and recipients, and then assign unique application identifiers to each of those applications. This list of application identifiers becomes one of the healthcare provider facility's master dictionary lists. Since applications fulfilling different application roles can send and receive referral messages, the assigning authority application identifier may not identify the application sending or receiving a particular message. Data elements on the Message Header (MSH) segment are available to identify the actual sending and receiving applications.
+
+=== RF1-12 Referral Documentation Completion Status (CWE) 02262
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field can be used to indicate to the receiving provider that the clinical history in the message is incomplete and that more will follow. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70865[_User-defined Table 0865 - Referral Documentation Completion Status_] for suggested values.
+
+=== RF1-13 Planned Treatment Stop Date (DTM) 03400
+
+=== RF1-14 Referral Reason Text (ST) 03401
+
+=== RF1-15 Number of Authorized Treatments/Units (CQ) 03402
+
+Components: <Quantity (NM)> ^ <Units (CWE)>
+
+Subcomponents for Units (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The authorized duration is the amount of time, in days or visits, that the patient has been authorized for treatment for this referral. The duration of "days" is reserved for inpatient authorizations.
+
+=== RF1-16 Number of Used Treatments/Units (CQ) 03403
+
+Components: <Quantity (NM)> ^ <Units (CWE)>
+
+Subcomponents for Units (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The used duration is the amount of time, in days or visits that the patient has used of the originally authorized duration. The duration of "days" is reserved for inpatient authorizations.
+
+=== RF1-17 Number of Scheduled Treatments/Units (CQ) 03404
+
+Components: <Quantity (NM)> ^ <Units (CWE)>
+
+Subcomponents for Units (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The scheduled treatments is the amount of time, in days or visits that the patient has planned treatments scheduled. The duration of "days" is reserved for inpatient authorizations.
+
+=== RF1-18 Remaining Benefit Amount (MO) 03405
+
+Components: <Quantity (NM)> ^ <Denomination (ID)>
+
+Definition: The remaining benefit amount is the amount remaining from the insurance company related to this referral.
+
+=== RF1-19 Authorized Provider (XON) 03406
+
+Components: <Organization Name (ST)> ^ <Organization Name Type Code (CWE)> ^ <WITHDRAWN Constituent> ^ <WITHDRAWN Constituent> ^ <WITHDRAWN Constituent> ^ <Assigning Authority (HD)> ^ <Identifier Type Code (ID)> ^ <Assigning Facility (HD)> ^ <Name Representation Code (ID)> ^ <Organization Identifier (ST)>
+
+Subcomponents for Organization Name Type Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Assigning Authority (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Assigning Facility (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This represents the organization to which the patient was referred to perform the procedure(s). The authorized provider represents the organization recognized by the insurance carrier that is authorized to perform the services for the patient specified on the referral.
+
+=== RF1-20 Authorized Health Professional (XCN) 03407
+
+Components: <Person Identifier (ST)> ^ <Family Name (FN)> ^ <Given Name (ST)> ^ <Second and Further Given Names or Initials Thereof (ST)> ^ <Suffix (e.g., JR or III) (ST)> ^ <Prefix (e.g., DR) (ST)> ^ <WITHDRAWN Constituent> ^ <DEPRECATED-Source Table (CWE)> ^ <Assigning Authority (HD)> ^ <Name Type Code (ID)> ^ <Identifier Check Digit (ST)> ^ <Check Digit Scheme (ID)> ^ <Identifier Type Code (ID)> ^ <Assigning Facility (HD)> ^ <Name Representation Code (ID)> ^ <Name Context (CWE)> ^ <WITHDRAWN Constituent> ^ <Name Assembly Order (ID)> ^ <Effective Date (DTM)> ^ <Expiration Date (DTM)> ^ <Professional Suffix (ST)> ^ <Assigning Jurisdiction (CWE)> ^ <Assigning Agency or Department (CWE)> ^ <Security Check (ST)> ^ <Security Check Scheme (ID)>
+
+Subcomponents for Family Name (FN): <Surname (ST)> & <Own Surname Prefix (ST)> & <Own Surname (ST)> & <Surname Prefix from Partner/Spouse (ST)> & <Surname from Partner/Spouse (ST)>
+
+Subcomponents for Source Table (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Assigning Authority (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Assigning Facility (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Name Context (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Assigning Jurisdiction (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Assigning Agency or Department (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The authorized HP represents the specific health professional authorized to perform the services for the patient. This is a less frequently used field, as most often the authorization is for a group/organization and not a specific HP within that group.
+
+=== RF1-21 Source Text (ST) 03408
+
+=== RF1-22 Source Date (DTM) 03409
+
+=== RF1-23 Source Phone (XTN) 03410
+
+Components: <WITHDRAWN Constituent> ^ <Telecommunication Use Code (ID)> ^ <Telecommunication Equipment Type (ID)> ^ <Communication Address (ST)> ^ <Country Code (SNM)> ^ <Area/City Code (SNM)> ^ <Local Number (SNM)> ^ <Extension (SNM)> ^ <Any Text (ST)> ^ <Extension Prefix (ST)> ^ <Speed Dial Code (ST)> ^ <Unformatted Telephone number (ST)> ^ <Effective Start Date (DTM)> ^ <Expiration Date (DTM)> ^ <Expiration Reason (CWE)> ^ <Protection Code (CWE)> ^ <Shared Telecommunication Identifier (EI)> ^ <Preference Order (NM)>
+
+Subcomponents for Expiration Reason (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Protection Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Shared Telecommunication Identifier (EI): <Entity Identifier (ST)> & <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: The source phone number allows a user to capture the phone number of the person contacted regarding the specific referral.
+
+=== RF1-24 Comment (TX) 03411
+
+=== RF1-25 Action Code (ID) 03412
+

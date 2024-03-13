@@ -1,0 +1,6 @@
+= Message - I09 Request for Modification to an Authorization
+:render_as: Message Page
+:v291_section: 11.4; 11.4.3
+
+[message-tabs, ["RQA^I09^RQA_I08", "RQI Interaction", "ACK^I09^ACK", "ACK Interaction", "RPA^I09^RPA_I08", "RPA Interaction"]]
+

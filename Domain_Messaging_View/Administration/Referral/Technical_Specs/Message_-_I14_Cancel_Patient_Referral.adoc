@@ -1,0 +1,6 @@
+= Message - I14 Cancel Patient Referral
+:render_as: Message Page
+:v291_section: 11.5; 11.5.4
+
+[message-tabs, ["REF^I14^REF_I12", "REF Interaction", "ACK^I14^ACK", "ACK Interaction", "RRI^I14^RRI_I12", "RRI Interaction"]]
+

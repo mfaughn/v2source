@@ -1,0 +1,16 @@
+= General Orders and Results
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: General Orders and Results | Index: 596
+
+xref:General_Orders_and_Results/Introduction.adoc[Introduction]
+
+xref:General_Orders_and_Results/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:General_Orders_and_Results/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:General_Orders_and_Results/Technical_Specs.adoc[Technical Specs]
+
+xref:General_Orders_and_Results/Examples.adoc[Examples]
+

@@ -1,0 +1,98 @@
+= PKG
+:render_as: Level3
+:v291_section: 17.5.5+
+
+== PKG - Packaging Segment
+
+This segment contains the type of packaging available for the inventory supply item to be ordered and/or issued to a department or other supply location for a specified Purchasing Vendor. It would be recommended to send this segment in descending unit of measure order corresponding with the ascending Set ID.
+
+HL7 Attribute Table – PKG - Item Packaging
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 |1..4 | |SI |R | | |02221 |Set Id - PKG
+
+|2 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70818[0818] |02222 |Packaging Units
+
+|3 | | |CNE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70532[0532] |02223 |Default Order Unit Of Measure Indicator
+
+|4 | |12= |NM |O | | |02224 |Package Quantity
+
+|5 | | |CP |O | | |02225 |Price
+
+|6 | | |CP |O | | |02226 |Future Item Price
+
+|7 | | |DTM |O | | |02227 |Future Item Price Effective Date
+
+|8 | | |CWE |O | | |03307 |Global Trade Item Number
+
+|9 | | |MO |O | | |02426 |Contract Price
+
+|10 | | |NM |O | | |02427 |Quantity of Each
+
+|11 | | |EI |O | | |02428 |Vendor Catalog Number
+
+|===
+
+=== PKG-1 Set ID - PKG (SI) 02221
+
+=== PKG-2 Packaging Units (CWE) 02222
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the packaging unit that this inventory supply item can be ordered or issued in when purchased from the vendor in the related vendor segment. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70818[_User-defined Table 0818 – Package_] in Chapter 2C, Code Tables, for suggested values.
+
+=== PKG-3 Default Order Unit of Measure Indicator (CNE) 02223
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains an indicator that determines whether or not the unit of measure present in the PKG-2 is considered the default Order unit of measure. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70532[_HL7 Table 0532 - Expanded Yes/no Indicator_] in Chapter 2C, Code Tables, for valid values.
+
+=== PKG-4 Package Quantity (NM) 02224
+
+=== PKG-5 Price (CP) 02225
+
+Components: <Price (MO)> ^ <Price Type (ID)> ^ <From Value (NM)> ^ <To Value (NM)> ^ <Range Units (CWE)> ^ <Range Type (ID)>
+
+Subcomponents for Price (MO): <Quantity (NM)> & <Denomination (ID)>
+
+Subcomponents for Range Units (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the price of the item when purchased from the vendor in the associated VND segment, for the unit of measure present in this PKG segment.
+
+=== PKG-6 Future Item Price (CP) 02226
+
+Components: <Price (MO)> ^ <Price Type (ID)> ^ <From Value (NM)> ^ <To Value (NM)> ^ <Range Units (CWE)> ^ <Range Type (ID)>
+
+Subcomponents for Price (MO): <Quantity (NM)> & <Denomination (ID)>
+
+Subcomponents for Range Units (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains a future price for the item based on the packaging unit in PKG-2.
+
+=== PKG-7 Future Item Price Effective Date (DTM) 02227
+
+=== PKG-8 Global Trade Item Number (CWE) 03307
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the GTIN assigned to an item by the item manufacturer used for unique supply item identification by unit of measure within the GS1 standard.
+
+=== PKG-9 Contract Price (MO) 02426
+
+Components: <Quantity (NM)> & <Denomination (ID)>
+
+Definition: This field contains the contract price of this item UOM for the vendor sent in VND.
+
+=== PKG-10 Quantity of Each (NM) 02427
+
+=== PKG-11 Vendor Catalog Number (EI) 02428
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: This field contains the vendor catalog number of the item UM sent in sequence 3 (Default Order Unit of Measure).
+

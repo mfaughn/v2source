@@ -1,0 +1,114 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 17
+
+xref:Technical_Specs/Message_-_A01_AdmitVisit_Notification.adoc[Message - A01 Admit/Visit Notification]
+
+xref:Technical_Specs/Message_-_A02_Transfer_a_Patient.adoc[Message - A02 Transfer a Patient]
+
+xref:Technical_Specs/Message_-_A03_DischargeEnd_Visit.adoc[Message - A03 Discharge/End Visit]
+
+xref:Technical_Specs/Message_-_A04_Register_a_Patient.adoc[Message - A04 Register a Patient]
+
+xref:Technical_Specs/Message_-_A05_Pre-Admit_a_Patient.adoc[Message - A05 Pre-Admit a Patient]
+
+xref:Technical_Specs/Message_-_A06_Change_an_Outpatient_to_an_Inpatient.adoc[Message - A06  Change an Outpatient to an Inpatient]
+
+xref:Technical_Specs/Message_-_A07_Change_an_Inpatient_to_an_Outpatient.adoc[Message - A07 Change an Inpatient to an Outpatient]
+
+xref:Technical_Specs/Message_-_A08_Update_Patient_Information.adoc[Message - A08 Update Patient Information]
+
+xref:Technical_Specs/Message_-_A09_Patient_Departing_-_Tracking.adoc[Message - A09 Patient Departing - Tracking ]
+
+xref:Technical_Specs/Message_-_A10_Patient_Arriving_-_Tracking.adoc[Message - A10 Patient Arriving - Tracking ]
+
+xref:Technical_Specs/Message_-_A11_Cancel_Admit_Visit_Notification.adoc[Message - A11 Cancel Admit / Visit Notification]
+
+xref:Technical_Specs/Message_-_A12_Cancel_Transfer.adoc[Message - A12 Cancel Transfer]
+
+xref:Technical_Specs/Message_-_A13_Cancel_Discharge_End_Visit.adoc[Message - A13 Cancel Discharge / End Visit]
+
+xref:Technical_Specs/Message_-_A14_Pending_Admit.adoc[Message - A14 Pending Admit ]
+
+xref:Technical_Specs/Message_-_A15_Pending_Transfer.adoc[Message - A15 Pending Transfer ]
+
+xref:Technical_Specs/Message_-_A16_Pending_Discharge.adoc[Message - A16 Pending Discharge]
+
+xref:Technical_Specs/Message_-_A17_Swap_Patients.adoc[Message - A17 Swap Patients ]
+
+xref:Technical_Specs/Message_-_A20_Bed_Status_Update.adoc[Message - A20 Bed Status Update]
+
+xref:Technical_Specs/Message_-_A21_Patient_Goes_on_a_Leave_of_Absence.adoc[Message - A21 Patient Goes on a Leave of Absence ]
+
+xref:Technical_Specs/Message_-_A22_Patient_Returns_From_a_Leave_of_Absence.adoc[Message - A22 Patient Returns From a Leave of Absence]
+
+xref:Technical_Specs/Message_-_A23_Delete_a_Patient_Record.adoc[Message - A23 Delete a Patient Record]
+
+xref:Technical_Specs/Message_-_A24_Link_Patient_Information.adoc[Message - A24 Link Patient Information]
+
+xref:Technical_Specs/Message_-_A25_Cancel_Pending_Discharge.adoc[Message - A25 Cancel Pending Discharge]
+
+xref:Technical_Specs/Message_-_A26_Cancel_Pending_Transfer.adoc[Message - A26 Cancel Pending Transfer]
+
+xref:Technical_Specs/Message_-_A27_Cancel_Pending_Admit.adoc[Message - A27 Cancel Pending Admit]
+
+xref:Technical_Specs/Message_-_A28_Add_Person_or_Patient_Information.adoc[Message - A28 Add Person or Patient Information ]
+
+xref:Technical_Specs/Message_-_A29_Delete_Person_Information.adoc[Message - A29 Delete Person Information]
+
+xref:Technical_Specs/Message_-_A31_Update_Person_Information.adoc[Message - A31 Update Person Information]
+
+xref:Technical_Specs/Message_-_A32_Cancel_Patient_Arriving_-_Tracking.adoc[Message - A32 Cancel Patient Arriving - Tracking ]
+
+xref:Technical_Specs/Message_-_A33_Cancel_Patient_Departing_-_Tracking.adoc[Message - A33 Cancel Patient Departing - Tracking]
+
+xref:Technical_Specs/Message_-_A37_Unlink_Patient_Information.adoc[Message - A37 Unlink Patient Information ]
+
+xref:Technical_Specs/Message_-_A38_Cancel_Pre-Admit.adoc[Message - A38 Cancel Pre-Admit ]
+
+xref:Technical_Specs/Message_-_A40_Merge_Patient_-_Patient_Identifier_List.adoc[Message - A40 Merge Patient - Patient Identifier List ]
+
+xref:Technical_Specs/Message_-_A41_Merge_Account_-_Patient_Account_Number.adoc[Message - A41 Merge Account - Patient Account Number]
+
+xref:Technical_Specs/Message_-_A42_Merge_Visit_-_Visit_Number.adoc[Message - A42 Merge Visit - Visit Number ]
+
+xref:Technical_Specs/Message_-_A43_Move_Patient_Information_-_Patient_Identifier_List.adoc[Message - A43 Move Patient Information - Patient Identifier List ]
+
+xref:Technical_Specs/Message_-_A44_Move_Account_Information_-_Patient_Account_Number.adoc[Message - A44 Move Account Information - Patient Account Number]
+
+xref:Technical_Specs/Message_-_A45_Move_Visit_Information_-_Visit_Number.adoc[Message - A45 Move Visit Information - Visit Number]
+
+xref:Technical_Specs/Message_-_A47_Change_Patient_Identifier_List.adoc[Message - A47 Change Patient Identifier List ]
+
+xref:Technical_Specs/Message_-_A49_Change_Patient_Account_Number.adoc[Message - A49 Change Patient Account Number ]
+
+xref:Technical_Specs/Message_-_A50_Change_Visit_Number.adoc[Message - A50 Change Visit Number]
+
+xref:Technical_Specs/Message_-_A51_Change_Alternate_Visit_ID.adoc[Message - A51 Change Alternate Visit ID ]
+
+xref:Technical_Specs/Message_-_A52_Cancel_Leave_of_Absence_for_a_Patient.adoc[Message - A52 Cancel Leave of Absence for a Patient]
+
+xref:Technical_Specs/Message_-_A53_Cancel_Patient_Returns_from_a_Leave_of_Absence.adoc[Message - A53 Cancel Patient Returns from a Leave of Absence]
+
+xref:Technical_Specs/Message_-_A50_Change_Attending_Doctor.adoc[Message - A50 Change Attending Doctor]
+
+xref:Technical_Specs/Message_-_A55_Cancel_Change_Attending_Doctor.adoc[Message - A55 Cancel Change Attending Doctor]
+
+xref:Technical_Specs/Message_-_A60_Update_Adverse_Reaction_Information.adoc[Message - A60 Update Adverse Reaction Information]
+
+xref:Technical_Specs/Message_-_A61_Change_Consulting_Doctor.adoc[Message - A61 Change Consulting Doctor]
+
+xref:Technical_Specs/Message_-_A62_Cancel_Change_Consulting_Doctor.adoc[Message - A62 Cancel Change Consulting Doctor]
+
+xref:Technical_Specs/Message_-_Q21K21_Get_Person_Demographics_(QBP)_and_Response.adoc[Message - Q21/K21 Get Person Demographics (QBP) and Response]
+
+xref:Technical_Specs/Message_-_Q22K22_Find_Candidates_(QBP)_and_Response_(RSP).adoc[Message - Q22/K22 Find Candidates (QBP) and Response (RSP)]
+
+xref:Technical_Specs/Message_-_Q23K23_Get_Corresponding_Identifiers_(QBP)_and_Response_(RSP).adoc[Message - Q23/K23 Get Corresponding Identifiers (QBP) and Response (RSP)]
+
+xref:Technical_Specs/Message_-_Q24K24_Allocate_Identifiers_(QBP)_and_Response_(RSP).adoc[Message - Q24/K24 Allocate Identifiers (QBP) and Response (RSP)]
+
+xref:Technical_Specs/Message_-_Q32K32_Find_Candidates_including_Visit_Information_(QBP)_and_Response_(RSP).adoc[Message - Q32/K32 Find Candidates including Visit Information (QBP) and Response (RSP)]
+

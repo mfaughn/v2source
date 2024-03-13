@@ -1,0 +1,8 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 875
+
+xref:Technical_Specs/Unsolicited_Vaccination_Record_Update.adoc[Unsolicited Vaccination Record Update]
+

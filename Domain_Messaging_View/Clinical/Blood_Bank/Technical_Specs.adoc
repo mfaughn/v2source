@@ -1,0 +1,32 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 761
+
+xref:Technical_Specs/Message_-_Blood_Product_Order.adoc[Message - Blood Product Order]
+
+xref:Technical_Specs/Message_-_Blood_Product_Dispense_Status.adoc[Message - Blood Product Dispense Status]
+
+xref:Technical_Specs/Message_-_Blood_Product_TransfusionDisposition.adoc[Message - Blood Product Transfusion/Disposition]
+
+xref:Technical_Specs/Message_-_Create_Donor_Record.adoc[Message - Create Donor Record]
+
+xref:Technical_Specs/Message_-_Update_Donor_Record.adoc[Message - Update Donor Record]
+
+xref:Technical_Specs/Message_-_Get_Donor_Record_Candidates.adoc[Message - Get Donor Record Candidates]
+
+xref:Technical_Specs/Message_-_Get_Donor_Record.adoc[Message - Get Donor Record]
+
+xref:Technical_Specs/Message_-_Donor_Registraiton.adoc[Message - Donor Registraiton]
+
+xref:Technical_Specs/Message_-_Donor_Eligibility_Request.adoc[Message - Donor Eligibility Request]
+
+xref:Technical_Specs/Message_-_Donor_Eligibility_Observations.adoc[Message - Donor Eligibility Observations]
+
+xref:Technical_Specs/Message_-_Donor_Eligibility_Notification.adoc[Message - Donor Eligibility Notification]
+
+xref:Technical_Specs/Message_-_Donor_Request_to_Collect.adoc[Message - Donor Request to Collect]
+
+xref:Technical_Specs/Message_-_Donation_Procedure.adoc[Message - Donation Procedure]
+

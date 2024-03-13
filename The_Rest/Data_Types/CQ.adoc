@@ -1,0 +1,36 @@
+= CQ
+:render_as: Level3
+:v291_section: 2A.2.11+
+
+== CQ - composite quantity with units 
+
+HL7 Component Table - CQ – Composite Quantity with Units
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | | |NM |O | |Quantity | |2A.2.47
+
+|2 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70794[0794] |Units | |2A.2.13
+
+|===
+
+*Note:* CQ cannot be legally expressed when embedded within another data type. Its use is constrained to a segment field.
+
+Examples:
+
+|123.7^kg| kilograms is an ISO unit
+
+|150^lb&&ANSI+| weight in pounds is a customary US unit defined within ANSI+.
+
+=== Quantity (NM)
+
+=== Units (CWE)
+
+Definition: This component species the units in which the quantity is expressed. As of v2.7 the externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the external table "Unified Code for Units of Measure" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70794[user-defined Table 0794 - Units] in Chaper 2C, Code Tables, for valid values.
+

@@ -1,0 +1,60 @@
+= CP
+:render_as: Level3
+:v291_section: 2A.2.10+
+
+== CP - composite price
+
+HL7 Component Table - CP – Composite Price
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | | |MO |R | |Price | |2A.2.41
+
+|2 |1..2 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70205[0205] |Price Type | |2A.2.35
+
+|3 | |= |NM |O | |From Value | |2A.2.47
+
+|4 | |= |NM |O | |To Value | |2A.2.47
+
+|5 | | |CWE |C | |Range Units | |2A.2.13
+
+|6 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70298[0298] |Range Type | |2A.2.35
+
+|===
+
+*Note:* This data type is often used to define a repeating field within a given segment.
+
+Example:
+
+|100.00&USD^UP^0^9^min^P~50.00&USD^UP^10^59^min^P~10.00&USD^UP^60^999^P~50.00&USD^AP~200.00&USD^PF
+
+~80.00&USD^DC|
+
+=== Price (MO)
+
+Definition: The only required component; usually containing a decimal point.
+
+*Note*: Each component of the MO data type (Section _2A.2.41_, "_MO - money_") is a subcomponent here.
+
+=== Price Type (ID)
+
+=== From Value (NM)
+
+Definition: The number specifying the lower limit or boundary of the range. This component, together with the _CP.4_ component, specifies the "price range". The range can be defined as either time or quantity. For example, the range can indicate that the first 10 minutes of the procedure has one price. Another repetition of the data type can use the range to specify that the following 10 to 60 minutes of the procedure is charged at another price per; a final repetition can specify that the final 60 to N minutes of the procedure at a third price.
+
+*Note*: If the _CP.2 Price Type_ component is TP, both _CP.3_ and _CP.4_ may be null.
+
+=== To Value (NM)
+
+=== Range Units (CWE)
+
+Definition: This component describes the units associated with the range, e.g., seconds, minutes, hours, days, quantity (i.e., count). As of v2.7 the Externally-defined Unified Code for Units of Measure (UCUM) case sensitive code is the required code for units of measure. Refer to the externally-defined table "Unified Code for Units of Measure" (UCUM) [http://aurora.rg.iupui.edu/UCUM] for valid values. Local codes may be transmitted in addition to UCUM codes.
+
+This component is required if _CP.3 From Value_ and/or _CP.4 To Value_ are present.
+
+=== Range Type (ID)
+

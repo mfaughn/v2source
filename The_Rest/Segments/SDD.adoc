@@ -1,0 +1,62 @@
+= SDD
+:render_as: Level3
+:v291_section: 17.8.3+
+
+== SDD - Sterilization Device Data Segment
+
+The SDD segment contains the attributes of an instance of a cycle that provides sterilization or decontamination of medical supplies.
+
+HL7 Attribute Table - SDD – Sterilization Device Data
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |R/O/C |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |EI |O | | |02098 |Lot Number
+
+|2 | | |EI |O | | |02099 |Device Number
+
+|3 | |999= |ST |O | | |02281 |Device Name
+
+|4 | | |CWE |O | |link:#HL70667[0667] |02100 |Device Data State
+
+|5 | | |CWE |O | |link:#HL70669[0669] |02101 |Load Status
+
+|6 | |3= |NM |O | | |02102 |Control Code
+
+|7 | |15= |ST |O | | |02103 |Operator Name
+
+|===
+
+=== SDD-1 Lot Number (EI) 02098
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: A unique number associated with an instance of a sterilization/decontamination cycle assigned by the instrument-tracking system.
+
+=== SDD-2 Device Number (EI) 02099
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: The number of the device (e.g., 01 VAC).
+
+=== SDD-3 Device Name (ST) 02281
+
+=== SDD-4 Device Data State (CWE) 02100
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The state of data being sent, i.e., historic data of the cycle or a real-time snapshot of the current value of the cycle data. During a sterilization process, data is consistently being output to record the value of the data at each point in time within the instance of a cycle. For example, the temperature is recorded at every point in time during the cycle. Refer to _file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70667[User-defined Table 0667 – Device] Data State_ in Chapter 2C, Code Tables, for suggested values.
+
+=== SDD-5 Load Status (CWE) 02101
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The status of the load. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70669[_User-defined Table 0669 – Load Status_] in Chapter 2C, Code Tables, for suggested values.
+
+=== SDD-6 Control Code (NM) 02102
+
+=== SDD-7 Operator Name (ST) 02103
+

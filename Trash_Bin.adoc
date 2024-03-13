@@ -1,0 +1,6 @@
+= Trash Bin
+:render_as: Level1
+:v291_section: 
+
+Placeholder Text: Trash Bin | Index: 1934
+

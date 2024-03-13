@@ -1,0 +1,42 @@
+= EQP
+:render_as: Level3
+:v291_section: 13.3.12+
+
+== EQP - Equipment Log/Service Segment 
+
+The equipment log/service segment is the data necessary to maintain an adequate audit trail of events that have occurred on a particular piece of equipment.
+
+HL7 Attribute Table – EQP[#EQP .anchor]#### – Equipment/log Service
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM # |ELEMENT NAME
+
+|1 | | |CWE |R | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70450[0450] |01430 |Event type
+
+|2 | |20= |ST |O | | |01431 |File Name
+
+|3 | | |DTM |R | | |01202 |Start Date/Time
+
+|4 | | |DTM |O | | |01432 |End Date/Time
+
+|5 | | |FT |R | | |01433 |Transaction Data
+
+|===
+
+=== EQP-1 Event Type (CWE) 01430
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field identifies the type of event of the message. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70450[HL7 Table 0450 – Event Type] in Chapter 2C, Code Tables, for valid values.
+
+=== EQP-2 File Name (ST) 01431
+
+=== EQP-3 Start Date/Time (DTM) 01202
+
+=== EQP-4 End Date/Time (DTM) 01432
+
+=== EQP-5 Transaction Data (FT) 01433
+

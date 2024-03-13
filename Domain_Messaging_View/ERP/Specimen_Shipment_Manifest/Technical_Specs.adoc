@@ -1,0 +1,8 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 1456
+
+xref:Technical_Specs/Message_-_Unsolicited_Specimen_Shipment_Manifest.adoc[Message - Unsolicited Specimen Shipment Manifest]
+

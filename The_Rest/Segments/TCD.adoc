@@ -1,0 +1,104 @@
+= TCD
+:render_as: Level3
+:v291_section: 13.3.10+
+
+== TCD - Test Code Detail Segment 
+
+The test code detail segment contains the data necessary to perform operations or calculations, or execute decisions by the laboratory automation system, and which are not supported by the original HL7 segments related to orders (ORC, OBR). For detail of use see messages of laboratory orders and observations in chapters 4 and 7.
+
+HL7 Attribute Table – TCD – Test Code Detail
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM # |ELEMENT NAME
+
+|1 | | |CWE |R | |0789 |00238 |Universal Service Identifier
+
+|2 | | |SN |O | | |01420 |Auto-Dilution Factor
+
+|3 | | |SN |O | | |01421 |Rerun Dilution Factor
+
+|4 | | |SN |O | | |01422 |Pre-Dilution Factor
+
+|5 | | |SN |O | | |01413 |Endogenous Content of Pre-Dilution Diluent
+
+|6 |1..1 | |ID |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70136[0136] |01416 |Automatic Repeat Allowed
+
+|7 |1..1 | |ID |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70136[0136] |01424 |Reflex Allowed
+
+|8 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70389[0389] |01425 |Analyte Repeat Status
+
+|*9* | | |*CQ* |*O* | | |*03490* |*Specimen Consumption Quantity*
+
+|*10* | | |*NM* |*O* | | |*03493* |*Pool Size*
+
+|*11* | | |*CWE* |*O* | |*0945* |*03494* |*Auto-Dilution Type*
+
+|===
+
+=== TCD-1 Universal Service Identifier (CWE) 00238
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field identifies the test code that information is being transmitted about. Refer to Table 0789 - Universal Service Identifier in Chapter 2C for valid values.
+
+=== TCD-2 Auto-Dilution Factor (SN) 01420
+
+Components: <Comparator (ST)> ^ <Num1 (NM)> ^ <Separator/Suffix (ST)> ^ <Num2 (NM)>
+
+Definition: This field is the value that is to be used as the factor for automatically diluting a particular specimen by an instrument for this particular test code. (See examples in definition of _13.3.3.29_, "_SAC-29 Dilution Factor_ (SN) 01356," in the "Specimen Container Detail Segment.")
+
+=== TCD-3 Rerun Dilution Factor (SN) 01421
+
+Components: <Comparator (ST)> ^ <Num1 (NM)> ^ <Separator/Suffix (ST)> ^ <Num2 (NM)>
+
+Definition: This field is the value that is to be used as the factor for automatically diluting a particular specimen in case of rerun for this particular test code.
+
+=== TCD-4 Pre-Dilution Factor (SN) 01422
+
+Components: <Comparator (ST)> ^ <Num1 (NM)> ^ <Separator/Suffix (ST)> ^ <Num2 (NM)>
+
+Definition: This field is the value that is to be used as the factor for a particular specimen that is delivered to the automated system as pre-diluted for this particular test code.
+
+=== TCD-5 Endogenous Content of Pre-Dilution Diluent (SN) 01413
+
+Components: <Comparator (ST)> ^ <Num1 (NM)> ^ <Separator/Suffix (ST)> ^ <Num2 (NM)>
+
+Definition: This field represents the rest concentration of the measured test in the diluent. It is the value that is to be used for calculation of the concentration of pre-diluted specimens for this particular test code.
+
+=== TCD-6 Automatic Repeat Allowed (ID) 01416
+
+=== TCD-7 Reflex Allowed (ID) 01424
+
+=== TCD-8 Analyte Repeat Status (CWE) 01425
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field identifies the repeat status for the analyte/result (e.g., original, rerun, repeat, reflex). Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70389[_HL7 Table 0389 – Analyte Repeat Status_] in Chapter 2C, Code Tables, for valid values.
+
+For purpose of this chapter we assume the following:
+
+• Repeated test without dilution — performed usually to confirm correctness of results (e.g., in case of results flagged as "Panic" or mechanical failures).
+
+• Repeated test with dilution — performed usually in the case the original result exceeded the measurement range (technical limits).
+
+• Reflex test — this test is performed as the consequence of rules triggered based on other test result(s).
+
+=== TCD-9 Specimen Consumption Quantity (CQ) 03490 
+
+Components: <Quantity (NM)> ^ <Units (CWE)>
+
+Subcomponents for Units (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The specimen consumption quantity determines how much of the specimen shall be consumed in each run of the test. For some types of equipment, observation accuracy depends on this parameter.
+
+=== TCD-10 Pool Size (NM) 03493
+
+=== TCD-11 Auto-Dilution Type (CWE) 03494
+
+Definition: This field contains a vendor-defined code of the auto-dilution factor pre‑configured on the instrument, which can be used instead of TCD‑2 “Auto-Dilution Factor”. Refer to _User-defined Table 0945– Auto Dilution Type_ in Chapter 2C, Code Tables, for suggested values.
+
+If both TCD‑2 “Auto-Dilution Factor” and TCD‑11 “Auto-Dilution Type” are populated, they shall not contradict each other.
+

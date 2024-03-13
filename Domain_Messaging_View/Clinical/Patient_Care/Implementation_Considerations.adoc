@@ -1,0 +1,12 @@
+= Implementation Considerations
+:render_as: Level4
+:v291_section: 12.6; 12.7
+
+The Patient Care Technical Committee recognizes that this document contains a great deal of information for computer systems that are currently under development. The participating institutions/vendors will be responsible for defining the necessary tables that have been previously discussed. As these tables are defined and clarified, they will be included in this document for distribution.
+
+Applications can have differing orientations for representing problem and goal hierarchies. For example, parent:child relationships may map problem(s) to goal(s), or goal(s) to problem(s). To accommodate these different orientations, the Problem message allows representation of goals that are functionally dependent upon a problem, and the Goal message allows representation of problems that are functionally dependent on a goal. We recognize that institutions will decide on one or the other of the methodologies based on practice preferences.
+
+In both the Problem and Goal segments a field named "Episode of Care" has been included. This field is intended to accommodate an entity defined by consensus business rules that defines an episode of care.
+
+Individual businesses/applications must be cognizant of and able to handle data integrity issues that may arise from the fact that problem lists and goal lists may not have a single owner of record. This chapter does not address the need for joint data ownership (of problem and goal data) between two or more front-end clinical applications concurrently supporting patient care in real-time. From a data integrity perspective, problem/goal data must be sourced/originated (and thus owned) by a single application only - for example, a front-end clinical application (source) transmitting to a back-end repository application. This is not recognized to be within the current scope of the Patient Care Committee; therefore, this concern will be submitted to the Infrastructure & Messaging committee for further debate.
+

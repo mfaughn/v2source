@@ -1,0 +1,24 @@
+= Message - U06 Automated Equipment Inventory Request 
+:render_as: Message Page
+:v291_section: 13.3.6
+
+The equipment command response segment contains the receiving component's response to the previously received command.
+
+HL7 Attribute Table – ECR[#ECR .anchor]#### – Equipment Command Response
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM # |ELEMENT NAME
+
+|1 | | |CWE |R | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70387[0387] |01395 |Command Response
+
+|2 | | |DTM |R | | |01396 |Date/Time Completed
+
+|3 | | |TX |O |Y | |01397 |Command Response Parameters
+
+|===
+
+[message-tabs, ["INR^U06^INR_U06", "INR Interaction", "ACK^U06^ACK", "ACK Interaction", "INU^U05^INU_U05", "INU Interaction"]]
+

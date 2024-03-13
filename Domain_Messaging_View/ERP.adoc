@@ -1,0 +1,16 @@
+= ERP
+:render_as: Level2
+:v291_section: 
+
+Placeholder Text: ERP | Index: 1267
+
+xref:ERP/Materials_Management.adoc[Materials Management]
+
+xref:ERP/Personnel_Management.adoc[Personnel Management]
+
+xref:ERP/Lab_Automation.adoc[Lab Automation]
+
+xref:ERP/Supply.adoc[Supply]
+
+xref:ERP/Specimen_Shipment_Manifest.adoc[Specimen Shipment Manifest]
+

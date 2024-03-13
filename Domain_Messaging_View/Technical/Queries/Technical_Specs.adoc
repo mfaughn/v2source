@@ -1,0 +1,20 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 1469
+
+xref:Technical_Specs/Message_-_Query_by_parametersegment_pattern_response.adoc[Message - Query by parameter/segment pattern response]
+
+xref:Technical_Specs/Message_-_Query_by_parametertabular_response.adoc[Message - Query by parameter/tabular response]
+
+xref:Technical_Specs/Message_-_Query_by_parameterdisplay_response.adoc[Message - Query by parameter/display response]
+
+xref:Technical_Specs/Message_-_Q16_Create_subscription.adoc[Message - Q16 Create subscription]
+
+xref:Technical_Specs/Message_-_Q17_Query_for_previous_events.adoc[Message - Q17 Query for previous events]
+
+xref:Technical_Specs/Message_-_J01_Cancel_queryacknowledge_message.adoc[Message - J01 Cancel query/acknowledge message]
+
+xref:Technical_Specs/Message_-_J02_Cancel_subscriptionacknowledge_message.adoc[Message - J02 Cancel subscription/acknowledge message ]
+

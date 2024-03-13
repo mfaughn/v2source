@@ -1,0 +1,12 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 1433
+
+xref:Technical_Specs/Message_-_Stock_Supply_Requisition.adoc[Message - Stock Supply Requisition]
+
+xref:Technical_Specs/Non-Stock_Supply_Requisition.adoc[Non-Stock Supply Requisition]
+
+xref:Technical_Specs/Message_-_Stock_Supply_Requisition.adoc[Message - Stock Supply Requisition]
+

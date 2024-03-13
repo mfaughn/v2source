@@ -1,0 +1,46 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 463
+
+xref:Technical_Specs/Message_-_I01_Request_for_Insurance.adoc[Message - I01 Request for Insurance]
+
+xref:Technical_Specs/Message_-_I02_Request_of_Patient_Selection_Display_List.adoc[Message - I02 Request of Patient Selection Display List ]
+
+xref:Technical_Specs/Message_-_I03_Request_of_Patient_Selection_List.adoc[Message - I03 Request of Patient Selection List ]
+
+xref:Technical_Specs/Message_-_I04_Request_for_Demographics.adoc[Message - I04 Request for Demographics]
+
+xref:Technical_Specs/Message_-_I07_Unsolicited_Insurance_Information.adoc[Message - I07 Unsolicited Insurance Information ]
+
+xref:Technical_Specs/Message_-_I08_Request_for_Treatment_Authorization_Information.adoc[Message - I08 Request for Treatment Authorization Information]
+
+xref:Technical_Specs/Message_-_I09_Request_for_Modification_to_an_Authorization.adoc[Message - I09 Request for Modification to an Authorization]
+
+xref:Technical_Specs/Message_-_I10_Request_for_Resubmission_of_an_Authorizatio.adoc[Message - I10 Request for Resubmission of an Authorizatio]
+
+xref:Technical_Specs/Message_-_I11_Request_for_Cancellation_of_an_Authorization.adoc[Message - I11 Request for Cancellation of an Authorization]
+
+xref:Technical_Specs/Message_-_I12_Patient_Referral.adoc[Message - I12 Patient Referral]
+
+xref:Technical_Specs/Message_-_I13_Modify_Patient_Referral.adoc[Message - I13 Modify Patient Referral]
+
+xref:Technical_Specs/Message_-_I14_Cancel_Patient_Referral.adoc[Message - I14 Cancel Patient Referral]
+
+xref:Technical_Specs/Message_-_I15_Request_Patient_Referral_Status.adoc[Message - I15 Request Patient Referral Status]
+
+xref:Technical_Specs/Message_-_I21_Collaborative_Care_Message.adoc[Message - I21 Collaborative Care Message]
+
+xref:Technical_Specs/Message_-_I16_Collaborative_Care_Referral.adoc[Message - I16 Collaborative Care Referral]
+
+xref:Technical_Specs/Message_-_I17_Modify_Collaborative_Care_Referral.adoc[Message - I17 Modify Collaborative Care Referral]
+
+xref:Technical_Specs/Message_-_I18_Cancel_Collaborative_Care_Referral.adoc[Message - I18 Cancel Collaborative Care Referral]
+
+xref:Technical_Specs/Message_-_I20_Asynchronous_Collaborative_Care_Update.adoc[Message - I20 Asynchronous Collaborative Care Update]
+
+xref:Technical_Specs/Message_-_I19_Collaborative_Care_QueryCollaborative_Care_Query_Update.adoc[Message - I19 Collaborative Care Query/Collaborative Care Query Update]
+
+xref:Technical_Specs/Message_-_I22_Collaborative_Care_Fetch_Collaborative_Care_Information.adoc[Message - I22 Collaborative Care Fetch / Collaborative Care Information]
+

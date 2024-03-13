@@ -1,0 +1,16 @@
+= Queries
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Queries | Index: 1465
+
+xref:Queries/Introduction.adoc[Introduction]
+
+xref:Queries/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Queries/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Queries/Technical_Specs.adoc[Technical Specs]
+
+xref:Queries/Examples.adoc[Examples]
+

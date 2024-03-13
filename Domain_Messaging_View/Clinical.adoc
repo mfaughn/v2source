@@ -1,0 +1,32 @@
+= Clinical
+:render_as: Level2
+:v291_section: 
+
+Placeholder Text: Clinical | Index: 594
+
+xref:Clinical/Introduction.adoc[Introduction]
+
+xref:Clinical/General_Orders_and_Results.adoc[General Orders and Results]
+
+xref:Clinical/Laboratory.adoc[Laboratory]
+
+xref:Clinical/Blood_Bank.adoc[Blood Bank]
+
+xref:Clinical/Pharmacy.adoc[Pharmacy]
+
+xref:Clinical/Immunizations.adoc[Immunizations]
+
+xref:Clinical/Dietary.adoc[Dietary]
+
+xref:Clinical/Imaging.adoc[Imaging]
+
+xref:Clinical/Medical_Records_(consider_renaming_to_Document_Management).adoc[Medical Records (consider renaming to Document Management)]
+
+xref:Clinical/Patient_Care.adoc[Patient Care]
+
+xref:Clinical/Clinical_Trials.adoc[Clinical Trials]
+
+xref:Clinical/Product_Eperience.adoc[Product Eperience]
+
+xref:Clinical/Supply.adoc[Supply]
+

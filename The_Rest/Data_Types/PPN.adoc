@@ -1,0 +1,162 @@
+= PPN
+:render_as: Level3
+:v291_section: 2A.2.56+
+
+== PPN - performing person time stamp
+
+HL7 Component Table – PPN – Performing Person Time Stamp
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | |15= |ST |O | |Person Identifier | |2A.2.76
+
+|2 | | |FN |O | |Family Name | |2A.2.30
+
+|3 | |30# |ST |O | |Given Name | |2A.2.76
+
+|4 | |30# |ST |O | |Second and Further Given Names or Initials Thereof | |2A.2.76
+
+|5 | |20# |ST |O | |Suffix (e.g., JR or III) | |2A.2.76
+
+|6 | |20# |ST |O | |Prefix (e.g., DR) | |2A.2.76
+
+|7 | | | |W | |Degree (e.g., MD) |Withdrawn as of v2.7 |2A.2.36
+
+|8 | | |CWE |W |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70297[0297] |Source Table |Withdrawn as of V2.9 |2A.2.36
+
+|9 | | |HD |C |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70363[0363] |Assigning Authority | |2A.2.33
+
+|10 |1..5 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70200[0200] |Name Type Code | |2A.2.35
+
+|11 | |4= |ST |O | |Identifier Check Digit | |2A.2.76
+
+|12 |3..3 | |ID |C |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70061[0061] |Check Digit Scheme | |2A.2.35
+
+|13 |1..5 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70203[0203] |Identifier Type Code | |2A.2.35
+
+|14 | | |HD |O | |Assigning Facility | |2A.2.33
+
+|15 | | |DTM |O | |Date/Time Action Performed | |2A.2.22
+
+|16 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70465[0465] |Name Representation Code | |2A.2.35
+
+|17 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70448[0448] |Name Context | |2A.2.13
+
+|18 | | | |W | |Name Validity Range |withdrawn as of v2.7. |2A.2.20
+
+|19 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70444[0444] |Name Assembly Order | |2A.2.35
+
+|20 | | |DTM |O | |Effective Date | |2A.2.22
+
+|21 | | |DTM |O | |Expiration Date | |2A.2.22
+
+|22 | |199# |ST |O | |Professional Suffix | |2A.2.76
+
+|23 | | |CWE |O | |Assigning Jurisdiction | |2A.2.13
+
+|24 | | |CWE |O | |Assigning Agency or Department | |2A.2.13
+
+|25 | |4= |ST |O | |Security Check | |2.A.74
+
+|26 |3..3 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70904[0904] |Security Check Scheme | |2.A.35
+
+|===
+
+This data type is the equivalent of an XCN data type joined with a DTM data type. However, the XCN data type has been flattened to allow legal expression of its embedded complex data types HD, CWE and CWE.
+
+=== Person Identifier (ST)
+
+=== Name Type Code (ID)
+
+=== Identifier Check Digit (ST)
+
+=== Check Digit Scheme (ID)
+
+Definition: Contains the code identifying the check digit scheme employed.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70061[_HL7 Table_ _0061 - Check Digi__t Scheme_] for valid values.
+
+=== Identifier Type Code (ID)
+
+=== Assigning Facility (HD)
+
+Definition: The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.
+
+*Note:* When the HD data type is used in a given segment as a component of a field of another data type, file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User-defined Table 0300 - Namesp__ace I__D_] (referenced by the first sub-component of the HD component) may be re-defined (given a different user-defined table number and name) by the technical committee responsible for that segment.
+
+=== Date/Time Action Performed (DTM)
+
+This component describes when the activity was performed.
+
+*Note:* If this field is not null, both the performing person and the time stamp must be valued.
+
+=== Name Representation Code (ID)
+
+Definition: Different name/address types and representations of the same name/address should be described by repeating of this field, with different values of the Name/Address Type and/or Name/Address Representation component.
+
+*Note:* This new component remains in “alphabetic” representation with each repetition of the field using these data types. That is, even though the name may be represented in an ideographic character set, this component will remain represented in an alphabetic character set.
+
+In general this component provides an indication of the representation provided by the data item. It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired. This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying.
+
+=== Name Context (CWE)
+
+=== Name Validity Range
+
+=== Name Assembly Order (ID)
+
+=== Family Name (FN) 
+
+=== Effective Date (DTM)
+
+=== Expiration Date (DTM)
+
+=== Professional Suffix (ST)
+
+=== Assigning Jurisdiction (CWE)
+
+Definition: The geo-political body that assigned the identifier in component 1.
+
+See section _2A.2.14.9_, "_Assigning Jurisdiction (CWE)_" for further detail.
+
+=== Assigning Agency or Department (CWE)
+
+Definition: The agency or department that assigned the identifier in component 1.
+
+See section _2A.2.14.10_, "_Assigning Agency or Department (CWE)_" for further details.
+
+=== Security Check (ST)
+
+=== Security Check Scheme (ID)
+
+Definition: This component is used to transmit information intended to validate the veracity of the supplied identifier or the presenter of the identifier. For example, this component may be used to ensure that the presenter of a credit card is an authorized user of that card.
+
+Refer to _file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70904[HL7 Table 0904 - Security Check Scheme]_ for valid values.
+
+=== Given Name (ST)
+
+=== Second and Further Given Names or Initials Thereof (ST)
+
+=== Suffix (ST)
+
+=== Prefix (ST)
+
+=== Degree 
+
+=== Source Table (CWE)
+
+=== Assigning Authority (HD)
+
+Definition: The assigning authority is a unique identifier of the system (or organization or agency of department) that creates the data. It is a HD data type. file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70363[_User-defined Table 0363 – Assigning Auth__ority_] is used as the HL7 identifier for the user-defined table of values for the first sub-component of the HD component, <namespace ID>.
+
+*Note:* When the HD data type is used in a given segment as a component of a field of another data type, file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User-defined Table 0300 - Name__space ID_] (referenced by the first sub-component of the HD component) may be re-defined (given a different user-defined table number and name) by the technical committee responsible for that segment.
+
+By site agreement, implementors may continue to use file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User-defined Table 0300 – Name__space ID_] for the first sub-component.
+
+*Attention:* _As of v 2.7, the Assigning Authority is conditional._ It is required if _PPN.1_ is populated and neither _PPN.23_ nor _PPN.24_ are populated. All 3 components may be populated. No assumptions can be safely made based on position or sequence. Best practice is to send an OID in this component when populated.
+
+The reader is referred to the _PPN.23_ and the _PPN.24_ if there is a need to transmit values with semantic meaning for an assigning jurisdiction or assigning department or agency in addition to, or instead of, an assigning authority. However, all 3 components may be valued. If, in so doing, it is discovered that the values in _PPN.23_ and/or _PPN.24_ conflict with _PPN.9_, the user would look to the Message Profile or other implementation agreement for a statement as to which takes precedence.
+

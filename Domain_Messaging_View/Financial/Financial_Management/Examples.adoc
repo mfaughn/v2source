@@ -1,0 +1,76 @@
+= Examples
+:render_as: Level4
+:v291_section: 6.6+
+
+== EXAMPLE TRANSACTIONS
+
+=== Create a patient billing/accounts receivable record
+
+MSH|^~\&|PATA|01|PATB|01|19930908135031||BAR^P01^BAR_P01|641|P|2.8| +
+
+000000000000001|<cr>
+
+EVN|P01|19930908135030||<cr>
+
+PID|1||8064993^^^PATA1^MR^A~6045681^^^PATA1^BN^A~123456789ABC^^^US^NI~123456789^^^USSSA^SS||EVERYWOMAN^EVE^J^^^||19471007|F||1|22220018 HOMESTREET^^HOUSTON^TX^77030^USA|HAR||||S||6045681<cr>
+
+GT1|001||JOHNSON^SAM^J||1111 HEALTHCARE DRIVE^^BALTIMORE^MD^
+
+21234^USA|||||||193‑22‑1876<cr>
+
+NK1|001|BETTERHALF^BORIS|F|2222 HOME STREET^^CUMBERLAND^MD
+
+^28765^US|(301)555‑2134<cr>
+
+IN1|001|A357|1234|BCMD||||| 132987<cr>
+
+A patient has been registered by the ADT system (PATA) and notification is sent to the Patient Billing system (PATB). The patient's name is Eve J. Everywoman, a female Caucasian, born on October 7, 1947. Living at 1234 Homestreet, Houston, TX.
+
+Ms. Everywoman's medical record number is 8064993 and her billing number is 6045681. Her national identifier is 123456789ABC. Her social security number, assigned by the U.S. Social Security Administration, is 123456789. Ms. Everywoman has provided her father's name and address for next of kin. Ms. Smith is insured under plan ID A357 with an insurance company known to both systems as BCMD, with a company ID of 1234.
+
+=== Post a charge to a patient's account
+
+MSH|^~\&|PATA|01|PATB|01|19930908135031||DFT^P03^DFT_P03|641|P|2.8| +
+
+000000000000001|<cr>
+
+EVN|P03|19930908135030||<cr>
+
+PID||0008064993^^^ENT^PE|0008064993^^^PAT^MR||0006045681^^^PATA^AN|EVERYWOMEN^EVE^J^^^|19471007|F||1|2222 HOMESTREET^^HOUSTON^TX^77030^USA|HAR||||S||6045681^^^PATA^AN<cr>
+
+FT1|1|||19950715|19950716|CG|B1238^BIOPSY-SKIN^SYSTEMA|||1|||ONC|A357||||||P8765^KILDARE^BEN<cr>
+
+A patient has been registered by the ADT system (PATA) and notification is sent to the Patient Billing system (PATB). The patient's name is Eve J. Everywoman, a female Caucasian, born on October 7, 1947. Living at 1234 Homestreet, Houston, TX.
+
+Ms. Everywoman's patient number is 8064993 and her billing number is 6045681. This transaction is posting a charge for a skin biopsy to her account.
+
+=== Update patient accounts - update UB1 information
+
+MSH|^~\&|UREV||PATB||19930906135030||BAR^P05^BAR_P05|MSG0018|P|2.8<cr>
+
+EVN|P05|19930908135030
+
+PID|||125976||EVERYMAN^ADAM^J|||||||||||||125976011<cr>
+
+UB1|1|1|5|3|1||39|||01^500.00|||1|19880501|19880507|10^19880501<cr>
+
+Utilization review sends data for Patient Billing to the Patient Accounting system. The patient's insurance program has a 1-pint deductible for blood; the patient received five pints of blood, and three pints were replaced, with one pint not yet replaced.
+
+The patient has been assigned to a medically necessary private room (UB condition code 39). The hospital's most common semi-private rate is $500.00 (UB value code 01.)
+
+The services provided for the period 05/01/88 through 05/07/88 are fully approved (PSRO/UR Approval Code 1). The patient's hospitalization is the result of an auto accident (UB occurrence code 01.)
+
+=== Update patient accounts - update diagnosis and DRG information
+
+MSH|^~\&|UREV||PATB||19930908135030||BAR^P05^BAR_P05|MSG0018|P|2.8<cr>
+
+EVN|P05|19930908135030
+
+PID|||125976||EVERYMAN^ADAM^J|||||||||||||125976011<cr>
+
+DG1|001|I9|1550|MAL NEO LIVER, PRIMARY|19880501103005|F<cr>
+
+DRG|203|19880501103010|Y||D|5<cr>
+
+The DG1 segment contains the information that the patient was diagnosed on May 1 as having a malignancy of the hepatobiliary system or pancreas (ICD9 code 1550). In the DRG segment, the patient has been assigned a Diagnostic Related Group (DRG) of 203 (corresponding to the ICD9 code of 1550). Also, the patient has been approved for an additional five days (five-day outlier).
+

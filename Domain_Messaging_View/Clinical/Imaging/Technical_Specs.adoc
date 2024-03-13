@@ -1,0 +1,8 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 900
+
+xref:Technical_Specs/Imaging_Order.adoc[Imaging Order]
+

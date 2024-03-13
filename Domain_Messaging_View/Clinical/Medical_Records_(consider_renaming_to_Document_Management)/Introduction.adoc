@@ -1,0 +1,16 @@
+= Introduction
+:render_as: Level4
+:v291_section: 9.2; 9.5
+
+This chapter currently supports document management. In the future, it is intended also to support the data exchange needs of applications supporting other medical record functions, including chart location and tracking, deficiency analysis, consents, and release of information. The main purpose of the medical record is to produce an accurate, legal, and legible document that serves as a comprehensive account of healthcare services provided to a patient.
+
+Document/reports supported in this chapter will meet the criteria as described in Chapter 7, "Observations" (section 7.2 – Purpose). The appropriate use of MDM messages versus ORU message has been clarified in 7.2.
+
+Within this section we have created a single message whose contents vary predicated on the trigger event. The following assumptions are made when the Medical Document Management (MDM) message is used:
+
+• The application system is responsible for meeting all legal requirements (on the local, state, and federal levels) in the areas of document authentication, confidentiality, and retention.
+
+• All documents are unique, and document numbers and file names are not reused.
+
+• Documents may be associated with one or more orders.
+

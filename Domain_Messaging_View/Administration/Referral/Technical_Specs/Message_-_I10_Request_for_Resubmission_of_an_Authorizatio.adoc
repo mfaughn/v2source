@@ -1,0 +1,6 @@
+= Message - I10 Request for Resubmission of an Authorizatio
+:render_as: Message Page
+:v291_section: 11.4; 11.4.4
+
+[message-tabs, ["RQA^I10^RQA_I08", "RQI Interaction", "ACK^I10^ACK", "ACK Interaction", "RPA^I10^RPA_I08", "RPA Interaction"]]
+

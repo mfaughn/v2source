@@ -1,0 +1,16 @@
+= Blood Bank
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Blood Bank | Index: 757
+
+xref:Blood_Bank/Introduction.adoc[Introduction]
+
+xref:Blood_Bank/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Blood_Bank/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Blood_Bank/Technical_Specs.adoc[Technical Specs]
+
+xref:Blood_Bank/Examples.adoc[Examples]
+

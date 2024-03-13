@@ -1,0 +1,56 @@
+= Implementation Considerations
+:render_as: Level4
+:v291_section: 13.4+
+
+== Notes regarding usage
+
+=== Other Required Original HL7 Messages
+
+=== Transfer of Laboratory Test Orders and Results
+
+=== Transfer of QC Results
+
+Use _SPM-11 Specimen Role_, or _SAC-6 Specimen Source_, or the 7th component of _OBR-15 Specimen Source_ or _SAC-6 Specimen Source_ to indicate that this is a control specimen. Use _SAC-3 Container Identifier_ for the identification of a control specimen container. The SID segment appended to this SAC segment specifies the manufacturer, lot identifiers, etc. for the control specimen.
+
+The identification of the instrument performing the QC measurement, should be transferred with the _OBX-18 Equipment Instance Identifier_), the measurement data/time with the _OBX-19 Date/Time of the Analysis_.
+
+=== Query for Order Information – Triggers for Download of Test Orders
+
+=== Transfer of Additional Information for Automated Processing
+
+=== Working With Non-Substance Inventory Items
+
+This section provides examples of INV segments related to reporting and querying values of equipment state indicators (special non-material inventory items).
+
+*Example 1: Reporting that all tests are available (in INU^U05):*
+
+INV|NONE^^HL70451|OK^^HL70383|||||||||||||||||||TA^^HL70942
+
+*Example 2: Reporting that tests with LOINC codes 1492-8 and 1496-8 are available (in INU^U05):*
+
+INV|NONE^^HL70451|OK^^HL70383|||||||||||||1492-8^^LN~1496-8^^LN||||||TA^^HL70942
+
+*Example 3: Reporting that the current instrument processing capacity is 42 % (in INU^U05):*
+
+INV|NONE^^HL70451|OK^^HL70383|||||||||||||||||||IC^^HL70942|42^%&&UCUM
+
+*Example 4: Reporting that an output specimen buffer “Buffer1” is full (in INU^U05):*
+
+INV|BufferId1^^HL70451|OK^^HL70383|||||||||||||||||||OB^^HL70942|100^%&&UCUM
+
+*Example 5: Reporting that an emergency input specimen buffer “Buffer2” is empty (in INU^U05):*
+
+INV|BufferId2^^HL70451|OK^^HL70383|||||||||||||||||||EB^^HL70942|0^%&&UCUM
+
+*Example 6: Querying the current instrument processing capacity (in INR^U14):*
+
+INV|||||||||||||||||||||IC^^HL70942
+
+*Example 7: Querying the current capacity of all regular specimen input buffers (in INR^U14):*
+
+INV|||||||||||||||||||||IB^^HL70942
+
+*Example 8: Querying the current capacity of the regular specimen input buffer “Buffer3” (in INR^U14):*
+
+INV|Buffer3^^HL70451||||||||||||||||||||IB^^HL70942
+

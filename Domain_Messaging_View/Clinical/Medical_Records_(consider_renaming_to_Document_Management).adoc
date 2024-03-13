@@ -1,0 +1,16 @@
+= Medical Records (consider renaming to Document Management)
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Medical Records (consider renaming to Document Management) | Index: 910
+
+xref:Medical_Records_(consider_renaming_to_Document_Management)/Introduction.adoc[Introduction]
+
+xref:Medical_Records_(consider_renaming_to_Document_Management)/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Medical_Records_(consider_renaming_to_Document_Management)/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Medical_Records_(consider_renaming_to_Document_Management)/Technical_Specs.adoc[Technical Specs]
+
+xref:Medical_Records_(consider_renaming_to_Document_Management)/Examples.adoc[Examples]
+

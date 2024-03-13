@@ -1,0 +1,132 @@
+= General Use Cases / Background
+:render_as: Level4
+:v291_section: 12.2.2+; 12.2.3; 12.2.4+; 12.2.5+
+
+== Scenario Descriptions
+
+=== Patient pre-admission or patient admission
+
+=== Consultation
+
+=== Loading a clinical repository
+
+=== Communicating clinical pathways and multidisciplinary plans of care
+
+== Trigger Events
+
+The trigger events originate goal, problem and pathway messages. Each trigger event is documented below, along with the appropriate form of the message exchange. These are message-level event triggers, which are augmented by the action code fields contained in the pathway, problem and goal segments described below. Action codes are required fields in patient care message segments (see Chapter 2 for further information regarding implementation issues). Implementors need to apply the appropriate logic as part of their message construction (for example, logic would state that an "add" trigger event should not include segments with a "delete" action code).
+
+In order to accommodate these high-level events, the following patient care events are included in file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70003[_HL7 Table 0003 – Event Type_]. The added events are instantiated in MSH-9 Message Type and are used by the pathway, problem, and goal messages. MSH-9 Message Type contains the message type and trigger event for the message.
+
+== Use of Action Codes 
+
+Prior to Version 2.3 of the Standard, all repeating segments had to be sent in an update message, because there was no way to indicate which ones changed and which ones did not. In this *snapshot* mode, all repeating segments must be sent with every subsequent message in the series of messages.
+
+To reduce the number of repeating segments, action codes may be employed. Action codes (e.g., order control codes and result status codes) may be embedded within repeating segments and used by sophisticated application parsers to reduce the number of repetitions required for a complete record.
+
+In either event, for systems implementing Version 2.3 or higher, if a particular repeating segment can be updated by either of these two modes, the parties concerned determine by agreement on a site-specific basis whether an interface uses the *snapshot* mode or the *action code/unique identifier* mode.
+
+A description of valid action codes used in message segments originating in this chapter is given immediately below:
+
+{empty}a) *AD* (*ADD*) - The object defined within the segment should be added to the set of objects that is linked to the previous object in the hierarchical structure of the message. (i.e., a goal under a problem is implicitly linked to the problem. If the goals already exist, the segment placement indicates the addition of a new linkage between the goal and that problem.)
+
+{empty}b) *CO* (*CORRECT*) - The object attributes contained within the segment have been corrected. This is not updated information, but information originally sent and later found to be in error. The previous attributes should be replaced.
+
+{empty}c) *UP* (*UPDATE*) - The object attributes contained within the segment are an update of previously sent information. The previous information was correct for the period of time in which it was sent.
+
+{empty}d) *DE* (*DELETE*) - This object should be deleted from the set of objects which are linked to the previous object in the message hierarchy. An example might be a role deleted from the set of roles contained by the Goal object. Delete presumes the original linkage was in error.
+
+{empty}e) *LI (LINK)* - This action code denotes that the object contained in the segment should be linked in a dependency relationship to the previous object in the hierarchy. It is used to denote relationships and should not contain additional information other than those attributes necessary for specific identification.
+
+{empty}f) *UN* (*UNLINK*) - This is a request that the object be removed from the set of linked objects. An example might be the dissolution of a relationship between a problem and a goal. Unlink presumes the original linkage was correct, but due to life cycle changes the active linkage is no longer appropriate.
+
+{empty}g) *UC* (*UNCHANGED*) - This code signifies that the segment is being included for the purposes of hierarchical set identification. It does not contain any changed or additional data. Its purpose is to allow the identification of the collection set to which subsequent segments belong in the message structure. An example might be the modification of role information requiring the previous goal segment to be appropriately identified.
+
+=== Examples of action code usage
+
+A problem list and associated goals are generated in a Point of Care system. This transaction is broadcast through an interface engine that determines which systems in the organization require the event information and then forwards the messages appropriately. Each segment included in the original message contains the Action Code for *ADD* to signify an original message instance.
+
+{empty}h) Upon subsequent review, it is determined that a role segment designates the wrong person as the transcribing clerk for a problem. After the information is changed in the originating system, a new message is sent to provide synchronization. The message includes the original PRB segment with the PRB-1 Action Code for *UNCHANGED* (to identify the problem for which the role is being changed). This code signifies that the segment is included for the purposes of hierarchical linkage identification and that none of the information contained in it has been changed. The accompanying role segment sent would include the role *transcriber* in ROL-3 Role, the correct person in ROL-4 Role Person, and the value for *CORRECT* in ROL-2 Action Code.
+
+{empty}i) It is later decided that an additional goal must be added to a specific problem, and that an already existing goal that is currently supporting another problem should also be linked with this specific problem. The message would be constructed with the problem (PRB) segment for identification (the value for PRB-1 Action Code is *UNCHANGED*). The goal segment (GOL) for the additional goal would include GOL-1 Action Code for *ADD*. The goals already included with the problem list that need to be linked to this problem would have to be included on additional GOL segments with the GOL-1 Action Code for *LINK*. +
+
+ +
+
+Once data regarding a Diagnosis/Problem or a Goal have been communicated to other systems, there are occasions on which the data may have to be amended.
+
+{empty}j) New diagnoses/problems must be added to an individual's list. The Problem message is sent with the appropriate Problem Instance ID. All PRB segment(s) included in the message that contain the value for *ADD* in PRB-1 Action Code are processed as additions to the individual's problem list.
+
+{empty}k) New goals are added to the individual's record. The Goal message is sent with the GOL segments indicating the value for *ADD* as GOL-1 Action Code in each segment occurrence.
+
+{empty}l) Changes are made to the attributes of a goal. Examples include a change in the expected resolution date, a change in the life cycle status to reflect its successful conclusion, etc. The Goal message is sent with the appropriate GOL-4 Goal Instance ID. The GOL segments of the Goal message would include the value for *UPDATE* in GOL-1 Action Code.
+
+{empty}m) A new goal is attached to a problem already in the repository (e.g., the goal of "education on diabetes" for an individual diagnosed with "insulin-dependent diabetes"). A problem message would be sent with the PRB segment including the PRB-4 Problem Instance ID for the diabetes problem, and with the value *UNCHANGED* in PRB-1 Action Code. The attached GOL segment for the education goal would accompany the message and contain the value *ADD* in its GOL-1 Action Code field.
+
+{empty}n) A new diagnosis/problem is attached to a goal (e.g., a Goal is to "discharge an individual with intact skin." While the initial problem was "skin breakdown related to immobility," a new problem is "potential for skin breakdown related to draining wounds"). A Goal message would be sent with the GOL segment, including the GOL-4 Goal Instance ID for the discharge goal, and contain the value *UNCHANGED* in GOL-1 Action Code. The attached PRB segment identifying the new problem, "potential for skin breakdown related to draining wounds," would accompany this message and contain the value for *ADD* in PRB-1 Action Code.
+
+*Note:* If there is a requirement to modify information contained on a segment and unlink that same problem/goal, two segments must be transmitted (one for the modification and one for the unlink request).
+
+== Message Construction Rules
+
+=== Rule 1
+
+The trigger event defines the action at the first level of the hierarchy, and should not be contradicted by either hierarchical linkages or segment action codes. Thus, a PC1 (problem add) event should only contain problem, goal, and role segments that have action codes *ADD*.
+
+Figure 12-1. Table of allowable trigger event types and action codes
+
+[width="100%",cols="27%,73%",]
+
+|===
+
+|Trigger Event Types |Allowable Action Codes
+
+|xxx-Add |Top level action code must be ADD +
+
+Dependent segment action code must be ADD (or NW for Order segments)
+
+|xxx-Update |Top level action code must be CORRECT, UPDATE, or UNCHANGED +
+
+Dependent segment action codes - Any are allowed at the lower hierarchical levels
+
+|xxx-Delete |Top level action code must be DELETE +
+
+Dependent segments' action codes must be DELETE
+
+|===
+
+=== Rule 2
+
+=== Rule 3
+
+In dependent segments *ADD* is the action code to use to establish the initial relationship between parent-child objects. The receiving system must be ready to handle multiple adds of the same object. An example is a Problem List of three (3) problems which is being sent. Attached to these problems are three (3) goals. Problem A has Goals 1 and 2 attached to it. Problem B has the same Goal 2 and a new Goal 3 attached to it. All of these will have the *ADD* action code in the segment, and when Problem B is transmitted with Goals 2 and 3, Goal 2 will have been previously transmitted with Problem A. The message construct would look like this:
+
+MSH...
+
+PID...
+
+PRB (Problem A)
+
+GOL (Goal 1)
+
+GOL (Goal 2)
+
+PRB (Problem B)
+
+GOL (Goal 2)
+
+GOL (Goal 3)
+
+PRB (Problem C) (No attached goals)
+
+When two (or more) instances of the same problem or goal segment are present in a message both such segments must have identical values for all fields.
+
+=== Rule 4
+
+=== Rule 5
+
+The Problem, Goal, and Pathway messages integrate order segments as a method for establishing causal linkages. Linkages or relationships between orders, problems, goals, and pathways can therefore be presented in the Patient Care messages.
+
+Orders referenced in Patient Care messages are used for linkage purposes only. Initiation and status changes to orders are accomplished by using dedicated messages defined in the Order Entry Chapter.
+
+=== Rule 6
+

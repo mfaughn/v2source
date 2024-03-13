@@ -1,0 +1,1252 @@
+= Examples
+:render_as: Level4
+:v291_section: 4.6+; 7.5+
+
+== General Message Examples
+
+=== An order replaced by three orders
+
+Suppose that an application called "PC" is sending an order to the EKG application for three EKGs to be done on successive days.
+
+The order might be placed as follows:
+
+ORM message:
+
+MSH|...<cr>
+
+PID|...<cr>
+
+ORC|NW|A226677^PC||946281^PC||N|3^QAM||200601121132|444-44-4444^HIPPOCRATES^HAROLD^^^^MD|||4EAST|...<cr>
+
+// EKG order
+
+OBR|1|||8601-7^EKG IMPRESSION^LN||||||||||||222-33-4444^PUMP^PATRICK^^^^MD|||||||||||3^QAM|...<cr>
+
+BLG|...<cr>
+
+ORC|NW|...<cr>
+
+// Another order yet others may follow
+
+There is a group number first component indicating that an order group is being created.
+
+Responses: Because the EKG application must turn the single order above into three orders for three separate EKGs (services), the results of each will be reported under its own OBR segment. Several response levels are possible depending on the Response Flag:
+
+{empty}a) If the Response Flag is N (as it is), then the filler EKG application only responds "I got the order."
+
+MSH|...<cr>
+
+MSA|...<cr>
+
+The only implication of this response is that the order was received.
+
+If the Response Flag had been E, then the response would have been the same, but its implication would have been that the EKG application had processed all the orders and they were acceptable.
+
+{empty}b) If the Response Flag were R, then the filler EKG application must communicate to the PC the fact of the creation of child orders, but with no details:
+
+MSH|...<cr>
+
+MSA|...<cr>
+
+ORC|PA|A226677^PC|89‑458^EKG|946281^PC<cr>
+
+ORC|CH|A226677^PC|89‑551^EKG|946281...<cr> // 1ST child ORC.
+
+ORC|CH|A226677^PC|89‑552^EKG|946281...<cr> // 2ND child ORC.
+
+ORC|CH|A226677^PC|89‑553^EKG|946281...<cr> // 3RD child ORC.
+
+... // Other parts of follow.
+
+What has been said here is "Your A226767 has spun out three children named 89‑551, 89‑552, and 89‑553." Notice that the placer order numbers are identical in the children's ORCs.
+
+{empty}c) If the Response Flag were D, then the filler EKG application must communicate to the PC application the fact of the replacement and also the exact replacement order segments:
+
+MSH|...<cr>
+
+MSA|...<cr>
+
+ORC|PA|A226677^PC|89‑458^EKG<cr>
+
+ORC|CH|A226677^PC|89‑551^EKG|946281^PC|SC|||A226677&PC^89-458&EKG|
+
+... ^^^^198901130500^...<cr>
+
+// 1ST child ORC
+
+OBR|1||89‑551^EKG|8601-7^EKG IMPRESSION^LN|...<cr>
+
+// 1ST child OBR
+
+ORC|CH|A226677^PC|89-522^EKG|946281^PC|SC|||A226677&PC^89-458&EKG|
+
+... ^^^^198901140500^...<cr>
+
+// 2ND child ORC
+
+OBR|2||89‑552^EKG|8601-7^EKG IMPRESSION^LN|...<cr>
+
+// 2ND child OBR
+
+ORC|CH|A226677^PC|89‑553^EKG|946281^PC|SC|||A226677&PC^89-458&EKG|
+
+...^^^^198901150500^...<cr>
+
+// 3RD child ORC
+
+OBR|3||89‑553^EKG|8601-7^EKG IMPRESSION^LN|... <cr>
+
+// 3RD child OBR
+
+// Other parts might follow
+
+Here the actual OBR segments have been added.
+
+The status of the child orders is being reported as SC (scheduled).
+
+ORC-7-quantity/timing shows that the EKGs are requested after 0500 on successive days.
+
+=== Ordering non-medical services
+
+The patient requests hospital specific services for a certain period of time. This can be a phone, fax, or TV in the room, or the delivery of a newspaper every day. Another example may be the use of specialized chip cards that give access to hospital specific services. Typically, a request for these services is made at the time of admission. Another example may be the printing of a form (e.g., the receipt for a payment). In case of using phones it might be a detailed list of calls for a patient or for a special extension.
+
+To support these scenarios, the following fields are used to communicate the appropriate message:
+
+[width="100%",cols="31%,69%",]
+
+|===
+
+|Segment/Field |Definition
+
+|ORC-1 |Order Control
+
+|ORC-2 |Placer Order Number
+
+|ORC-5 |Order Status
+
+|TQ1-7 |Start Date/Time
+
+|TQ1-8 |End Date/Time
+
+|ORC-16 |Order Control Code Reason
+
+|ORC-25 |Order Status Modifier
+
+|OBR-4 |Universal Service ID
+
+|OBX-5 |Observation Value
+
+|FT1-17 |Fee Schedule
+
+|FT1-11 |Transaction amount – extended
+
+|BLG |Billing segment
+
+|===
+
+• ORC-1, ORC-2, OBR-4, OBX-5 +
+
+These services can be started, discontinued, canceled, locked, etc., according to the ORC-1 Order control code. The order is identified through ORC-2 Placer order number. The service itself is specified in the field OBR-4 Universal service ID. User defined codes are used to identify the specific services. The identification of the object of the service, e.g., phone number or card number, is done using the OBX-5 Observation value. The ORC-25 Order Status Modifier is used to refine the status of the universal service ID. For example, in the case of issuing chip cards, these fields would be valued as follows:
+
+[width="100%",cols="9%,23%,19%,49%",]
+
+|===
+
+|ORC-1 |OBR-4 (in textual form) |ORC-16.1 Code |Description
+
+|NW |chip card | |Issue a chip card the first time
+
+|XO |chip card |defective |Change the previous order. Issue a new chip card for a defective one.
+
+|XO |chip card |lost |Change the previous order. Issue a new chip card for a defective one.
+
+|DC |Return chip card | |Cancel the chip card order
+
+|DC |Return chip card |lost |Cancel the chip card order because lost.
+
+|DC |Return chip card |defective |Cancel the chip card order because defective.
+
+|===
+
+Use of different universal service IDs allows for the ability to charge an additional fee.
+
+• TQ1-7/8 +
+
+The field TQ1 Quantity/timing describes time periods during which the requested service is valid. The components 4 and 5 denote the start and end date/time.
+
+• ORC-5 +
+
+In this field information on the status of the service can be transmitted. This field can be used in particular in response to a query message.
+
+• ORC-25 +
+
+This field allows for refining the status of the requested universal service, e.g., to change an order for a chip card in order to distribute a new card for a lost one.
+
+• BLG-1,2,3 +
+
+These fields indicate to the financial system that charges are to be invoiced for this service.
+
+• FT1-17 +
+
+In some cases it is necessary that the placer defines a special tariff the filler has to use for computing the final balance.
+
+• FT1-11 +
+
+In combination with the tariff the patient can prepay the ordered service. This may be helpful when the patient uses services provided by the hospital in order to use the service from the beginning. FT1-6 must be valued at "PY". +
+
+If no amount is prepaid a limit can be established according to a special tariff. This depends on the setup of the filling system. In such a case the hospital grants a credit to the patient.
+
+*Phone Number Assignment*
+
+In case the patient requests a bedside phone and the number of this phone is assigned to that patient personally, a number of messages are transmitted. The objective is to connect a phone number to a patient and a room.
+
+The update of the location master file depends on the setup of the private branch exchange system (PABX):
+
+{empty}b) **Variable Numbering System +
+
+**On admission the patient is assigned his or her personal call number, which he or she retains throughout that patient's stay, including if the patient is transferred. The patient can always be reached under the same call number. +
+
+To understand the mechanism for M05 events it is important to know that two different sets of phone numbers exist: one is a pool to be used when querying for a phone number for a patient; the other one is used for temporary assign­ments when no patient is lying in the bed (i.e., the bed is free).
+
+{empty}c) **Fixed Numbering System +
+
+**On admission the system issues the patient with a telephone and/or TV authorization. This authorization key must be entered into the phone to activate it. +
+
+No M05 messages are necessary if a fixed numbering system is used: Each telephone connection is assigned a permanent call number when the system is set up.
+
+When the patient is admitted, an ADT^A01 message is sent to create a patient record in the phone number assigning application. Typically, the patient ID (PID-3), patient location (PV1-3), and visit number (PV1-19) are at least required. This message is acknowledged accordingly with an ACK. Then, the order for the phone number to the phone number assigning application is placed with the ORM^O01 message where the essential fields are ORC-1 = "NW", ORC-2 = <placer order number>, and OBR-4 = "Phone".
+
+The ORR^O02 message is used to acknowledge the order and communicate the filler order number and order status. Then, when the phone number is available, an ORU^R01 message is used to communicate the phone number using OBX-5 for the phone number.
+
+Any status changes to the order are communicated with the ORM^O01 message where ORC-1 = "SC", ORC-2 = <placer order number>, ORC-3 = <filler order number>, ORC-5 = <order status>, OBR-4 = "Phone", and OBX-5 = <Phone Number of Patient>. The status change is acknowledged with the ORR^O02 message.
+
+Next, the location master files are updated. The phone number assigning application may send a MFN^M05 message to have the location master file reflect the phone number assignment as well. The fields on the message are valued as follows:
+
+After processing the order: MFI-1 = "LOC", MFI-3 = "UPD", MFI-5 = <effective date/time>, MFE-1 = "MUP", LOC-1 = <patient location>, LOC-3 = "B" (bed), LOC-6 = <Phone Number of Patient>. This message is acknowledged using the MFK^M05 message.
+
+*Transfer a patient (A02)*
+
+If a patient keeps the same phone number during the whole visit the assigned phone number must be mapped to a different phone outlet whenever a patient is transferred to a new location. In that case, the ADT^A02 message is sent to the phone number assigning application. That application not only acknowledges the message, but also sends an ORM^O01 message with ORC-1 = "SC" and the other fields the same as described in the Phone Number Assignment section. Additionally, it sends a MFN^M05 message to change the location master file accordingly for the old location and another MFN^M05 to synchronize the phones for the new location.
+
+*Leave of absence (A21/A22)*
+
+When the patient leaves the hospital or the bed is vacated for a significant amount of time, the phone needs to be de-activated and re-activated appropriately. The same ORM^O01 and MFN^M05 messages are used as described above following the ADT^A21 and ADT^22 messages.
+
+Patient makes calls or (de-)activates his phone.
+
+The patient can use the phone whenever he wants to. This implies that his balance does not exceed the limit. Otherwise the phone is deactivated automatically. Furthermore the patient can activate or deactivate the phone by entering the authorization key for his own. In these scenarios the phone number assigning application sends and ORM^O01 message with ORC-1 = "OD" and the appropriate order status. The status update is necessary to provide a call switching system with the actual information.
+
+*Discharge a patient (A03)*
+
+When the patient is discharged, the ADT^A03 message is sent to indicate a discharge. The phone number assigning application sends an ORM^O01 message with a change of status to indicate completion of the order, as well as an MFN^M05 message to synchronize the location master file.
+
+After discharging a patient his final charges must be billed. Using the query P04 returns the data in a display oriented format which can be used for printing. Alternatively a print request can be used. The billing system issues a QRY^P04 message where the fields are valued as follows: QRD-2 = "R" (record oriented format), QRD-3 = "I" (immediate response), QRD-8.1 = <Patient ID>, QRF-2 = <start date/time>, and QRF-3 = <end date/time>. The phone number assigning applications responds with a DSR^P04 message with the data in DSP-3.
+
+*Note:* The original mode query, including QRD and QRF segments were retained for backward compatibility only as of v 2.4. The reader is therefore referred to chapter 5, section 5.4, for the current query/response message structure.
+
+*Phone Call Queries (Z73)*
+
+The new query modes using a query by parameter query with a virtual table response allows for obtaining call information from the phone system to be used for charging. The query can be for accumulated data or detailed data. Both requests use this conformance statement:
+
+[width="100%",cols="39%,61%",options="header",]
+
+|===
+
+|Query ID: |Z73
+
+|Query Name: |Information about Phone Calls
+
+|Query Type: |Query
+
+|Query Trigger: |QBP^Z73^QBP_Z73
+
+|Query Mode: |Both
+
+|Response Trigger: |RTB^Z74^RTB_Z74
+
+|Query Priority: |Immediate
+
+|Query Characteristics: |Returns response sorted by _Phone Number_
+
+|Purpose: |Retrieve all information about phone calls made during a defined interval either in a detailed or an accumulative format. The identifier for the patient must be given.
+
+|===
+
+QBP^Z73^QBP_Z73: QBP Message
+
+[width="100%",cols="33%,47%,9%,11%",options="header",]
+
+|===
+
+|Segments |Description |Status |Chapter
+
+|MSH |Message Header Segment | |2.15.9
+
+|[\{ SFT }] |Software | |2.15.12
+
+|[ UAC ] |User Authentication Credential | |2
+
+|QPD |Query Parameter Definition | |5.5.4
+
+|RCP |Response Control Parameter | |5.5.6
+
+|===
+
+[width="100%",cols="26%,35%,15%,24%",options="header",]
+
+|===
+
+|Acknowledgement Choreography | | |
+
+|QBP^Z73^QBP_Z73 | | |
+
+|Field name |Field Value: Original mode |Field Value: Enhanced Mode |
+
+|MSH-15 |Blank |NE |AL, ER, SU
+
+|MSH-16 |Blank |NE |NE
+
+|Immediate Ack |- |- |ACK^Z73^ACK
+
+|Application Ack |RTB^Z74^RTB_Z74 |- |RTB^Z74^RTB_Z74
+
+|===
+
+QPD Input Parameter Specification:
+
+[width="100%",cols="11%,14%,8%,3%,6%,8%,3%,3%,8%,8%,9%,8%,11%",options="header",]
+
+|===
+
+|Field Seq. (Query ID=Z73) |Name |Key/ Search |Sort |LEN |TYPE |Opt |Rep |Match Op |TBL |Segment Field Name |Service Identifier Code |ElementName
+
+|1 |Patient ID |K |Y |80 |CX |R | |= | |PID.3 | |PID.3 Patient ID
+
+|2 |Date Range | | |53 |DR |O | |contains= | | | |
+
+|3 |Detailed | | |2 |ID |O | |= |0136 | | |
+
+|===
+
+Input Parameter Field Description and Commentary:
+
+[width="100%",cols="19%,11%,6%,64%",options="header",]
+
+|===
+
+|Field |Component |DT |Description
+
+|Patient ID | |CX |Components: <ID (ST)> ^ <check digit (ST)> ^ <code identifying the check digit scheme employed (ID)> ^ <assigning authority (HD)> ^ <identifier type code (IS)> ^ <assigning facility (HD)>
+
+| | | |This field contains a patient identification code to identify the requested person.
+
+| | | |If this field is not valued, no values for this field are considered to be a match.
+
+|Date Range | |DR |This field specifies the range of time, the requested records should match.
+
+| | | |If this field is not valued, all values for this field are considered to be a match.
+
+|Detailed | |ID |This field specifies whether the output should be detailed. (no cumulative records).
+
+| | | |If this field is not valued, a detailed result is returned.
+
+| | | |When Detailed=Y is requested, one record for each call is returned. Each detailed record will contain columns 1, 2, 3, 4, 5, 7, 8, and 9 (Providor, Region, Extension, Destination, Date/Time, Duration, Units, Amount) for each call.
+
+| | | |When detailed=N, the query is for accumulated data. In this case, one row record per extension is returned.
+
+| | | |Each row will return columns 1, 2, 6, 7, 8, and 9 (Provider, Region, Quantity, Units, Amount) from the output virtual table.
+
+|===
+
+Response Grammar:
+
+RTB^Z74^RTB_Z74: Personnel Information Message
+
+[width="100%",cols="33%,47%,9%,11%",options="header",]
+
+|===
+
+|Segments |Description |Status |Chapter
+
+|MSH |Message Header | |2.15.9
+
+|MSA |Message Acknowledgement | |2.15.8
+
+|[\{ ERR }] |Error | |2.15.5
+
+|[\{ SFT }] |Software | |2.15.12
+
+|[ UAC ] |User Authentication Credential | |2
+
+|QAK |Query Acknowledgement | |5.5.2
+
+|QPD |Query Parameter Definition | |5.5.4
+
+|[ |--- ROW_DEFINITION begin | |
+
+|RDF |Table Row Definition Segment | |5.5.7
+
+|[\{ RDT }] |Table Row Data Segment | |5.5.8
+
+|] |--- ROW_DEFINITION end | |
+
+|[ DSC ] |Continuation Pointer | |2.15.4
+
+|===
+
+[width="100%",cols="28%,36%,16%,20%",options="header",]
+
+|===
+
+|Acknowledgement Choreography | | |
+
+|RTB^Z74^RTB_Z74 | | |
+
+|Field name |Field Value: Original mode |Field Value: Enhanced Mode |
+
+|MSH-15 |Blank |NE |AL, ER, SU
+
+|MSH-16 |Blank |NE |NE
+
+|Immediate Ack |ACK^Z73^ACK |- |ACK^Z73^ACK
+
+|Application Ack |- |- |-
+
+|===
+
+Virtual Table:
+
+[width="99%",cols="19%,9%,3%,6%,8%,3%,6%,8%,8%,10%,11%,9%",options="header",]
+
+|===
+
+|ColName (Z74) a|
+
+Key/
+
+Search
+
+|Sort |LEN |TYPE |Opt |Rep |Match Op |TBL |Segment Field Name |LOINC or HL7 code |ElementName
+
+|Provider | | |40 |ST |R | | | | | |
+
+|Region | | |40 |ST |R | | | | | |
+
+|Extension | | |250 |XTN |O | | | | | |
+
+|Destina­tion number | | |250 |XTN |O | | | | | |
+
+|Date/Time | |Y |24 |DTM |O | | | | | |
+
+|Quantity | | |4 |NM |O | | | | | |
+
+|Duration | | |4 |NM |O | | | | | |
+
+|Units | | |4 |NM |O | | | | | |
+
+|Amount | | |8 |MO |O | | | | | |
+
+|===
+
+==== Examples
+
+____
+
+*Example 1:*
+
+Query the accumulated list for patient 12345 from 3/2/00 till 3/3/00. Transfer the first 20 records.
+
+*Query:*
+
+____
+
+MSH|^&~\|PCR|Gen Hosp|Pharm||20000303201400-0800||QBP^Z73^QBP_Z73|9901|P|2.8|
+
+QPD|Z89^Query Phone Calls^HL70471|Q010|12345|2000030100000^20000302235959|Y
+
+RCP|I|20^RD|
+
+____
+
+*Answer:*
+
+____
+
+MSH|^&~\|Pharm|Gen Hosp|PCR||20000303201430-0800||RTB^Z74^RTB_Z74|8858|P|2.8|
+
+MSA|AA|9901|
+
+QAK|Q010|OK|Z89^Query Phone Calls^HL70471|4
+
+QPD|Z89^Query Phone Calls^HL70471|Q010|12345|2000030100000^20000302235959|Y|
+
+RDF|9|Provider^ST^20|Region^ST^40|Extension^XTN^40|Destination^XTN^40|Date/Time^DTM^24|Quantity^NM^4|Duration^NM^4|Units^NM^4|Amount^MO^8|
+
+RDT|DTAG|CITY||||5|20|3|3.25|
+
+RDT|DTAG|R50||||1|10|2|1.00|
+
+RDT|DTAG|R200||||0|0|0|0|
+
+RDT|DTAG|NAT||||0|0|0|0|
+
+RDT|DTAG|INT||||0|0|0|0|
+
+____
+
+*Example 2:*
+
+Query the detailed information for patient 12345 from 3/1/06 till 3/3/06. Transfer the first 10 records.
+
+*Query:*
+
+____
+
+MSH|^&~\|PCR|Gen Hosp|Pharm||200611201400-0800||QBP^Z73^QBP_Z73|ACK9901|P|2.8|
+
+QPD|Z89^Query Phone Calls^HL70471|Q010|12345|2006030100000^20060302235959|Y|
+
+RCP|I|10^RD|
+
+____
+
+*Answer:*
+
+____
+
+MSH|^&~\|Pharm|Gen Hosp|PCR||200611201401-0800||RTB^Z74^RTB_Z74|8858|P|2.8|
+
+MSA|AA|8858 QAK|Q010|OK|Z89^Query Phone Calls^HL70471|4
+
+QPD|Z89^Query Phone Calls^HL70471|Q010|12345|2006030100000^20060302235959|Y|
+
+RDF|9|Provider^ST^20|Region^ST^40|Extension^XTN^40|Destination^XTN^40|Date/Time^DTM^24|Quantity^NM^4|Duration^NM^4|Units^NM^4|Amount^MO^8|
+
+RDT|DTAG|CITY|12345|555-1234|200603021715||20|12|2.25|
+
+RDT|DTAG|CITY|12345|555-4569|200603011252||21|3|0.48|
+
+*Requesting a Chip card*
+
+In case the hospital provides additional services that can be accessed through chip cards, this card has to be issued to the patient. At the end of the visit this chip card is returned. Distributing a chip card to a patient is a service which must be ordered from the chip card dispensing system, too. When discharging the patient the service (= order) is complete.
+
+The messages are essentially the same as for issuing a phone number. The filler for the chip card order is a chip card dispensing application and instead of returning a phone number, it returns a chip card number. The following scenarios have slight variations.
+
+*New Chip Card requested due to, e.g., loss*
+
+When a card is lost, or a new chip card must be requested, an additional fee can be communicated by including the FT1 segment in the ORM^O01 message and valuing FT1-11 = <additional fee>.
+
+*Request a new Chip card for a defective one*
+
+Sometimes a chip card is defective. Then the patient needs a new one. This situation requires an order using the XO control code in the ORM^O01 message. The chip card dispensing system returns the new chip card number using the ORU^RO1. The ORC-16-Order Control Code Reason is used to clarify the request.
+
+*Return a chip card*
+
+When the patient returns the chip card, a discontinue message is send with ORC-1 = "DC". This message is acknowledged accordingly by the chip card dispensing system.
+
+*Printing a form*
+
+When form needs printing, the ORM^O01 could also be used. The OBR segment would contain the print form service and the OBX would contain the specific print form. A notification when completing the printing is feasible as well using the ORM^O01 with a status update associated to the appropriate placer/filler order number.
+
+== Examples of use
+
+=== Query/response
+
+=== Unsolicited
+
+The following is an unsolicited transmission of radiology data.
+
+MSH|^~\&|XRAY||CDB||200006021411||ORU^R01^ORU_R01|K172|P|...<cr>
+
+PID|...<cr>
+
+OBR|1|X89‑1501^OE|78912^RD|71020^CHEST XRAY AP \T\ LATERAL|||198703290800||||...<cr>
+
+OBX|1|CWE|19005-8^X-ray impression^LN|4|^MASS LEFT LOWER LOBE|||A|||F|...<cr>
+
+OBX|2|CWE|19005-8^X-ray impression^LN|2|^INFILTRATE RIGHT LOWER LOBE|||A|||F|...<cr>
+
+OBX|3|CWE|19005-8^X-ray impression^LN|3|^HEART SIZE NORMAL|||N|||F|...<cr>
+
+OBX|4|FT|36687-2^Chest XR AP+Lat ^LN|1|circular density (2 x 2 cm) is seen in the posterior segment of
+
+the LLL. A second, less well‑defined infiltrated circulation density is
+
+seen in the R mid lung field and appears to cross the minor fissure#||||||F|...<cr>
+
+OBX|5|CWE|71020&REC|5|71020^Follow up CXR 1 month||30‑45||||F|...<cr>
+
+=== Laboratory
+
+Laboratory message: electrolytes, CBC, sed rate, blood cultures and susceptibilities
+
+MSH|...<cr>
+
+PID|...<cr>
+
+Electrolytes:
+
+OBR|1|870930010^OE|CM3562^LAB|2432-6^ELECTROLYTES HCFA 98 PANEL^LN| ||198703290800|||
+
+401-0^INTERN^IRVING^I^^^MD^L| ||||SER|^HIPPOCRATES^HAROLD^H^^DR|(555)555‑1003|
+
+This is requestor field #1.|Requestor field #2|Diag.serv.field #1.|
+
+Diag.serv.field #2.|198703311400|||F|...<cr>
+
+OBX|1|NM|2951-2^SODIUM^LN||150|mmol/L|136‑148|H||A|F|19850301|...<cr>
+
+OBX|2|NM|2823-3^POTASSIUM^LN||4.5|mmol/L|3.5‑5|N||N|F|19850301|...<cr>
+
+OBX|3|NM|2075-0^CHLORIDE^LN||102|mmol/L|94‑105|N||N|F|19850301|...<cr>
+
+OBX|4|NM|2028-9^CARBON DIOXIDE^LN||27|mmol/L|24‑31|N||N|F|19850301|...<cr>
+
+CBC:
+
+OBR|2|870930011^OE|HEM3268^LAB|24359-2^HEMOGRAM+DIFFERENTIAL PANEL^LN| ||198703290800|||401-0 ^
+
+INTERN^IRVING^I^^^MD^L|||||BLDV|^HIPPOCRATES^HAROLD^H^^DR|(555)555‑1003|This is requestor field #1.|This is Requestor field #2.|This is lab field #1.|Lab field #2.|198703311400|||F|...<cr>
+
+OBX|1|NM|718-7^HEMOGLOBIN^LN||13.4|GM/DL|14-18|N||S|F|19860522|...<cr>
+
+OBX|2|NM|4544-3^HEMATOCRIT^LN||40.3|%|42-52|L||S|F|19860522|...<cr>
+
+OBX|3|NM|789-8^ERYTHROCYTES^LN||4.56|10*6/ml|4.7-6.1|L||S|F|19860522|...<cr>
+
+OBX|4|NM|787-2^ERYTHROCYTE MEAN CORPUSCULAR VOLUME:^LN
+
+||88|fl|80-94|N||S|F|19860522|...<cr>
+
+OBX|5|NM|785-6^ERYTHROCYTE MEAN CORPUSCULAR HEMOGLOBIN:^LN
+
+||29.5|pg|27-31|N||N|F|19860522|...<cr>
+
+OBX|6|NM|786-4^ERYTHROCYTE MEAN CORPUSCULAR HEMOGLOBIN CONCENTRATION:^LN
+
+||33|%|33-37|N||N|F|19860522|...<cr>
+
+OBX|7|NM|6690-2^LEUKOCYTES^LN||10.7|10*3/ml|4.8-10.8|N||N|F|19860522|...<cr>
+
+OBX|8|NM|770-8^NEUTROPHILS/100 LEUKOCYTES^LN||68|%|||||F|...<cr>
+
+OBX|9|NM|736-9^LYMPHOCYTES/100 LEUKOCYTES:^LN||29|%|||||F|...<cr>
+
+OBX|10|NM|5905-5^MONOCYTES/100 LEUKOCYTES:^LN||1|%|||||F|...<cr>
+
+OBX|11|NM|713-8^EOSINOPHILS/100 LEUKOCYTES:^LN||2|%|||||F|...<cr>
+
+Sed rate:
+
+OBR|3|870930011^OE|HEM3269^LAB|4537-7^ERYTHROCYTE SEDIMENTATION RATE^LN
+
+|||198703290800|||
+
+401-0^INTERN^IRVING^I^^^MD^L|||||BLDV|^HIPPOCRATES^HAROLD^H^^DR|(555)555-1003|
+
+This is requestor field #1.|This is Requestor field #2.|This is lab field
+
+#1.|Lab field #2.|198703311400|||F|...<cr>
+
+OBX|1|NM|4537-7^ERYTHROCYTE SEDIMENTATION RATE:^LN|
+
+|7|MM/HR|0-10|N||S|F|19860522|...<cr>
+
+Parent micro result, identifies organism
+
+OBR|4|2740X^OE|BC376^MIC|87040^Blood culture| ||198703290800|||
+
+99-2^SPINNER^SAM^S||^Hepatitis risk||198703290830|BLDV|
+
+4010^INTERN^IRVING^I^^^MD^L|555-1022 X3472^^^^^^^3472|Requestor field 1|Requestor field 2|
+
+Producer's field 1|Producer's field 2|198703301000|35.00|MB|F|...<cr>
+
+OBX|1|CWE|600-7^MICROORGANISM IDENTIFIED^LN|1|^E Coli|||A|||F|...<cr>
+
+OBX|2|CWE|600-7^MICROORGANISM IDENTIFIED^LN|2|^S Aureus|||A|||F|...<cr>
+
+Child micro result, gives antimicrobials susceptibilities for organism identified in first OBX of parent
+
+OBR|5|2740X^OE|BC402^MIC|87186^Antibiotic MIC||
+
+|198703290800||||G|^Hepatitis Risk||198703290830|BLDB
+
+|401.0^INTERN^IRVING^I^^^MD^L|555-1022 X3472^^^^^^^3472|||||198703310900|40.00
+
+|MB|F|600-7&MICROORGANISM IDENTIFIED&LN^1|||2740X&OE^BC376&MIC|...<cr>
+
+OBX|1|ST|28-1^AMIPICILLIN:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|2|ST|60-4^CARBENICILLIN:SUSC:PT:ISLT:QN:MIC^LN||<16|ug/ml||S|||F|...<cr>
+
+OBX|3|ST|267-5^GENTAMICIN:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|4|ST|496-0^TETRACYCLINE:SUSC:PT:ISLT:QN:MIC^LN||<1|ug/ml||S|||F|...<cr>
+
+OBX|5|ST|408-5^PIPERACILLIN:SUSC:PT:ISLT:QN:MIC^LN||<8|ug/ml||S|||F|...<cr>
+
+OBX|6|ST|145-3^CEFUROXIME:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|7|ST|161-0^CEPHALOTHIN:SUSC:PT:ISLT:QN:MIC^LN||<8|ug/ml||S|||F|...<cr>
+
+OBX|8|ST|20-8^AMOXICILLIN+CLAVULANATE:SUSC:PT:ISLT:QN:MIC^LN
+
+||<4|ug/ml||S|||F|...<cr>
+
+OBX|9|ST|173-5^CHLORAMPHENICOL:SUSC:PT:ISLT:QN:MIC^LN||<4|ug/ml||S|||F|...<cr>
+
+OBX|10|ST|508-2^TOBRAMYCIN:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|11|ST|12-5^AMIKACIN:SUSC:PT:ISLT:QN:MIC^LN||<4|ug/ml||S|||F|...<cr>
+
+OBX|12|ST|516-5^TRIMETHOPRIM+SULFMOETHOXAZOLE:SUSC:PT:ISLT:QN:MIC^LN|
+
+|<2/38|ug/ml||S|||F|...<cr>
+
+OBX|13|ST|76-0^CEFAZOLIN:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|14|ST|116-4^CEFOXITIN:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|15|ST|141-2^CEFTRIAXONE:SUSC:PT:ISLT:QN:MIC^LN||<4|ug/ml||S|||F|...<cr>
+
+OBX|16|ST|133-9^CEFTAZIDIME:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|17|ST|185-9^CIPROFLOXACIN:SUSC:PT:ISLT:QN:MIC^LN||<1|ug/ml||S|||F|...<cr>
+
+Second micro child result, gives susceptibilities or organism identified by Second OBX of parent
+
+OBR|6|2740X^OE|BC403^MIC|87186^Antibiotic MIC| ||198703290800||||G|
+
+^Hepatitis risk||198703290830|BLDV|401.0^INTERN^IRVING^I^^^MD^L|321-4321 X3472^^^^^^^3472|||||
+
+198703310900|40.00|MB|F|600-7&MICROORGANISM IDENTIFIED &LN^2|
+
+||2740X&OE^BC376&MIC|...<cr>
+
+OBX|1|ST|28-1^AMPICILLIN:SUSC:PT:ISLT:QN:MIC^LN||<8|ug/ml||R|||F|...<cr>
+
+OBX|2|ST|193-3^CLINDAMYCIN:SUSC:PT:ISLT:QN:MIC^LN||<.25|ug/ml||S|||F|...<cr>
+
+OBX|3|ST|267-5^GENTAMICIN:SUSC:PT:ISLT:QN:MIC^LN||<1|ug/ml||S|||F|...<cr>
+
+OBX|4|ST|233-7^ERYTHROMYCIN:SUSC:PT:ISLT:QN:MIC^LN||<.5|ug/ml||S|||F|...<cr>
+
+OBX|5|ST|383-0^OXACILLIN:SUSC:PT:ISLT:QN:MIC^LN||<.5|ug/ml||S|||F|...<cr>
+
+OBX|6|ST|524-9^VANCOMYCIN:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|7|ST|6932-8^PENICILLIN:SUSC:PT:ISLT:QN:MIC^LN||<8|ug/ml||R|||F|...<cr>
+
+OBX|8|ST|161-0^CEPHALOTHIN:SUSC:PT:ISLT:QN:MIC^LN||<2|ug/ml||S|||F|...<cr>
+
+OBX|9|ST|173-5^CHLORAMPHENICOL:SUSC:PT:ISLT:QN:MIC^LN||<4|ug/ml||S|||F|...<cr>
+
+OBX|10|ST|12-5^AMIKACIN:SUSC:PT:ISLT:QN:MIC^LN||<16|ug/ml||S|||F|...<cr>
+
+OBX|11|ST|185-9^CIPROFLOXACIN:SUSC:PT:ISLT:QN:MIC^LN||<1|ug/ml||S|||F|...<cr>
+
+OBX|12|ST|428-3^RIFAMPIN:SUSC:PT:ISLT:QN:MIC^LN||<1|ug/ml||S|||F|...<cr>
+
+=== Narrative report messages
+
+This example of the body of reports shows the following observation from what are usually free text reports. The text within these examples that begins with **-- and ends with --** are explanatory comments, not a formal part of the message. The following outline shows the segments that are included in this example message.
+
+{empty}a) patient identifying record (PID)
+
+{empty}b) order record for chest x-ray (OBR)
+
+{empty}c) two diagnostic impressions for CXR (OBX)
+
+{empty}d) description record for CXR (OBX)
+
+{empty}e) a recommendation record for CXR (OBX)
+
+{empty}f) an order record for surgical pathology (OBR)
+
+{empty}g) a gross description record for pathology showing use of anatomy fields (OBX)
+
+{empty}h) a microscopic description record for pathology (OBX)
+
+{empty}i) vital signs request (OBR)
+
+{empty}j) six vital signs (OBX)
+
+{empty}k) part of the physical history (OBR & OBX)
+
+{empty}l) end record
+
+MSH|...<cr>
+
+PID|...<cr>
+
+____
+
+Order record for CXR
+
+____
+
+OBR|2|P8754^OE|XR1501^XR|24646-2^CXR PA+LAT^LN|||198703290800|||
+
+401-0^INTERN^IRVING^I^^^MD^L|...<cr>
+
+____
+
+Two CXR diagnostic impressions
+
+____
+
+OBX|1|CWE|24646-2&IMP^CXR PA+LAT^LN
+
+|1|.61^RUL^ACR~.212^Bronchopneumonia^ACR|||A|||F|...<cr>
+
+OBX|2|CWE|24646-2&IMP^CXR PA+LAT^LN |2|51.71^Congestive heart failure^ACR|||A|||F|...<cr>
+
+____
+
+CXR Description with continuation records
+
+____
+
+OBX|3|TX|24646-2&GDT^CXR PA+LAT^LN||Infiltrate probably representing bronchopneumonia in the right lower lobe. Also pulmonary venous congestion cardiomegaly and cephalization, indicating early congestive heart failure.|...<cr>
+
+____
+
+Recommendations about CXR report to follow up one month with a repeat CXR
+
+____
+
+OBX|4|CWE|24646-2&REC^CXR PA+LAT^LN||71020^Followup CXR 1 month^AS4||||||F|...<cr>
+
+____
+
+Order record for pathology report
+
+____
+
+OBR|3|P8755^OE|SP89-739^SP|11529-5^Surgical Path
+
+Report^LN|||198703290800|||401-0^INTERN^IRVING^I^^^MD^L|...<cr>
+
+OBX|1|CWE|11529-5&ANT^Surgical Path Report^LN|1|Y0480-912001^orbital region^SNM||||||F|...<cr>
+
+____
+
+Gross description record (with overflow) for pathology
+
+____
+
+OBX|2|TX|22634-0^Path report.gross observation^LN||The specimen is received in four containers. The first is labeled with the patient's name and consists of three fragments of reddish-brown tissue each of which measures 2 mm in greatest dimension. They are wrapped in tissue paper and submitted in toto in a single cassette|...<cr>
+
+____
+
+Microscopic description record for pathology
+
+____
+
+OBX|3|TX|22635-7^Path report.microscopic observation^LN|1|Sections of the first specimen received for frozen section diagnosis reveal thick walled, ramifying vessels lined by a single layer of flattened endothelial cells. The thick smooth muscle walls exhibit no malignant cytologic features nor do the endothelial lining cells. Within the same specimen are also found fragments of fibrous connective tissue, bone, and nerve which are histologically unremarkable||||||F|...<cr>
+
+____
+
+Vital signs using LOINC® codes as observation identifiers
+
+____
+
+OBR|4|P8756^OE|N2345^NR|29274-8^VITAL SIGNS^LN| ||198703290800|||401-0^INTERN^IRVING^I^^^MD^L|...<cr>
+
+OBX|1|NM|8462-4^INTRAVASCULAR DIASTOLIC:PRES^LN||90|mm(hg)|60-90||||F|...<cr>
+
+OBX|2|NM|8479-8^INTRAVASCULAR SYSTOLIC:PRES^LN||120|mm(hg)
+
+|100-160||||F|...<cr>
+
+OBX|3|NM|8478-0^INTRAVASCULAR MEAN:PRES^LN||100|mm(hg)|80-120|N|||F|...<cr>
+
+OBX|4|NM|8867-4^HEART BEAT RATE^LN||74|/min|60-100|N|||F|...<cr>
+
+OBX|5|ST|8357-6^BLOOD PRESSURE METHOD^LN||MANUAL BY CUFF||||||F|...<cr>
+
+OBX|6|ST|8886-4^HEART RATE METHOD^LN||MANUAL BY PALP||||||F|...<cr>
+
+____
+
+Part of the patient's history
+
+____
+
+OBR|5|P8568^OE|HX2230^^CLN||2000^HISTORY| ||198703290800||401
+
+0^INTERN^IRVING^I^^^MD^L||...<cr>
+
+OBX|1|CWE|8661-1^CHIEF COMPLAINT^LN||...<cr>
+
+OBX|2|ST|8674-4^HISTORY SOURCE^LN||PATIENT||||||F|...<cr>
+
+OBX|3|TX|8684-3^PRESENT ILLNESS^LN||SUDDEN ONSET OF CHEST PAIN. 2 DAYS,
+
+PTA ASSOCIATED WITH NAUSEA, VOMITING \T\ SOB. NO RELIEF WITH ANTACIDS
+
+OR NTG. NO OTHER SX. NOT PREVIOUSLY ILL.||||||F|...<cr>
+
+.
+
+.
+
+____
+
+and so on.
+
+____
+
+=== Reporting Cultures and Susceptibilities
+
+==== Culture battery/report representation
+
+Organisms and other observations/tests are reported using multiple OBX segments. The granularity expected for HL7culture reports is one observation per organism.
+
+All OBX segments which have the same observation ID and sub-ID are part of a single observation.
+
+Each organism in a culture battery is assigned a unique _OBX-4 Observation Sub-ID_ (and is therefore a separate observation). The organism name is given in _OBX-5 Observation Value_ (results). It is recommended, but not required, that the organism name may change over time, but the corresponding observation sub-ID never changes. (The observation ID will be identical for all organisms reported.)
+
+Recommended:
+
+OBX|1|CWE|600-7^Micro Organism Identified^LN|1|^E. Coli||||||F|...<cr>
+
+OBX|2|CWE|600-7^Micro Organism Identified^LN |2|^S. Aureus||||||F|...<cr>
+
+Not recommended:
+
+OBX|1|CWE|600-7^Micro Organism Identified^LN |1|^E. Coli||||||F|...<cr>
+
+OBX|2|CWE|600-7^Micro Organism Identified^LN |1|^S. Aureus||||||F|...<cr>
+
+==== Susceptibility battery/report representation
+
+Each antimicrobial should be reported as a separate (OBX) observation where the Observation ID is a code for the antimicrobial. (OBXs for non-antimicrobials observations and related information may be present in the same battery.)
+
+MIC and disk diffusion (Kirby Bauer) susceptibility results can be combined in the same OBX segment. An OBX can contain a MIC value (in _OBX-5 Observation Value_ (results)) and _OBX-8 Interpretation Codes_ that indicates whether the organism is sensitive, resistant, or intermediate (see file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70078[_HL7 Table 0078 - Interpretation Codes_] under abnormal flag fields).
+
+Or, an OBX can contain a disk diffusion result string (e.g., *sensitive*) in the Observation Results field and the disk diffusion interpretation in _OBX-8 Interpretation Codes_ (e.g., *S*).
+
+A susceptibility battery may only contain results corresponding to a single organism that has been previously reported in a culture battery.
+
+==== Identification of the organism for a susceptibility battery
+
+The following is the preferred, but not required method of organizing data about antimicrobial susceptibility.
+
+A susceptibility battery may only contain results corresponding to a single organism that has been previously reported in a culture battery.
+
+A susceptibility battery is always a child order to a culture battery. _OBR-29 Parent_ (parent's filler order number) in the susceptibility OBR is equal _to OBR-3 Filler Order Number_ in the parent culture OBR and is used to link the two batteries logically.
+
+The susceptibility battery also contains a linkage back to a particular organism in the culture battery. _OBR-26 Parent Result_ of the susceptibility OBR contains two components--_OBX-3 Observation Identifier_ (code only) and _OBX -4 Observation Sub-ID_ of the OBX in the culture battery which contains the organism name.
+
+The identity of an organism/isolate is expected to be refined over time. When an organism identification changes, the parent culture battery can be resent without resending the child susceptibility battery.
+
+The case may occur where a susceptibility battery is reported on an organism which has not yet been identified. In this case, it is required that a placeholder OBX for the organism name be reported in the corresponding culture battery so that _OBR-26 Parent Result_ in the susceptibility OBR will point to a valid organism OBX in the culture battery. Transmission of an organism OBX (in the culture battery) with the Sub-ID field valued must precede the susceptibility battery which uses the identical Sub-ID in _OBR-26 Parent Result_.
+
+Discussion and examples:
+
+Order micro results (blood culture)
+
+MSH|^~\&|LAB1||DESTINATION||19910127105114||ORU^R01^ORU_R01|LAB1003929|...<cr>
+
+PID|...<cr>
+
+PV1|...<cr>
+
+ORC|NW|...<cr>
+
+OBR|1|A485388^OE|H29847^LAB1|17928-3^BLOOD CULTURE^LN|||...<cr>
+
+Result for culture
+
+ORC|RE|...<cr>
+
+OBR|1|A485388^OE|H29847^LAB1|17928-3^BLOOD CULTURE ^LN||...<cr>
+
+OBX|1|FT|SDES^SOURCE||BLOOD-RAPID||||||F|...<cr>
+
+OBX|2|FT|664-3^GRAM STAIN SMEAR^LN||GRAM POSITIVE COCCI IN GROUPS||||||F|...<cr>
+
+OBX|3|FT|600-7^MICROORGANISM IDENTIFIED^LN|1|ISOLATE 1||||||F|...<cr>
+
+Result for susceptibility
+
+ORC|RE|...<cr>
+
+OBR|1|A485388^OE|H29848^LAB1|BT1^SUSCEPTIBILITY BATTERY||||||123^MANSFIELD^CHARLES| ||||||||||||||||600-7&MICROORGANISM IDENTIFIED&LN ^1|||A485388&OE^H29847&LAB1|...<cr>
+
+OBX|1|NM|6932-8^PENICILLIN MIC^LN||0.5|||R|||F|...<cr>
+
+OBX|2|NM|347-5^NAFCILLIN MIC^LN||1|||R|||F|...<cr>
+
+OBX|3|ST|193-3^CLINDAMYCIN MIC^LN||<=0.1|||S|||F|...<cr>
+
+Result for Culture ID
+
+ORC|RE|...<cr>
+
+OBR|1|A485388^OE|H29847^LAB1|17928-3^BLOOD CULTURE ^LN||...<cr>
+
+OBX|1|FT|600-7^ MICROORGANISM IDENTIFIED^LN |1|STAPH EPI||||||F|...<cr>
+
+New result for culture ID
+
+ORC|RE|...<cr>
+
+OBR|1|A485388^OE|H29847^LAB1|17928-3^BLOOD CULTURE ^LN||...<cr>
+
+OBX|1|FT|600-7^MICROORGANISM IDENTIFIED^LN|1|STAPH EPI SERO TYPE 3||||||F|...<cr>
+
+Assumptions
+
+____
+
+{empty}1) All OBXs in the parent order must employ the same coding scheme.
+
+{empty}2) The Sub-ID of the parent OBXs (result) cannot change.
+
+____
+
+=== EKG Results Reporting
+
+Suppose an order has been placed to the EKG system for three EKGs to be performed on successive days. These results can be reported in various ways.
+
+____
+
+{empty}1) The EKG application needs to communicate to anyone the results of the 1st EKG:
+
+____
+
+ORU message:
+
+MSH|...<cr>
+
+PID|...<cr>
+
+____
+
+Order record for EKG
+
+____
+
+OBR|1|P8753^OE|EK5230^EKG|8601-7^EKG impression^LN|||198703290800|||401
+
+0^INTERN^IRVING^I^^^MD^L|...<cr>
+
+____
+
+Two interpretation records for EKG
+
+____
+
+OBX|1|CWE|8601-7^EKG impression^LN|1|^Sinus bradycardia|||A|||F|...<cr>
+
+OBX|2|CWE|8601-7^EKG impression^LN |2|^Occasional PVCs|||A|||F|...<cr>
+
+____
+
+Four numeric results for EKG
+
+____
+
+OBX|3|NM|8897-1^QRS COMPLEX RATE ^LN|
+
+|80|/min|60-100|||||F|...<cr>
+
+OBX|4|NM|8894-8^PULSE RATE^LN||80|/min
+
+|60-100||||F|...<cr>
+
+OBX|5|NM|8633-0^QRS DURATION ^LN||.08|msec
+
+|.06-.10||||F|...<cr>
+
+OBX|6|NM|8625-6^P-R INTERVAL ^LN||.22|msec
+
+|.18-.22||||F|...<cr>
+
+• Notice that this report is without reference to the original order.
+
+• No ORC is required because the identifying Fillers Order Number (and other ORC fields) is carried in the OBR segment.
+
+• The EKG application needs to communicate to anyone the original order information, the details of the child orders, the fact of the child spin off, and the results of all three EKGs:
+
+ORU message:
+
+MSH|...<cr>
+
+PID|...<cr>
+
+ORC|PA|A226677^OE|89‑450^EKG|...<cr> // original order's ORC.
+
+OBR|1|||8601-7^EKG REPORT|...<cr> // original order segment
+
+ORC|CH|A226677^OE|89-451^EKG|...<cr> // 1st child ORC.
+
+OBR|1|||8601-7^EKG REPORT|...<cr> // 1st EKG child OBR.
+
+OBX|1|ST|...<cr> // 1st EKG report
+
+OBX|2|ST|...<cr>
+
+...
+
+OBX|14|FT|...<cr>
+
+ORC|CH|A226677^OE|89-452^EKG|...<cr> // 2nd child ORC.
+
+OBR|1|||8601-7^EKG REPORT|...<cr> // 2nd EKG child OBR.
+
+OBX|1|ST|...<cr> // 2nd EKG report
+
+OBX|2|ST|...<cr>
+
+...
+
+OBX|14|FT|...<cr>
+
+ORC|CH|A226677^OE|89-453^EKG|...<cr> // 3rd child ORC.
+
+OBR|1|||8601-7^EKG REPORT|...<cr> // 3rd EKG child OBR.
+
+OBX|1|ST|...<cr> // 3rd EKG report
+
+OBX|2|ST|...<cr>
+
+...
+
+OBX|14|FT|...<cr>
+
+... // Other parts of message might follow.
+
+In this case, we are transmitting the information about the fact of child spin off, the original order and the results all at the same time. Thus, this form of the ORU message reports not only the results of an order, but all of its associated ordering information including the original OBR for three EKGs that was replaced by three separate OBR EKG segments.
+
+=== Patient‑Specific Clinical Data with an Order
+
+Reporting body weight and height with a creatinine clearance.
+
+MSH|...<cr>
+
+PID|...<cr>
+
+ORC|NW|...<cr> // New order.
+
+OBR|1|P42^PC||2164-2^CREATININE RENAL CLEARANCE: QN^LN|...<cr>
+
+OBX|1|NM|3141-9^BODY WEIGHT^LN||62|kg|...<cr>
+
+OBX|2|NM|3137-7^BODY HEIGHT^LN||190|cm|...<cr>
+
+ORC|NW|...<cr> // Next order.
+
+=== Patient-connected medical device reporting
+
+Information acquired from patient-connected medical devices may be relatively simple, such as monitored values from a pulse-oximeter or infusion pump, or highly complex and rich such as comprehensive data from a multi-parameter physiological monitor or ventilator. In acute care contexts, many devices may be associated with a single patient and are often added and removed during an episode of care. Though point-of-care devices typically use non-HL7 protocols for their communication interfaces, data acquired from these devices are often aggregated and periodically published to enterprise applications using an HL7-based interface.
+
+In order to enhance interoperability between point-of-care medical device systems and enterprise applications, there have been a number of collaborative projects to establish a consistent mapping of information acquired from these devices to HL7 messages. This clause provides an overview and examples of such a project by the IHE Patient Care Device ("PCD") groupfootnote:[Information on Integrating the Healthcare Enterprise (“IHE”), including PCD message profiles are available at http://www.IHE.net[www.IHE.net].] that defines a consistent mapping from specialized device semantics to HL7 messages.
+
+Standardized representation of device semantics is provided by the ISO/IEEE 11073 ("X73") family of standards. Specifically the ISO/IEEE 11073-10101 standardfootnote:[Additional ISO/IEEE 11073-1010x standards may be used to represent abstract device semantics, such as ISO/IEEE 11073-10102 Annotated ECG.] provides a nomenclature or terminology for the representation of device information and is referenced in file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70396[_HL7 Table 0396 – Coding System_] as "MDC."
+
+Additionally, a device-specific information model is defined, ISO/IEEE 11073-10201 Domain Information Model ("DIM"), to support the specialized, real-time communication needs of medical devices. The following diagram presents a simplified example of the X73 objects in which a given observation or Metric::Numeric are contained. The MDS, VMD, and Channel objects provide the information that is often necessary to identify specific devices and their configuration (e.g., serial numbers or internal time settings), as well as the association of data items that come from the same device subsystem (VMD or Channel) and shouldn't be confused with other observations that may have the same identifier.
+
+image:extracted-media/media/image1.emf[extracted-media/media/image1]
+
+Figure 7-5 Basic ISO/IEEE 11073-10201 Containment Tree
+
+The IHE PDC Device-to-Enterprise ("DEC") profile defines a single HL7 message, ORU^R01, that maps X73 abstract device semantics to specific message segments and fields. The message specification includes the following:
+
+• Device terms should be communicated using their "MDC" code within and among devices. Between devices and medical record systems other standard vocabulary, e.g., LOINC (emerging as the global standard) and SNOMED, may be used.
+
+• Units of measurement may be either those defined in the ISO/IEEE 11073-10101 Nomenclature, or UCUM. Carrying both is recommended.
+
+• Devices and device-related applications and systems are identified using the 64-bit IEEE EUI-64 identifier (Table 0301) that is specified in the X73 standards.
+
+• OBX-4 is used with a dotted nomenclaturefootnote:[See section 7.4.2.5 OBX-4 Observation Sub-ID discussion, including Figure 7-4 Example of sub‑identifier usage.] to indicate containment of specific measurements within Channels, Virtual Medical Devices and Medical Device Systems.
+
+Complete details of this message profile are defined in the IHE PCD DEC framework. The following message examples illustrate how device information is communicated using this profile.
+
+____
+
+*Message Example from a Single Simple Device*
+
+____
+
+MSH|^~\&|PAT_DEVICE_PUMPCO^0012210000000001^EUI-64|PUMPCO|CIS_HITCO|HITCO|20071204153604-0600||ORU^R01^ORU_R01|11|P|2.8|||NE|AL||ASCII|EN^English^ISO659||IHE PCD ORU-R01 2006^HL7^2.16.840.1.113883.9.n.m^HL7
+
+PID|||CD60002^^^IHE^PI||Darwin^Charles^^^^^L|Emerine|19620101000000-0600|M
+
+PV1||I|3 West ICU^3002^1
+
+OBR|0|AB12345^HL7^ACDE48234567ABCD^EUI-64|CD12345^HL7^ACDE48234567ABCD^EUI-64|69985^MDC_DEV_PUMP_INFUS_MDS^MDC|||20071204153602-0600
+
+OBX|1||69985^MDC_DEV_PUMP_INFUS_MDS^MDC|1000002.0.0.0|||||||X|||||N60002||^^A0002^PUMPCO
+
+OBX|2||69986^MDC_DEV_PUMP_INFUS_VMD^MDC|1000002.1.0.0|||||||X
+
+OBX|3||126978^MDC_DEV_PUMP_INFUS_CHAN_DELIVERY^MDC|1000002.1.1.0|||||||X
+
+OBX|4||126977^MDC_DEV_PUMP_INFUS_CHAN_SOURCE^MDC|1000002.1.2.0|||||||X
+
+OBX|5||126977^MDC_DEV_PUMP_INFUS_CHAN_SOURCE^MDC|1000002.1.3.0|||||||X
+
+OBX|6|NM|68063^MDC_ATTR_PT_WEIGHT^MDC|1000002.0.0.2|95.0|1731^kg^UCUM^263875^MDC_DIM_X_KILO_G^MDC|||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|7|ST|184504^MDC_PUMP_MODE^MDC|1000002.1.1.101|pump-mode-drug-dosing||||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|8|ST|184508^MDC_PUMP_STAT^MDC|1000002.1.1.102|pump-status-infusing||||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|9|NM|157784^MDC_FLOW_FLUID_PUMP^MDC|1000002.1.1.103|24.9|3122^mL/h^UCUM^265266^MDC_DIM_MILLI_L_PER_HR^MDC|||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|10|NM|157784^MDC_FLOW_FLUID_PUMP^MDC|1000002.1.2.201|24.9|3122^mL/h^UCUM^265266^MDC_DIM_MILLI_L_PER_HR^MDC|||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|11|NM|157872^MDC_VOL_FLUID_TBI_REMAIN^MDC|1000002.1.2.202|250.0|1618^mL^UCUM^263762^MDC_DIM_MILLI_L^MDC|||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|12|NM|157916^MDC_TIME_PD_REMAIN^MDC|1000002.1.2.203|601|2208^min^UCUM^264352^MDC_DIM_MIN^MDC|||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|13|ST|184330^MDC_DRUG_NAME_TYPE^MDC|1000002.1.2.204|DOPamine||||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|14|NM|157760^MDC_CONC_DRUG^MDC|1000002.1.2.205|1.6|2162^mg/mL^UCUM^264306^MDC_DIM_MILLI_G_PER_ML^MDC|||||R|||20071204153602-0600|||||20071204153602-0600
+
+OBX|15|NM|157924^MDC_RATE_DOSE^MDC|1000002.1.2.206|7.00|3475^ug/kg/min^UCUM^265619^MDC_DIM_MICRO_G_PER_KG_PER_MIN^MDC|1-20||||R|||20071204153602-0600|||||20071204153602-0600
+
+____
+
+*Message Example for Multiple Devices*
+
+____
+
+MSH|^~\&|CIS_HITCO ^ACDE48234567ABCD^EUI-64||||20061220214210-0500||ORU^R01^ORU_R01|D1220214210609b5f9aa|P|2.8|||NE|AL
+
+PID|||LM60005^^^Health IT Co^PI||Montgomery^Larry^^^^^L||19560101000000|M
+
+PV1||I|UNIT_1^^Bed1
+
+OBR|1|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|69640^MDC_DEV_ANALY_SAT_O2^MDC|||20061220213500
+
+OBX|1|NM|150456^MDC_PULS_OXIM_SAT_O2^MDC|1.1.1.150456|99|262688^MDC_DIM_PERCENT^MDC||N|||F|||20061220213500
+
+OBR|2|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|69636^MDC_DEV_ANALY^MDC|||20061220213500
+
+OBX|1|NM|147842^MDC_ECG_HEART_RATE^MDC|1.1.1.147842|133|264864^MDC_DIM_BEAT_PER_MIN^MDC||A|||F|||20061220213500
+
+OBR|3|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|69708^MDC_DEV_ANALY_PRESS_BLD^MDC|||20061220213500
+
+OBX|1|NM|150037^MDC_PRESS_BLD_ART_ABP_SYS^MDC|1.1.1.150037|126|266016^MDC_DIM_MMHG^MDC||N|||F|||20061220213500
+
+OBX|2|NM|150038^MDC_PRESS_BLD_ART_ABP_DIA^MDC|1.1.1.150038|76|266016^MDC_DIM_MMHG^MDC||N|||F|||20061220213500
+
+OBX|3|NM|150039^MDC_PRESS_BLD_ART_ABP_MEAN^MDC|1.1.1.150039|92|266016^MDC_DIM_MMHG^MDC||N|||F|||20061220213500
+
+OBR|4|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|69708^MDC_DEV_ANALY_PRESS_BLD^MDC|||20061220213500
+
+OBX|1|NM|150087^MDC_PRESS_BLD_VEN_CENT_MEAN^MDC|1.1.1.150087|12|266048^MDC_DIM_CM_H2O^MDC||N|||F|||20061220213500
+
+OBR|5|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|D1220214210609b5f9aa^CIS_HITCO^ACDE48234567ABCD^EUI-64|69708^MDC_DEV_ANALY_PRESS_BLD^MDC|||20061220213500
+
+OBX|1|NM|150045^MDC_PRESS_BLD_ART_PULM_SYS^MDC|1.1.1.150045|26|266016^MDC_DIM_MMHG^MDC||A|||F|||20061220213500
+
+OBX|2|NM|150046^MDC_PRESS_BLD_ART_PULM_DIA^MDC|1.1.1.150046|9|266016^MDC_DIM_MMHG^MDC||A|||F|||20061220213500
+
+OBX|3|NM|150047^MDC_PRESS_BLD_ART_PULM_MEAN^MDC|1.1.1.150047|14|266016^MDC_DIM_MMHG^MDC||A|||F|||20061220213500
+

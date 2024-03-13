@@ -1,0 +1,62 @@
+= EQU
+:render_as: Level3
+:v291_section: 13.3.1+
+
+== EQU - Equipment Detail Segment 
+
+The equipment detail segment contains the data necessary to identify and maintain the equipment that is being used throughout the Laboratory Automation System.
+
+HL7 Attribute Table – EQU[#EQU .anchor]#### – Equipment Detail
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM # |ELEMENT NAME
+
+|1 | | |EI |R |Y | |01479 |Equipment Instance Identifier
+
+|2 | | |DTM |R | | |01322 |Event Date/Time
+
+|3 | | |CWE |C | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70365[0365] |01323 |Equipment State
+
+|4 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70366[0366] |01324 |Local/Remote Control State
+
+|5 | | |CWE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70367[0367] |01325 |Alert Level
+
+|6 | | |DTM |O | | |03487 |Expected date/time of the next status change
+
+|===
+
+=== EQU-1 Equipment Instance Identifier (EI) 01479
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: This field identifies the equipment. This is the identifier from an institution's master list of equipment. The <namespace ID> identifies the institution.
+
+The Equipment Instance Identifier shall be unique, meaning that the “Entity Identifier” component shall be unique within the Namespace ID that should accommodate hierarchical representation of equipment (recursive hierarchy like in "Russian dolls", e.g., a sub-module embedded in a module assembled in a system being a member of a cluster).
+
+If this attribute repeats, all instances must represent the same device.
+
+=== EQU-2 Event Date/Time (DTM) 01322
+
+=== EQU-3 Equipment State (CWE) 01323
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field identifies the status that the equipment was in at the time that the transaction was initiated. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70365[_HL7 Table 0365 – Equipment State_] in Chapter 2C, Code Tables, for valid values. The Equipment State is required in the ESU message and is optional otherwise.
+
+=== EQU-4 Local/Remote Control State (CWE) 01324
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field identifies the current state of control associated with the equipment. An equipment can either work autonomously ('Local' control state) or it can be controlled by another system, e.g., LAS computer ('Remote' control state). Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70366[_HL7 Table 0366 – Local/Remote Control State_] in Chapter 2C, Code Tables, for valid values.
+
+=== EQU-5 Alert Level (CWE) 01325
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field identifies the highest level of the alert state (e.g., highest alert severity) that is associated with the indicated equipment (e.g., processing event, inventory event, QC event). Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70367[_HL7 Table 0367 – Alert Level_] in Chapter 2C, Code Tables, for valid values.
+
+=== EQU-6 Expected Date/Time of the Next Status Change (DTM) 03487
+

@@ -1,0 +1,22 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 13.3.
+
+xref:Technical_Specs/Message_-_U01_Automated_Equipment_Status_Update.adoc[Message - U01 Automated Equipment Status Update]
+
+xref:Technical_Specs/Message_-_U02_Automated_Equipment_Status_Request.adoc[Message - U02 Automated Equipment Status Request]
+
+xref:Technical_Specs/Message_-_U01_Automated_Equipment_Status_Update.adoc[Message - U01 Automated Equipment Status Update]
+
+xref:Technical_Specs/Message_-_U03_Specimen_Status_Update.adoc[Message - U03 Specimen Status Update ]
+
+xref:Technical_Specs/Message_-_U04_Specimen_Status_Request.adoc[Message - U04 Specimen Status Request ]
+
+xref:Technical_Specs/Message_-_U03_Specimen_Status_Update.adoc[Message - U03 Specimen Status Update ]
+
+xref:Technical_Specs/Message_-_U05_Automated_Equipment_Inventory_Update.adoc[Message - U05 Automated Equipment Inventory Update]
+
+xref:Technical_Specs/Message_-_U06_Automated_Equipment_Inventory_Request.adoc[Message - U06 Automated Equipment Inventory Request ]
+
+xref:Technical_Specs/Message_-_U05_Automated_Equipment_Inventory_Update.adoc[Message - U05 Automated Equipment Inventory Update]
+

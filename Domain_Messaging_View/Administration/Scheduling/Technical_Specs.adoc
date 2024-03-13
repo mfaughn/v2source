@@ -1,0 +1,58 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 304
+
+xref:Technical_Specs/Message_-_S01_Request_New_Appointment_Booking.adoc[Message - S01 Request New Appointment Booking]
+
+xref:Technical_Specs/Message_-_S02_Request_Appointment_Rescheduling.adoc[Message - S02 Request Appointment Rescheduling ]
+
+xref:Technical_Specs/Message_-_S03_Request_Appointment_Modification.adoc[Message - S03 Request Appointment Modification]
+
+xref:Technical_Specs/Message_-_S04_Request_Appointment_Cancellation.adoc[Message - S04 Request Appointment Cancellation]
+
+xref:Technical_Specs/Message_-_S05_Request_Appointment_Discontinuation.adoc[Message - S05 Request Appointment Discontinuation]
+
+xref:Technical_Specs/Message_-_S06_Request_Appointment_Deletion.adoc[Message - S06 Request Appointment Deletion]
+
+xref:Technical_Specs/Message_-_S07_Request_Addition_of_ServiceResource_on_Appointment.adoc[Message - S07 Request Addition of Service/Resource on Appointment ]
+
+xref:Technical_Specs/Message_-_S08_Request_Modification_of_ServiceResource_on_Appointment.adoc[Message - S08 Request Modification of Service/Resource on Appointment ]
+
+xref:Technical_Specs/Message_-_S09_Request_Cancellation_of_ServiceResource_on_Appointment.adoc[Message - S09 Request Cancellation of Service/Resource on Appointment ]
+
+xref:Technical_Specs/Message_-_S10_Request_Discontinuation_of_ServiceResource_on_Appointment.adoc[Message - S10 Request Discontinuation of Service/Resource on Appointment]
+
+xref:Technical_Specs/Message_-_S11_Request_Deletion_of_ServiceResource_on_Appointment.adoc[Message - S11 Request Deletion of Service/Resource on Appointment ]
+
+xref:Technical_Specs/Message_-_S12_Notification_of_New_Appointment_Booking.adoc[Message - S12 Notification of New Appointment Booking]
+
+xref:Technical_Specs/Message_-_S13_Notification_of_Appointment_Rescheduling.adoc[Message - S13 Notification of Appointment Rescheduling]
+
+xref:Technical_Specs/Message_-_S14_Notification_of_Appointment_Modification.adoc[Message - S14 Notification of Appointment Modification]
+
+xref:Technical_Specs/Message_-_S15_Notification_of_Appointment_Cancellation.adoc[Message - S15 Notification of Appointment Cancellation]
+
+xref:Technical_Specs/Message_-_S16_Notification_of_Appointment_Discontinuation.adoc[Message - S16 Notification of Appointment Discontinuation]
+
+xref:Technical_Specs/Message_-_S17_Notification_of_Appointment_Deletion.adoc[Message - S17 Notification of Appointment Deletion]
+
+xref:Technical_Specs/Message_-_S18_Notification_of_Addition_of_ServiceResource_on_Appointment.adoc[Message - S18 Notification of Addition of Service/Resource on Appointment ]
+
+xref:Technical_Specs/Message_-_S19_Notification_of_Modification_of_ServiceResource_on_Appointment.adoc[Message - S19 Notification of Modification of Service/Resource on Appointment ]
+
+xref:Technical_Specs/Message_-_S20_Notification_of_Cancellation_of_ServiceResource_on_Appointment.adoc[Message - S20 Notification of Cancellation of Service/Resource on Appointment]
+
+xref:Technical_Specs/Message_-_S21_Request_Discontinuation_of_ServiceResource_on_Appointment.adoc[Message - S21 Request Discontinuation of Service/Resource on Appointment]
+
+xref:Technical_Specs/Message_-_S22_Notification_of_Deletion_of_ServiceResource_on_Appointment.adoc[Message - S22 Notification of Deletion of Service/Resource on Appointment ]
+
+xref:Technical_Specs/Message_-_S23_Notification_of_Blocked_Schedule_Time_Slot(s).adoc[Message - S23 Notification of Blocked Schedule Time Slot(s)]
+
+xref:Technical_Specs/Message_-_S24_Notification_of_Opened_("un-blocked")_Schedule_Time_Slot(s).adoc[Message - S24 Notification of Opened ("un-blocked") Schedule Time Slot(s)]
+
+xref:Technical_Specs/Message_-_S26_Notification_That_Patient_Did_Not_Show_Up_for_Scheduled_Appointment.adoc[Message - S26 Notification That Patient Did Not Show Up for Scheduled Appointment]
+
+xref:Technical_Specs/Message_-_S27_Broadcast_Notification_of_Scheduled_Appointments.adoc[Message - S27 Broadcast Notification of Scheduled Appointments]
+

@@ -1,0 +1,48 @@
+= RI
+:render_as: Level3
+:v291_section: 2A.2.64+
+
+== RI - repeat interval
+
+HL7 Component Table - RI – Repeat Interval
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70335[0335] |Repeat Pattern | |2A.2.36
+
+|2 | |199# |ST |O | |Explicit Time Interval | |2A.2.76
+
+|===
+
+*Definition:* contains the interval between repeated services.
+
+Note: The reader is referred to the link:#a.2.67-rpt-repeat-pattern[_RPT – Repeat pattern_] data type, which provides a more rigorous framework for defining repeating time intervals.
+
+=== Repeat Pattern (CWE)
+
+Definition: The repeating frequency with which the treatment is to be administered. It is similar to the frequency and SIG code tables used in order entry systems.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70335[_User-de__fined Table 0335 - Repeat Pattern_] for suggested values.
+
+The first component may repeat, with repeat values separated by a space. The repeats are interpreted as connected by logical ANDs.
+
+Example:
+
+Twice per day, every other day: BID QOD
+
+Three times per day, Monday Wednesday and Friday: TID QJ135
+
+Because of this syntax, repeat values should never contain blanks.
+
+=== Explicit Time Interval (ST)
+
+Definition: This component explicitly lists the actual times referenced by the code in the first component, in the following format: HHMM,HHMM,HHMM,.... This second component will be used to clarify the first component in cases where the actual times vary within an institution. If the time of the order spans more than a single day, this new component is only practical if the same times of administration occur for each day of the order. If the actual start time of the order (as given by the fourth component of the quantity/timing field) is after the first explicit time, the first administration is taken to be the first explicit time after the start time. In the case where the patient moves to a location having a different set of explicit times, the existing order may be updated with a new quantity/timing field showing the changed explicit times.
+
+Example: 2nd component of quantity/timing field:
+
+|QID^0230,0830,1430,2030|
+

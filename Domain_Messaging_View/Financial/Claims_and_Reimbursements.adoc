@@ -1,0 +1,16 @@
+= Claims and Reimbursements
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Claims and Reimbursements | Index: 1196
+
+xref:Claims_and_Reimbursements/Introduction.adoc[Introduction]
+
+xref:Claims_and_Reimbursements/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Claims_and_Reimbursements/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Claims_and_Reimbursements/Technical_Specs.adoc[Technical Specs]
+
+xref:Claims_and_Reimbursements/Examples.adoc[Examples]
+

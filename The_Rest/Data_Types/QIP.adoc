@@ -1,0 +1,46 @@
+= QIP
+:render_as: Level3
+:v291_section: 2A.2.60+
+
+== QIP - query input parameter list
+
+HL7 Component Table - QIP – Query Input Parameter List
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 |6..12 | |ST |R | |Segment Field Name | |2A.2.76
+
+|2 | |199# |ST |R | |Values | |2A.2.76
+
+|===
+
+*Definition:* This data type contains a segment field name and the list of values to be passed to the query processor.
+
+Example:
+
+|@PID.5.1^EVANS|
+
+=== Segment Field Name (ST)
+
+Definition: This component contains the segment field name.
+
+Naming conventions:
+
+Segment field names are designated by the “@” symbol concatenated with the HL7 segment ID followed by the sequence number for the field separated by a period. See sections 2.5.2, "Segments and segment groups" and 2.5.3.1, "Position (sequence within the segment)" for a definition of segment ID and sequence number. If the field is divided into components, the designation may be suffixed with ".nn", to identify a particular component (a suffix of “.3” indicates the third component of the field); otherwise, the whole field is assumed. If the field is further divided into subcomponents, the designation is suffixed with “.nn.mm", which identifies the component and subcomponent requested by relative position.
+
+Site-specific segment field names may be used**.** In this case, the site-specific segment ID (if the field is not being added to an existing HL7 segment) and the sequence number must be defined so that they do not conflict with existing HL7 segment IDs and field sequence numbers.
+
+Values for this field are defined in the function-specific chapters of this specification.
+
+*Note:* If the “@” is being used as one of the delimiter characters defined in MSH-2-encoding characters, it must be “escaped.” See Section 2.7.1, "Formatting Codes".
+
+=== Values (ST)
+
+Definition: This component contains the field value or values in the form "value1& value2 & value3..."
+
+A single-valued parameter contains only a single subcomponent in the second component, thus no subcomponent delimiters are needed (e.g., <segment field name> ^ <value>). A simple list of values (i.e., a one-dimensional array) may be passed instead of a single value by separating each value with the subcomponent delimiter (e.g., <segment field name> ^ <value1 & value2 &...>).
+

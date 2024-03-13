@@ -1,0 +1,180 @@
+= DEV
+:render_as: Level3
+:v291_section: 17.9.1+
+
+== DEV – Device Segment
+
+The Device segment identifies an instance or a type of a manufactured item that is used in the provision of healthcare without being substantially changed through that activity. The device may be a medical or non-medical device. Medical devices include durable (reusable) medical equipment, implantable devices, as well as disposable equipment used for diagnostic, treatment, and research for healthcare and public health. Non-medical devices may include items such as a machine, cellphone, computer, application, etc.
+
+HL7 Attribute Table – DEV – Device
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 |2..2 | |ID |R | |0287 |02534 |Action Code
+
+|2 | | |EI |C | | |02457 |Unique Device Identifier
+
+|3 | | |CNE |C |Y |0961 |03483 |Device Type
+
+|4 | | |CNE |O |[line-through]#Y# |0962 |02501 |Device Status
+
+|5 | | |XON |O | | |01247 |Manufacturer/Distributor
+
+|6 | | |ST |O | | |01249 |Brand Name
+
+|7 | | |ST |O | | |01252 |Model Identifier
+
+|8 | | |ST |O | | |01253 |Catalogue Identifier
+
+|9 | | |EI |O | | |03476 |UDI Device Identifier
+
+|10 | | |ST |O | | |03479 |Device Lot Number
+
+|11 | | |ST |O | | |03480 |Device Serial Number
+
+|12 | | |DTM |O | | |03477 |Device Manufacture Date
+
+|13 | | |DTM |O | | |03478 |Device Expiry Date
+
+|14 | | |CWE |O |Y |0963 |02465 |Safety Characteristics
+
+|15 | | |EI |O | | |03481 |Device Donation Identification
+
+|16 | | |ST |O | | |02502 |Software Version Number
+
+|17 | | |CNE |O | |0795 |02459 |Implantation Status
+
+|===
+
+=== DEV-1 Action code (ID) 02534
+
+=== DEV-2 Unique Device Identifier (EI) 02457
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: This field contains a unique identifier for the Device represented, either an actual device, or type of device.
+
+When this segment is used as an extension of a PRT segment in the message, e.g., additional device information obtained for an implantable device, DEV-2 must be equal to PRT-10 Participation Device. When PRT-22 Participation Device Type is used, DEV-3 must be equal to PRT-22.
+
+Condition: Either DEV-2 Unique Device Identifier or DEV-3 Device Type must be valued, or both are valued.
+
+=== DEV-3 Device Type (CNE) 03483
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the type of device used in the participation.
+
+See Externally HL7 defined 0961 in Chapter 2C for a list of suggested values. This field can repeat.
+
+When intended to have the additional device information for the device referenced in a PRT segment in the message, DEV-2 must be equal to PRT-10 Device. When PRT-22 Device Type is used, DEV-3 must be equal.
+
+When communicating a UDI Carrier, the UDI may either be uniquely identifying an instance of a device, or a type of device. This can be asserted based on the inclusion or absence of a serial number in the Product Identifier section of the UDI. When the serial number is present, PRT-10 must be used, while if it is absent, PRT-22 must be used.
+
+When communicating a UDI Carrier in this field, the coding system used is limited to FDA (FDAUDI), HIBCC (HIBUDI), ICCBBA (ICCUDI), and GS1 (GS1UDI) coding systems defined in file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70396[HL7 Table 0396].
+
+Condition: Either DEV-2 Unique Device Identifier or DEV-3 Device Type must be valued, or both are valued.
+
+=== DEV-4 Device Status (CNE) 02501
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: The device status indicates the availability of the device, e.g., active, inactive. Refer to Externally HL7 Defined Table 0962 for a list of valid values.
+
+=== DEV-5 Manufacturer/Distributor (XON) 01247
+
+Components: <Organization Name (ST)> ^ <Organization Name Type Code (CWE)> ^ <WITHDRAWN Constituent> ^ <WITHDRAWN Constituent> ^ <WITHDRAWN Constituent> ^ <Assigning Authority (HD)> ^ <Identifier Type Code (ID)> ^ <Assigning Facility (HD)> ^ <Name Representation Code (ID)> ^ <Organization Identifier (ST)>
+
+Subcomponents for Organization Name Type Code (CWE): <Identifier (ST)> & <Text (ST)> & <Name of Coding System (ID)> & <Alternate Identifier (ST)> & <Alternate Text (ST)> & <Name of Alternate Coding System (ID)> & <Coding System Version ID (ST)> & <Alternate Coding System Version ID (ST)> & <Original Text (ST)> & <Second Alternate Identifier (ST)> & <Second Alternate Text (ST)> & <Name of Second Alternate Coding System (ID)> & <Second Alternate Coding System Version ID (ST)> & <Coding System OID (ST)> & <Value Set OID (ST)> & <Value Set Version ID (DTM)> & <Alternate Coding System OID (ST)> & <Alternate Value Set OID (ST)> & <Alternate Value Set Version ID (DTM)> & <Second Alternate Coding System OID (ST)> & <Second Alternate Value Set OID (ST)> & <Second Alternate Value Set Version ID (DTM)>
+
+Subcomponents for Assigning Authority (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Subcomponents for Assigning Facility (HD): <Namespace ID (IS)> & <Universal ID (ST)> & <Universal ID Type (ID)>
+
+Definition: This field contains the identity of the manufacturer/distributor.
+
+=== DEV-6 Brand Name (ST) 01249
+
+=== DEV-7 Model Identifier (ST) 01252
+
+=== DEV-8 Catalogue Identifier (ST) 01253
+
+=== DEV-9 UDI Device Identifier (EI) 03476
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: Provides the U.S. FDA UDI _device identifier_ (DI) element. This is not the same as DEV-2, Unique Device Identifier as DEV-2 represents either the full UDI Carrier in the case of an implantable Device,
+
+This is the first component in the UDI and acts as the look up key for the Global Unique Device Identification Database (GUDIDfootnote:[See www.fda.gov/udi]), and may be used for retrieving additional attributes.
+
+When exchanging Device Identifiers (DI) the root shall be the OID, or standards’ appropriate corollary to the OID, assigned to DI and the extension shall be the Human Readable Form of the content. For example, for DIs the root shall be:
+
+GS1 DIs: 2.51.1.1
+
+HIBCC DIs: 1.0.15961.10.816
+
+ICCBBA DIs: 2.16.840.1.113883.6.18.1.17 for Blood containers and 2.16.840.1.113883.6.18.1.34 otherwise.
+
+Example: |00643169001763^^2.51.1.1^ISO|
+
+=== DEV-10 Device Lot Number (ST) 03479
+
+Definition: Alphanumeric string that identifies the device’s production lot number.
+
+Example: |123ABC|
+
+=== DEV-11 Device Serial Number (ST) 03480
+
+=== DEV-12 Device Manufacture Date (DTM) 03477
+
+Definition: Date and time when the device was manufacturered.
+
+*Note:* The user system may need to convert the date and optional hour from the UDI Human Readable Form to a timestamp style data type, augmenting the date as required to provide for a complete date and optionally the hour.
+
+Example: |20140401|
+
+=== DEV-13 Device Expiry Date (DTM) 03478
+
+Definition: Date and time when the device is no longer approved for use.
+
+*Note:* The user system may need to convert the date and optional hour from the UDI Human Readable Form to a timestamp style data type, augmenting the date as required to provide for a complete date and optionally the hour.
+
+Example: |20160712|
+
+CAUTION: See the related privacy considerations discussion in PRT-10.
+
+Example: |21A11F4855|
+
+=== DEV-14 Safety Characteristics (CWE) 02465
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field a safety characteristic of a device, e.g., latex safety, MRI safety.
+
+See Externally HL7 defined 0963 in Chapter 2C for a suggested values.
+
+=== DEV-15 Device Donation Identification (EI) 03481
+
+Components: <Entity Identifier (ST)> ^ <Namespace ID (IS)> ^ <Universal ID (ST)> ^ <Universal ID Type (ID)>
+
+Definition: Identifies a device related to a donation.
+
+When exchanging Donation Identification Numbers (DIN) the root shall be the OID assigned to DIN and the extension shall be the Human Readable Form of the content. For example, for DINs the root shall be:
+
+ICCBBA DINs: 2.16.840.1.113883.6.18.2.1
+
+An ICCBBA DIN OID is available for reference where required, but is not required when the specific data element is scoped to ICCBBA DINs.
+
+Example: | RA12345678BA123^^2.16.840.1.113883.6.18.1.34^ISO|
+
+=== DEV-16 Software Version Number (ST) 02502
+
+=== DEV-17 Implantation Status (CNE) 02459
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the implantation status of the device, e.g., implanted, explanted. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70795[_HL7 Table 0795 – Implanatation Status_] in Chapter 2C for valid values.
+

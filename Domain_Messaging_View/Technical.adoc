@@ -1,0 +1,14 @@
+= Technical
+:render_as: Level2
+:v291_section: 
+
+Placeholder Text: Technical | Index: 1463
+
+xref:Technical/Introduction.adoc[Introduction]
+
+xref:Technical/Queries.adoc[Queries]
+
+xref:Technical/Master_Files.adoc[Master Files]
+
+xref:Technical/Application_Management.adoc[Application Management]
+

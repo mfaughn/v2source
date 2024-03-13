@@ -1,0 +1,1188 @@
+= Message - N02 Application Management Data Message
+:render_as: Message Page
+:v291_section: 14.3.2
+
+The N02 event signifies when an unsolicited update (UU) Application Management Data message (NMD) is created by on application to transmit application management information to other applications. In this case, the initiating application sends an NMD message as an unsolicited update (UU) containing application management information to a receiving application, which responds with a generic acknowledgement message (ACK).
+
+For example, an application going down for backups (or starting up again after backups) might issue such a message to one or more other applications. An application switching to another CPU or file-server may also need to use this transaction to notify other systems.
+
+NMD^N02^NMD_N02: Application Management Data
+
+[width="100%",cols="33%,47%,9%,11%",options="header",]
+
+|===
+
+|Segments |Description |Status |Chapter
+
+|MSH |Message Header | |2
+
+|[\{ SFT }] |Software | |2
+
+|[ UAC ] |User Authentication Credential | |2
+
+|\{ |--- CLOCK_AND_STATS_WITH_NOTES begin | |
+
+|[ |--- CLOCK begin | |
+
+|link:#NCK[NCK] |System Clock | |14
+
+|[\{NTE}] |Notes and Comments for NCK | |2
+
+|] |--- CLOCK end | |
+
+|[ |--- APP_STATS begin | |
+
+|link:#NST[NST] |Application control-level Statistics | |14
+
+|[\{NTE}] |Notes and Comments for NST | |2
+
+|] |--- APP_STATS end | |
+
+|[ |---APP_STATUS begin | |
+
+|link:#NSC[NSC] |Application Status Change | |14
+
+|[\{NTE}] |Notes and Comments for NSC | |2
+
+|] |---APP_STATUS end | |
+
+|} |--- CLOCK_AND_STATS_WITH_NOTES end | |
+
+|===
+
+[width="100%",cols="20%,32%,17%,31%,",options="header",]
+
+|===
+
+|Acknowledgement Choreography | | | |
+
+|NMD^N02^NMD_N02 | | | |
+
+|Field name |Field Value: Original mode |Field value: Enhanced mode | |
+
+|MSH-15 |Blank |AL, SU, ER |NE |
+
+|MSH-16 |Blank |NE |NE |
+
+|Immediate Ack |ACK^N02^ACK |ACK^N02^ACK |- |
+
+|Application Ack |- |- |- |
+
+|===
+
+Note: Because this message pair does not have an application acknowledgement, the value in MSH-16 does not affect the choreography
+
+ACK^N02^ACK: Generic Acknowledgement
+
+[width="100%",cols="33%,47%,9%,11%",options="header",]
+
+|===
+
+|Segments |Description |Status |Chapter
+
+|MSH |Message Header | |2
+
+|[\{ SFT }] |Software | |2
+
+|[ UAC ] |User Authentication Credential | |2
+
+|MSA |Message Acknowledgement | |2
+
+|[\{ ERR }] |Error | |2
+
+|===
+
+[width="100%",cols="23%,36%,41%",options="header",]
+
+|===
+
+|Acknowledgement Choreography | |
+
+|ACK^N02^ACK | |
+
+|Field name |Field Value: Original mode |Field value: Enhanced mode
+
+|MSH-15 |Blank |AL, SU, ER, NE
+
+|MSH-16 |Blank |AL, SU, ER, NE
+
+|Immediate Ack |- |-
+
+|Application Ack |- |-
+
+|===
+
+[message-tabs, ["NMD^N02^NMD_N02", "NMD Interaction", "ACK^N02^ACK", "ACK Interaction"]]
+
+== Glossary
+
+=== Appointment
+
+=== Auxiliary Application
+
+=== Block
+
+=== Book
+
+=== Child Appointment
+
+=== Filler Application
+
+=== Parent Appointment
+
+A parent appointment is an appointment that consists of one or more subordinate appointments (called child appointments). A parent appointment is used to relate or group multiple appointments together in various ways. Examples of kinds of parent-scheduled activities include, but are not limited to, the following.
+
+• Recurring (repeating) appointments. For example, a physical therapy appointment may be scheduled every Tuesday at 4:00 PM for three months.
+
+• Batteries of appointments. For example, an activity consisting of an appointment with Radiology, an appointment with a specialist, and an appointment with a primary care physician might be scheduled.
+
+• Complex appointments. For example, recurring batteries of appointments, or batteries of battery appointments.
+
+Parent appointments can themselves be children to other appointments.
+
+=== Placer Application
+
+=== Querying Application
+
+=== Resource
+
+=== Schedule
+
+=== Service
+
+=== Slot
+
+== Glossary
+
+=== Benefits: 
+
+=== Clinical information: 
+
+=== Dependent: 
+
+=== Eligibility/coverage: 
+
+=== Encounter: 
+
+=== Guarantor: 
+
+=== Healthcare provider: 
+
+=== Payor: 
+
+=== Pre-authorization: 
+
+=== Primary care provider: 
+
+=== Referral: 
+
+=== Referring provider: 
+
+=== Referred-to-provider: 
+
+=== Specialist:
+
+=== Subscriber: 
+
+== Glossary
+
+=== Goal:
+
+=== Problem:
+
+=== Role:
+
+=== Clinical pathway: 
+
+=== Variance: 
+
+== SSU/ACK - Specimen Status Update (Event U03)
+
+This message is used to send information concerning the location and status of specimens from one application to another (e.g., automated equipment to a Laboratory Automation System). The OBX segments attached to the SAC should be used for transfer of information not included in the SAC segment, but relevant for automating processing (e.g., additional characteristics of the specimen container). The NTE segments attached to the SAC should be used for transfer of descriptive information not included in the SAC segment, but relevant for the users (e.g., aliquot groups for an aliquot sample container).
+
+SSU^U03^SSU_U03: Specimen Status Message
+
+[width="99%",cols="3%,31%,,47%,,9%,,10%",options="header",]
+
+|===
+
+|Segments | |Description | |Status | |Chapter |
+
+|MSH | |Message Header | | | |2 |
+
+|[\{SFT}] | |Software Segment | | | |2 |
+
+|[UAC] | |User Authentication Credential | | | |2 |
+
+|link:#EQU[EQU] | |Equipment Detail | | | |13 |
+
+|\{ | |--- SPECIMEN_CONTAINER begin | | | | |
+
+|link:#SAC[SAC] | |Specimen Container Detail | | | |13 |
+
+|\{ [ OBX ] } | |Additional specimen container characteristics | | | |7 |
+
+|\{ [ NTE ] } | |Additional specimen container information | | | |2 |
+
+|\{ [ PRT ] } | |Participation for OBX | | | |7 |
+
+|[ \{ | |--- SPECIMEN begin | | | | |
+
+|SPM | |Specimen | | | |7 |
+
+|\{ [ OBX ] } | |Specimen related observation | | | |7 |
+
+|\{ [ PRT ] } | |Participation for OBX | | | |7 |
+
+|} ] | |--- SPECIMEN end | | | | |
+
+|} | |--- SPECIMEN_CONTAINER end | | | | |
+
+|[ROL] | |Role Detail | |B | |12 |
+
+|===
+
+[width="99%",cols="18%,23%,5%,16%,19%,19%",options="header",]
+
+|===
+
+|Acknowledgement Choreography | | | | |
+
+|SSU^U03^SSU_U03 | | | | |
+
+|Field name |Field Value: Original mode |Field value: Enhanced mode | | |
+
+|MSH.15 |Blank |NE |AL, SU, ER |NE |AL, SU, ER
+
+|MSH.16 |Blank |NE |NE |AL, SU, ER |AL, SU, ER
+
+|Immediate Ack |- |- |ACK^U03^ACK |- |ACK^U03^ACK
+
+|Application Ack |ACK^U03^ACK |- |- |ACK^U03^ACK |ACK^U03^ACK
+
+|===
+
+ACK^U03^ACK: General Acknowledgment
+
+[width="100%",cols="33%,47%,9%,11%",options="header",]
+
+|===
+
+|Segments |Description |Status |Chapter
+
+|MSH |Message Header | |2
+
+|[\{SFT}] |Software Segment | |2
+
+|[UAC] |User Authentication Credential | |2
+
+|MSA |Message Acknowledgment | |2
+
+|[\{ ERR }] |Error | |2
+
+|===
+
+[width="100%",cols="23%,35%,12%,30%",options="header",]
+
+|===
+
+|Acknowledgement Choreography | | |
+
+|ACK^U03^ACK | | |
+
+|Field name |Field Value: Original mode |Field value: Enhanced mode |
+
+|MSH-15 |Blank |NE |AL, SU, ER
+
+|MSH-16 |Blank |NE |NE
+
+|Immediate Ack |- |- |ACK^U03^ACK
+
+|Application Ack |- |- |-
+
+|===
+
+== Tables Listings
+
+=== Common ISO Derived Units & ISO+ Extensions
+
+Figure 7-10. Common ISO derived units and ISO+ extensions
+
+[width="100%",cols="20%,80%",options="header",]
+
+|===
+
+|Code/Abbr. |Name
+
+|/(arb_u) |*1 / arbitrary unit
+
+|/iu |*1 / international unit
+
+|/kg |*1 / kilogram
+
+|/L |1 / liter
+
+|1/mL |*1 / milliliter
+
+|10.L/min |*10 x liter / minute
+
+|10.L /(min.m2) |*10 x (liter / minute) / meter^2^ = liter / (minute × meter^2^)
+
+|10*3/mm3 |*10^3^ / cubic millimeter (e.g., white blood cell count)
+
+|10*3/L |*10^3^ / Liter
+
+|10*3/mL |*10^3^ / milliliter
+
+|10*6/mm3 |*10^6^ / millimeter^3^
+
+|10*6/L |*10^6^ / Liter
+
+|10*6/mL |*10^6^ / milliliter
+
+|10*9/mm3 |*10^9^ / millimeter^3^
+
+|10*9/L |*10^9^ / Liter
+
+|10*9/mL |*10^9^ / milliliter
+
+|10*12/L |*10^12^ / Liter
+
+|10*3(rbc) |*1000 red blood cells^†^
+
+|a/m |Ampere per meter
+
+|(arb_u) |*Arbitrary unit
+
+|bar |Bar (pressure; 1 bar = 100 kilopascals)
+
+|/min |Beats or Other Events Per Minute
+
+|bq |Becquerel
+
+|(bdsk_u) |*Bodansky Units
+
+|(bsa) |*Body surface area
+
+|(cal) |*Calorie
+
+|1 |*Catalytic Fraction
+
+|/L |Cells / Liter
+
+|cm |Centimeter
+
+|cm_h20 |* Centimeters of water =H~2~0 (pressure)
+
+|cm_h20.s/L |Centimeters H~2~0 / (liter / second) = (centimeters H~2~0 × second) / liter (e.g., mean pulmonary resistance)
+
+|cm_h20/(s.m) |(Centimeters H~2~0 / second) / meter = centimeters H~2~0 / (second × meter) (e.g., pulmonary pressure time product)
+
+|(cfu) |*Colony Forming Units
+
+|m3/s |Cubic meter per second
+
+|d |Day
+
+|db |Decibels
+
+|dba |*Decibels a Scale
+
+|cel |Degrees Celsius
+
+|deg |Degrees of Angle
+
+|(drop) |Drop
+
+|10.un.s/cm5 |Dyne × Second / centimeter^5^ (1 dyne = 10 micronewton = 10 un) (e.g., systemic vascular resistance)
+
+|10.un.s/(cm5.m2) |((Dyne × second) / centimeter^5^) / meter^2^ = (Dyne × second) / (centimeter^5^ × meter^2^) (1 dyne = 10 micronewton = 10 un) (e.g., systemic vascular resistance/body surface area)
+
+|ev |Electron volts (1 electron volt = 160.217 zeptojoules)
+
+|eq |Equivalent
+
+|f |Farad (capacitance)
+
+|fg |Femtogram
+
+|fL |Femtoliter
+
+|fmol |Femtomole
+
+|/mL |*Fibers / milliliter
+
+|g |Gram
+
+|~g/d~ |*Gram / Day
+
+|g/dL |Gram / Deciliter
+
+|g/hr |Gram / Hour
+
+|g/(8.hr) |*Gram / 8 Hour Shift
+
+|g/kg |Gram / Kilogram (e.g., mass dose of medication per body weight)
+
+|g/(kg.d) |(Gram / Kilogram) / Day = gram / (kilogram × day) (e.g., mass dose of medication per body weight per day)
+
+|g/(kg.hr) |(Gram / Kilogram) / Hour = gram / (kilogram × hour) (e.g., mass dose of medication per body weight per hour)
+
+|g/(8.kg.hr) |(Gram / Kilogram) /8 Hour Shift = gram / (kilogram × 8 hour shift) (e.g., mass dose of medication per body weight per 8 hour shift)
+
+|g/(kg.min) |(Gram / Kilogram) / Minute = gram / (kilogram × minute~)~ (e.g., mass dose of medication per body weight per minute)
+
+|g/L |Gram / Liter
+
+|g/m2 |Gram / Meter^2^ (e.g., mass does of medication per body surface area)
+
+|g/min |Gram / Minute
+
+|g.m/(hb) |Gram × meter / heart beat (e.g., ventricular stroke work)
+
+|g.m/((hb).m2) a|
+
+(Gram × meter/ heartbeat) / meter^2^ = (gram × meter) / (heartbeat × meter^2^)
+
+(e.g., ventricular stroke work/body surface area, ventricular stroke work index)
+
+|g(creat) |*Gram creatinine
+
+|g(hgb) |*Gram hemoglobin
+
+|g.m |Gram meter
+
+|g(tot_nit) |*Gram total nitrogen
+
+|g(tot_prot) |*Gram total protein
+
+|g(wet_tis) |*Gram wet weight tissue
+
+|gy |Grey (absorbed radiation dose)
+
+|hL |Hectaliter = 10^2^ liter
+
+|h |Henry
+
+|in |Inches
+
+|in_hg |Inches of Mercury (=Hg)
+
+|iu |*International Unit
+
+|iu/d |*International Unit / Day
+
+|iu/hr |*International Unit / Hour
+
+|iu/kg |International Unit / Kilogram
+
+|iu/L |*International Unit / Liter
+
+|iu/mL |*International Unit / Milliliter
+
+|iu/min |*International Unit / Minute
+
+|j/L |Joule/liter (e.g., work of breathing)
+
+|kat |*Katal
+
+|kat/kg |*Katal / Kilogram
+
+|kat/L |*Katal / Liter
+
+|k/watt |Kelvin per watt
+
+|(kcal) |Kilocalorie (1 kcal = 6.693 kilojoule)
+
+|(kcal)/d |*Kilocalorie / Day
+
+|(kcal)/hr |*Kilocalorie / Hour
+
+|(kcal)/(8.hr) |*Kilocalorie / 8 Hours Shift
+
+|kg |Kilogram
+
+|kg(body_wt) |* kilogram body weight
+
+|kg/m3 |Kilogram per cubic meter
+
+|kh/h |Kilogram per hour
+
+|kg/L |Kilogram / liter
+
+|kg/min |Kilogram per minute
+
+|kg/mol |Kilogram / mole
+
+|kg/s |Kilogram / second
+
+|kg/(s.m2) |(Kilogram / second)/ meter^2^ = kilogram / (second × meter^2^)
+
+|kg/ms |Kilogram per square meter
+
+|kg.m/s |Kilogram meter per second
+
+|kpa |Kilopascal (1 mmHg = 0.1333 kilopascals)
+
+|ks |Kilosecond
+
+|(ka_u) |King-Armstrong Unit
+
+|(knk_u) |*Kunkel Units
+
+|L |Liter
+
+|L/d |*Liter / Day
+
+|L/hr |Liter / hour
+
+|L/(8.hr) |*Liter / 8 hour shift
+
+|L/kg |Liter / kilogram
+
+|L/min |Liter / minute
+
+|L/(min.m2) a|
+
+(Liter / minute) / meter^2^ = liter / (minute × meter^2^)
+
+(e.g., cardiac output/body surface area = cardiac index)
+
+|L/s |Liter / second (e.g., peak expiratory flow)
+
+|L.s |Liter / second / second^2^ = liter × second
+
+|lm |Lumen
+
+|lm/m2 |Lumen / Meter^2^
+
+|(mclg_u) |*MacLagan Units
+
+|mas |Megasecond
+
+|m |Meter
+
+|m2 |Meter^2^ (e.g., body surface area)
+
+|m/s |Meter / Second
+
+|m/s2 |Meter / Second^2^
+
+|ueq |*Microequivalents
+
+|ug |Microgram
+
+|ug/d |Microgram / Day
+
+|ug/dL |Microgram / Deciliter
+
+|ug/g |Microgram / Gram
+
+|ug/hr |*Microgram / Hour
+
+|ug(8hr) |Microgram / 8 Hour Shift
+
+|ug/kg |Microgram / Kilogram
+
+|ug/(kg.d) |(Microgram / Kilogram) /Day = microgram / (kilogram × day) (e.g., mass dose of medication per patient body weight per day)
+
+|ug/(kg.hr) |(Microgram / Kilogram) / Hour = microgram / (kilogram × hours) (e.g., mass dose of medication per patient body weight per hour)
+
+|ug/(8.hr.kg) a|
+
+(Microgram / Kilogram) / 8 hour shift = microgram / (kilogram × 8 hour shift)
+
+(e.g., mass dose of medication per patient body weight per 8 hour shift)
+
+|ug/(kg.min) a|
+
+(Microgram / Kilogram) / Minute = microgram / (kilogram × minute)
+
+(e.g., mass dose of medication per patient body weight per minute)
+
+|ug/L |Microgram / Liter
+
+|ug/m2 |Microgram / Meter^2^ (e.g., mass dose of medication per patient body surface area)
+
+|ug/min |Microgram / Minute
+
+|uiu |*Micro international unit
+
+|ukat |*Microkatel
+
+|um |Micrometer (Micron)
+
+|umol |Micromole
+
+|umol/d |Micromole / Day
+
+|umol/L |Micromole / Liter
+
+|umol/min |Micromole / Minute
+
+|us |Microsecond
+
+|uv |Microvolt
+
+|mbar |Millibar (1 millibar = 100 pascals)
+
+|mbar.s/L |Millibar / (liter / second) =(millibar × second) / liter (e.g., expiratory resistance)
+
+|meq |*Milliequivalent
+
+|meq/d |*Milliequivalent / Day
+
+|meq/hr |*Milliequivalent / Hour
+
+|meq/(8.hr) |Milliequivalent / 8 Hour Shift
+
+|meq/kg |Milliequivalent / Kilogram (e.g., dose of medication in milliequivalents per patient body weight)
+
+|meq/(kg.d) |(Milliequivalents / Kilogram) / Day = milliequivalents / (kilogram × day) (e.g., dose of medication in milliequivalents per patient body weight per day)
+
+|meq/(kg.hr) |(Milliequivalents / Kilogram) / Hour = milliequivalents / (kilogram × hour) (e.g., dose of medication in milliequivalents per patient body weight per hour)
+
+|meq/(8.hr.kg) |(Milliequivalents / Kilogram) / 8 Hour Shift = milliequivalents / (kilogram × 8 hour shift) (e.g., dose of medication in milliequivalents per patient body weight per 8 hour shift)
+
+|meq/(kg.min) |(Milliequivalents / Kilogram) / Minute = milliequivalents / (kilogram × minute) (e.g., dose of medication in milliequivalents per patient body weight per minute)
+
+|meq/L |Milliequivalent / Liter
+
+| |Milliequivalent / Meter^2^ (e.g., dose of medication in milliequivalents per patient body surface area)
+
+|meq/min |Milliequivalent / Minute
+
+|mg |Milligram
+
+|mg/m3 |Milligram / Meter^3^
+
+|mg/d |Milligram / Day
+
+|mg/dL |Milligram / Deciliter
+
+|mg/hr |Milligram / Hour
+
+|mg/(8.hr) |Milligram / 8 Hour shift
+
+|mg/kg |Milligram / Kilogram
+
+|mg/(kg.d) |(Milligram / Kilogram) / Day = milligram / (kilogram × day) (e.g., mass dose of medication per patient body weight per day)
+
+|mg/(kg.hr) |(Milligram / Kilogram) / Hour = milligram/ (kilogram × hour) (e.g., mass dose of medication per patient body weight per hour)
+
+|mg/(8.hr.kg) |(Milligram / Kilogram) /8 Hour Shift = milligram / (kilogram × 8 hour shift) (e.g., mass dose of medication per patient body weight per 8 hour shift)
+
+|mg/(kg.min) |(Milligram / Kilogram) / Minute = milligram / (kilogram × minute) (e.g., mass dose of medication per patient body weight per hour)
+
+|mg/L |Milligram / Liter
+
+|mg/m2 |Milligram / Meter^2^ (e.g., mass dose of medication per patient body surface area)
+
+|mg/min |Milligram / Minute
+
+|mL |Milliliter
+
+|mL/cm_h20 |Milliliter / Centimeters of Water (H~2~0) (e.g., dynamic lung compliance)
+
+|mL/d |*Milliliter / Day
+
+|mL/(hb) |Milliliter / Heart Beat (e.g., stroke volume)
+
+|mL/((hb).m2) |(Milliliter / Heart Beat) / Meter^2^ = Milliliter / (Heart Beat × Meter^2^) (e.g., ventricular stroke volume index)
+
+|mL/hr |*Milliliter / Hour
+
+|mL/(8.hr) |*Milliliter / 8 Hour Shift
+
+|mL/kg |Milliliter / Kilogram (e.g., volume dose of medication or treatment per patient body weight)
+
+|mL/(kg.d) |(Milliliter / Kilogram) / Day = milliliter / (kilogram × day) (e.g., volume dose of medication or treatment per patient body weight per day)
+
+|mL/(kg.hr) |(Milliliter / Kilogram) / Hour = milliliter / (kilogram × hour) (e.g., volume dose of medication or treatment per patient body weight per hour)
+
+|mL/(8.hr.kg) |(Milliliter / Kilogram) / 8 Hour Shift = milliliter / (kilogram × 8 hour shift) (e.g., volume dose of medication or treatment per body weight per 8 hour shift)
+
+|mL/(kg.min) |(Milliliter / Kilogram) / Minute = milliliter / (kilogram × minute) (e.g., volume dose of medication or treatment per patient body weight per minute)
+
+|mL/m2 |Milliliter / Meter^2^ (e.g., volume of medication or other treatment per patient body surface area)
+
+|mL/mbar |Milliliter / Millibar (e.g., dynamic lung compliance)
+
+|mL/min |Milliliter / Minute
+
+|mL/(min.m2) |(Milliliter / Minute) / Meter^2^ = milliliter / (minute × meter^2^) (e.g., milliliters of prescribed infusion per body surface area; oxygen consumption index)
+
+|mL/s |Milliliter / Second
+
+|mm |Millimeter
+
+|mm(hg) |*Millimeter (HG) (1 mm Hg = 133.322 kilopascals)
+
+|mm/hr |Millimeter/ Hour
+
+|mmol/kg |Millimole / Kilogram (e.g., molar dose of medication per patient body weight)
+
+|mmol/(kg.d) |(Millimole / Kilogram) / Day = millimole / (kilogram × day) (e.g., molar dose of medication per patient body weight per day)
+
+|mmol/(kg.hr) |(Millimole / Kilogram) / Hour = millimole / (kilogram × hour) (e.g., molar dose of medication per patient body weight per hour)
+
+|mmol/(8.hr.kg) |(Millimole / Kilogram) / 8 Hour Shift = millimole / (kilogram × 8 hour shift) (e.g., molar dose of medication per patient body weight per 8 hour shift)
+
+|mmol/(kg.min) |(Millimole / Kilogram) / Minute = millimole / (kilogram × minute) (e.g., molar dose of medication per patient body weight per minute)
+
+|mmol/L |Millimole / Liter
+
+|mmol/hr |Millimole / Hour
+
+|mmol/(8hr) |Millimole / 8 Hour Shift
+
+|mmol/min |Millimole / Minute
+
+|mmol/m2 |Millimole / Meter^2^ (e.g., molar dose of medication per patient body surface area)
+
+|mosm/L |*Milliosmole / Liter
+
+|ms |Milliseconds
+
+|mv |Millivolts
+
+|miu/mL |*Milliunit / Milliliter
+
+|mol/m3 |Mole per cubic meter
+
+|mol/kg |Mole / Kilogram
+
+|mol/(kg.s) |(Mole / Kilogram) / Second = mole / (kilogram × second)
+
+|mol/L |Mole / Liter
+
+|mol/s |Mole / Second
+
+|ng |Nanogram
+
+|ng/d |Nanogram / Day
+
+|ng/hr |*Nanogram / Hour
+
+|ng/(8.hr) |Nanogram / 8 Hour shift
+
+|ng/L |Nanogram / Liter
+
+|ng/kg |Nanogram / Kilogram (e.g., mass dose of medication per patient body weight)
+
+|ng/(kg.d) |(Nanogram / Kilogram) / Day = nanogram / (kilogram × day) (e.g., mass dose of medication per patient body weight per day)
+
+|ng/(kg.hr) |(Nanogram / Kilogram) / Hour = nanogram / (kilogram × hour) (e.g., mass dose of medication per patient body weight per hour)
+
+|ng/(8.hr.kg) |(Nanogram / Kilogram) / 8 Hour Shift = nanogram / (kilogram × 8 hour shift) (e.g., mass dose of medication per patient body weight per 8 hour shift)
+
+|ng/(kg.min) |(Nanogram / Kilogram) / Minute = nanogram / (kilogram × minute) (e.g., mass dose of medication per patient body weight per minute)
+
+|ng/m2 |Nanogram / Meter^2^ (e.g., mass dose of medication per patient body surface area)
+
+|ng/mL |Nanogram / Milliliter
+
+|ng/min |*Nanogram / Minute
+
+|ng/s |*Nanogram / Second
+
+|nkat |*Nanokatel
+
+|nm |Nanometer
+
+|nmol/s |Nanomole / Second
+
+|ns |Nanosecond
+
+|n |Newton (force)
+
+|n.s |Newton second
+
+|(od) |*O.D. (optical density)
+
+|ohm |Ohm (electrical resistance)
+
+|ohm.m |Ohm meter
+
+|osmol |Osmole
+
+|osmol/kg |Osmole per kilogram
+
+|osmol/L |Osmole per liter
+
+|/m3 |*Particles / Meter^3^
+
+|/L |*Particles / Liter
+
+|/(tot) |*Particles / Total Count
+
+|(ppb) |*Parts Per Billion
+
+|(ppm) |*Parts Per Million
+
+|(ppth) |Parts per thousand
+
+|(ppt) |Parts per trillion (10^12)
+
+|pal |Pascal (pressure)
+
+|/(hpf) |*Per High Power Field
+
+|(ph) |*pH
+
+|pa |Picoampere
+
+|pg |Picogram
+
+|pg/L |Picogram / Liter
+
+|pg/mL |Picogram / Milliliter
+
+|pkat |*Picokatel
+
+|pm |Picometer
+
+|pmol |*Picomole
+
+|ps |Picosecond
+
+|pt |Picotesla
+
+|(pu) |*P.U.
+
+|% |Percent
+
+|dm2/s2 |Rem (roentgen equivalent man) = 10^-2^ meter^2^ / second^2^ = decimeter^2^ / second^2^ Dose of ionizing radiation equivalent to 1 rad of x-ray or gamma ray) [From Dorland's Medical Dictionary]
+
+|sec |Seconds of arc
+
+|sie |Siemens (electrical conductance)
+
+|sv |Sievert
+
+|m2/s |Square meter / second
+
+|cm2/s |Square centimeter / second
+
+|t |Tesla (magnetic flux density)
+
+|(td_u) |Todd Unit
+
+|v |Volt (electric potential difference)
+
+|1 |Volume Fraction
+
+|wb |Weber (magnetic flux)
+
+a|
+
+*Starred items are not genuine ISO, but do not conflict.
+
+†This approach to units is discouraged by IUPAC. We leave them solely for backward compatibility
+
+|
+
+|===
+
+=== External Units of Measure Examples
+
+Figure 7-11. ISO single case units abbreviations
+
+[width="100%",cols="21%,17%,13%,17%,15%,17%",]
+
+|===
+
+|Units |Abbreviation |Units |Abbreviation |Units |Abbreviation
+
+|Base units code/abbreviations | | | | |
+
+|Ampere |a |kelvin |K |meter |m
+
+|Candela |cd |Kilogram |Kg |mole |mol
+
+| | | | |second |s
+
+|Derived units with specified name and abbreviation | | | | |
+
+|coulomb |c |hour |Hr |pascal |pal
+
+|day |d |joule |J |volt |v
+
+|degree Celsius |cel |minute (ti) |Min |watt |w
+
+|farad |f |newton |N |weber |wb
+
+|hertz |hz |ohm |Ohm |year |ann
+
+|Other units | | | | |
+
+|atomic mass unit |u |grey |gy |minute of arc |mnt
+
+|Bel |b |henry |h |radian |rad
+
+|Decibel |db |liter |l |siemens |sie
+
+|Degree |deg |lumen |Lm |steradian |sr
+
+|Gram |g |lux |Lx |tesla |t
+
+|See ISO 2955-1983 for full set | | | | |
+
+|===
+
+Figure 7-12. ANSI+ unit codes for some U.S. customary units
+
+[width="100%",cols="24%,,16%,,19%,,15%,,11%,,15%",]
+
+|===
+
+|Units |Abbreviation | |Units | |Abbreviation | |Units | |Abbreviation |
+
+|LENGTH | | |VOLUME | | | |TIME | | |
+
+|Inch |In | |cubic foot | |Cft | |Year | |yr |
+
+|Foot |Ft | |cubic inch | |Cin | |Month | |mo |
+
+|Mile (statute) |Mi | |cubic yard | |Cyd | |Week | |wk |
+
+|nautical mile |Nmi | |tablespoon | |Tbs | |Day | |d |
+
+|Rod |Rod | |teaspoon | |Tsp | |Hour | |hr |
+
+|Yard |Yd | |pint | |Pt | |minute | |min |
+
+| | | |quart | |Qt | |second | |sec |
+
+| | | |gallon | |Gal | | | | |
+
+| | | |ounce (fluid) | |Foz | | | | |
+
+|AREA | | |MASS | | | | | | |
+
+|square foot |Sqf | |dram | |Dr | | | | |
+
+|square inch |Sin | |grain | |gr (avoir) | | | | |
+
+|square yard |Syd | |ounce (weight) | |Oz | | | | |
+
+| | | |pound | |Lb | | | | |
+
+|Other ANSI units, derived units, and miscellaneous | | | | | | | | | |
+
+|**British thermal unit | |Btu | |**degrees Fahrenheit | |Degf | |**millirad | |mrad
+
+|cubic feet/minute |cft/min | |**feet/minute | |ft/min | |**RAD | |rad |
+
+|*Note:* The abbreviations for conventional U.S. units of time are the same as ISO, except for year. ISO = ANN, AMSI = yr. The metric units in X3.50 are the same as ISO, except for: pascal ("pa" in ANSI, "pal" in ISO); ANSI uses "min" for both time and arc while ISO uses "mnt" for minutes of arc; and in ISA seconds are abbreviated "s", in ANSI, "sec". | | | | | | | | | |
+
+|*Caution:* Because the ANS+ specification includes both ISO and US customary units, as well as miscellaneous non-metric units, some of the abbreviations are ambiguous. Although there should be little confusion, in the context of a particular observation, this ambiguity is a good reason for a voiding ANS+ unit codes when possible. | | | | | | | | | |
+
+|This list is not exhaustive. Refer to ANSI X3.50-1986, Table 1, for other metric and standard U.S. units. | | | | | | | | | |
+
+|**Non-metric units not explicitly listed in ANSI | | | | | | | | | |
+
+|===
+
+The ISO abbreviations for multiplier prefixes are given in Figure 7-13. Prefixes ranging from 10^-24^ (1/billion billionth) to 10^24^ (a billion billion) are available. The single case abbreviation for kilo (x1000) is *k*. A unit consisting of 1000 seconds would be abbreviated as *ks*, 1000 grams as *kg*, 1000 meters as *km*, and so on. Some prefixes share the abbreviation of a base unit. Farad and femto, for example, (10^-18^) both have the abbreviation of *f*. To avoid confusion, ISO forbids the use of solitary prefixes. It also deprecates the use of two prefixes in one complex unit. Thus, *f* always means farad, *ff* would mean 1 million billionth of a farad. Compound prefixes are not allowed.
+
+A unit can be raised to an exponential power. Positive exponents are represented by a number immediately following a unit's abbreviation, i.e., a square meter would be denoted by m2. Negative exponents are signified by a negative number following the base unit, e.g., *1/m2* would be represented *as m-2.* Fractional exponents are expressed by a numeric fraction in parentheses: the square root of a meter would be expressed as m(1/2). The multiplication of units is signified by a period (.) between the units, e.g., meters X seconds would be denoted *m.s*. Notice that spaces are not permitted. Division is signified by a slash (/) between two units, e.g. meters per second would be denoted as *m/s*. Algebraic combinations of ISO unit abbreviations constructed by dividing, multiplying, or exponentiating base ISO units, are also valid ISO abbreviations units. Exponentiation has precedence over multiplication or division. For example, microvolts squared per hertz (a unit of spectral power) would be denoted *uv2/hz* and evaluated as uv ^2^/hz while microvolts per square root of hertz (a unit of spectral amplitude) would be denoted uv/hz(1/2) and evaluated as uv/hz^½^. If more than one division operator is included in the expression the associations should be parenthesized to avoid any ambiguity, but the best approach is to convert a/(b/c) to a.c/b or a.c.b-1 to simplify the expression.
+
+Figure 7-13. Single case ISO abbreviations for multiplier prefixes
+
+[width="100%",cols="19%,15%,15%,17%,17%,17%",options="header",]
+
+|===
+
+|Prefix | |Code |Prefix | |Code
+
+|yotta* |10^24^ |ya |yocto |10^-24^ |Y
+
+|zetta* |10^21^ |za |zepto |10^-21^ |Z
+
+|exa |10^18^ |ex |atto |10^-18^ |A
+
+|peta |10^15^ |pe |femto |10^-15^ |F
+
+|tera |10^12^ |t |pico |10^-12^ |p
+
+|giga |10^9^ |g |nano |10^-9^ |n
+
+|mega |10^6^ |ma |micro |10^-6^ |u
+
+|kilo |10^3^ |k |milli |10^-3^ |m
+
+|hecto |10^2^ |h |centi |10^-2^ |c
+
+|deca |10^1^ |da |deci |10^-1^ |d
+
+|*These abbreviations are not defined in the ISO specification for single case abbreviations. | | | | |
+
+|===
+
+Figure 7-9 lists the abbreviations for common ISO derived units. It also includes standard unit abbreviations for common units, e.g., Milliequivalents, and international units, mm(Hg), and for counting per which we denote by a division sign, a denominator, but no numerator, e.g., /c, that are not part of the above referenced ISO standards. We have extended the units table to better accommodate drug routes and physiologic measures, and otherwise fill in gaps in v2.2.
+
+We have generally followed the IUPAC 1995 Silver Book^2^ in the definitions of units. However, IUPAC specifies standards for reporting or displaying units and employs 8-bit data sets to distinguish them. This Standard is concerned with the _transmission_ of patient information. Therefore, we have restricted ourselves to case insensitive alphabetic characters and a few special characters (e.g., ".", "/", "(", ")", "*", and "_") to avoid any possible confusion in the transmission. Therefore, we use ISO 2955-1983 (Information processing -- representation of SI and other units in systems with limited character sets) and ANSI X3.50-1986 (Representations for U.S. customary, SI, and other units to be used in systems with limited character sets) case insensitive units abbreviations where they are defined. This means that in some cases, IUPAC abbreviations have different abbreviations in ISO+ even when the IUPAC abbreviations use only standard alphabetic characters. For example, *Pascal* is abbreviated *Pa* in IUPAC but *PAL* in ISO+ (following ISO 2955) because *Pa* in a case insensitive context also means *Picoampere*. However, the requirements for transmission do not preclude usage of IUPAC standards for presentation on paper or video display reports to end-users.
+
+All unit abbreviations are case insensitive. One could write milliliters as ML, ml, or mL. In this table we have used lower case for all of the abbreviations except for the letter *L* which we represent in upper case so that readers will not confuse it with the numeral one (1). This is just a change in presentation, not a change in the Standard. Systems should continue to send the codes as upper or lower case as they always have.
+
+A patient decides to participate in a voluntary electronic drug history program. The patient records this decision in writing (Consent Mode) on a pre-designed consent form (Consent Form ID and Version) after the patient's health care service provider has explained the benefits and drawbacks of their participation (Consent Discussion Date/Time). In providing consent, the patient can also decide on the degree to which he or she will participate in the program (Consent Type). The consent decision (Consent Status) is recorded under the patient's name (use ROL segment) and the number of the paper-based form that the patient signed is recorded in the electronic consent gathering function (Consent Number). The patient's consent is effective from the day of the decision (Consent Effect Date/Time), but this consent can be terminated at the patient's discretion at a given date in the future (Consent End Date/Time). Several months later the patient is rushed into an emergency health care facility with what appears to be a drug reaction. While checking the patient's drug history, health care service providers find that the patient's drug history has controlled access. The patient is unable to provide access to this information given that patient's physical state, so the health care service provider circumvents the consent process (Non-consent Access Reason) in the interests of the patient's immediate well-being.
+
+Example 2: A patient is seeking a therapeutic abortion. Because she is under 18, the practitioner must evaluate her competence to provide consent. The patient is deemed to be competent (*Patient Competence Indicator*). Local legislation mandates that the patient be counseled at least 24 hours prior to receiving the procedure. The patient is counseled, and the time recorded (*Consent Discussion Date/Time*). She is also given a pamphlet to take home and read (*Informational Material Supplied Indicator*). She returns the following day and signs the consent form (*Consent Decision Date/Time*).
+
+Example 3: A deaf patient is admitted for labor and delivery. It becomes apparent the patient will require a cesarean section. A translator is required (*Translator Assistance Indicator*) who can translate sign language (*Translation Type*). The translator explains the details of the procedure the patient is being asked to consent to (*Consent Text*), the intention to use epidural anesthetic (*Subject-specific Consent Text*), the general risks associated with doing the procedure, as well as those with not doing the procedure (*Background Text*) and benefits associated with the epidural (*Subject-specific Background Text*). The patient agrees to the procedure, subject to the condition that she not be given any blood products for religious reasons (*Subject-imposed Limitations*).
+
+Example 4: An employee signs a consent form authorizing (*Consent Status*) a hospital to request the employee's driving records from the local Department of Motor Vehicles (*Consent Type*).
+
+Example 5: A patient signs a consent form to have basic diagnostic and billing information sent to that patient's insurer. The consent indicates that information may only be given to parties that are bound by HIPPA guidelines (*Trust Agreement Restriction Type*).
+
+== SUPERSEDED QUERY/RESPONSE TRIGGER EVENTS AND MESSAGE PAIRS
+
+=== Display message
+
+*The UDM message does not have a direct replacement in the new methodology.*
+
+If the reader is defining a new query, please refer to the new recommended query/response pairs defined in section _5.3.3.4_. *_This section is retained for backward compatibility as of v 2.4 and withdrawn as of v 2.7._* See section _5.4_, "_QUERY/RESPONSE MESSAGE PAIRS_," for current query/response pairs.hiddentext
+
+==== 
+
+=== Original mode queries
+
+It is not clear that there is a good use case for the super segment pattern as described in the example in section _5.9.1.2.1_, "_Comprehensive pharmacy information Query Profile_."
+
+As currently written the usage and naming of segment groups is not clear:
+
+____
+
+{empty}1. Can a segment group name refer to more than one structure?
+
+{empty}2. Can the same structure have more than one segment group name?
+
+____
+
+This has implications for table 0391, the segment group table, which is an itemization of the segment group names.
+
+*The Original Mode Query was maintained for backward compatibility as of v2.3.1 and was withdrawn as of v2.7.* The reader is referred to sections 3.3.40 – (event A40 - merge patient-patient identifier list), 3.3.41 (event A41 - merge account-patient account number) and 3.3.42 (event A42 - merge visit-visit number) for the current query/response message structure.
+
+See section link:#merging-patientperson-information[_3.6.2_], "_link:#merging-patientperson-information[Merging patient/person information],_" for a discussion of issues related to implementing patient merge events.
+
+• HCFA, Health Care Financing Administration, U.S. Dept. of Health and Human Services, USA
+
+• CMS, Centers for Medicare/Medicaid Services
+
+• ERISA: Employment Retirement Income Security Act, USA
+
+• LOINC: Lab Observation Identifier Names and Codes, Regenstrief Institute, Indianapolis, IN, USA
+
+• CORBAMed Person Identification Service (PIDS) - Adopted Submission. 12 February 1998.
+
+The UB1 segment contains data specific to the United States. Only billing/claims fields that do not exist in other HL7 defined segments appear in this segment. The codes listed as examples are not an exhaustive or current list.
+
+*Attention: the _UB1 segment was deprecated as of v 2.3 and the detail was withdrawn and removed from the standard as of v 2.6._*
+
+[#UB1 .anchor]####HL7 Attribute Table - UB1 – Uniform Billing Data 1
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |SI |W | | |00530 |Set ID ‑ UB1
+
+|2 | | | |W | | |00531 |Blood Deductible
+
+|3 | | | |W | | |00532 |Blood Furnished‑Pints
+
+|4 | | | |W | | |00533 |Blood Replaced‑Pints
+
+|5 | | | |W | | |00534 |Blood Not Replaced‑Pints
+
+|6 | | | |W | | |00535 |Co‑Insurance Days
+
+|7 | | | |W |Y/5 | |00536 |Condition Code
+
+|8 | | | |W | | |00537 |Covered Days
+
+|9 | | | |W | | |00538 |Non Covered Days
+
+|10 | | | |W |Y/8 | |00539 |Value Amount & Code
+
+|11 | | | |W | | |00540 |Number Of Grace Days
+
+|12 | | | |W | | |00541 |Special Program Indicator
+
+|13 | | | |W | | |00542 |PSRO/UR Approval Indicator
+
+|14 | | | |W | | |00543 |PSRO/UR Approved Stay‑Fm
+
+|15 | | | |W | | |00544 |PSRO/UR Approved Stay‑To
+
+|16 | | | |W |Y/5 | |00545 |Occurrence
+
+|17 | | | |W | | |00546 |Occurrence Span
+
+|18 | | | |W | | |00547 |Occur Span Start Date
+
+|19 | | | |W | | |00548 |Occur Span End Date
+
+|20 | | | |W | | |00549 |UB‑82 Locator 2
+
+|21 | | | |W | | |00550 |UB‑82 Locator 9
+
+|22 | | | |W | | |00551 |UB‑82 Locator 27
+
+|23 | | | |W | | |00552 |UB‑82 Locator 45
+
+|===
+
+The OBX segment is documented in its entirety in Chapter 7. Its usage as it applies to Medical Records/ Information Management is documented here for clarity.
+
+____
+
+*NOTE: The attribute table definition for the OBX Segment has been removed as of 2.8. The reader is directed to the Chapter 7.*.
+
+____
+
+Specialized usage: Observation Identifier/Observation Sub-ID have been used as optional fields that are not required in unstructured text where the nature of the document has been identified in _TXA-2-Document type_, which is a required field, but is expressly allowed in the richer structured documentation. An example includes cases where anatomic reports may have separate OBXs for gross examination, microscopic examination, clinical impression, and final diagnosis. Another possible use includes imbedding non-textual observations within textual reports.
+
+== QUERY
+
+=== QRY/DOC - Document Query (Event T12)
+
+== QUERY TRANSACTIONS AND TRIGGER EVENTS
+
+Query transactions are the messages and trigger events used between querying applications and filler applications. In Version 2.4 of the Standard, there are several types of queries available. Original mode display-oriented and record-oriented queries are compatible with the queries defined in previous versions of the Standard. New enhanced mode queries include an Embedded Query Language (EQQ), a Virtual Table Query (VQQ), a Stored Procedure Request (SPQ), and an Event Replay Query. Original mode display-oriented queries now have an Enhanced Display Response (EDR) available in Version 2.3. Descriptions and definitions of these query types are found in Chapter 5, section 5.10.4, "Query Trigger Events and Message Definitions."
+
+As the discussion of application roles has indicated above, any one application can have more than one application role. If it is important that applications in your messaging environment that fulfill either the placer or auxiliary application roles be able to query information actively from a filler application's schedule(s), then they must also support the role of a querying application.
+
+=== Original Mode Queries - Display Oriented
+
+=== Original Mode Queries - Record Oriented
+
+=== SQM/SQR - Schedule Query Message and Response (Event S25) 
+
+=== Enhanced Mode Queries
+
+== OUTSTANDING ISSUES
+
+=== HL7 Overlapping With ASC X12N
+
+There have been discussions regarding overlap of the proposed Patient Referral Chapter with recent development efforts by a committee within the ASC X12N organization. In the Healthcare Task Group (Task Group 2) of the ASC X12N Insurance Subcommittee, the Services Review Working Group (Working Group 10) has been working on a referral transaction (Transaction 278). This transaction has been designed from a payor perspective by focusing on _certification_ of a referral or _notification_ that a referral took place. This focus deals primarily with the financial or reimbursement side of a referral. There are some similarities between the two messages. However, there are also some clear differences. For example, the ASC X12 transaction does not provide for provider-to-provider referrals containing clinical data. Referrals containing a patient's clinical record along with diagnoses and requested procedures are the major focus of the work being done by HL7. In an effort to alleviate some of the controversy that this issue has caused, sections of this HL7 Patient Referral chapter have been removed. These sections dealt primarily with eligibility and plan coverage information. That information will be specifically handled by ASC X12N transactions 271 and 272, and the new interactive transactions.
+
+There are some convergence activities currently in progress. The HL7 - X12 Joint Coordinating Committee has been formed to facilitate efforts to unify these two standard development organizations as well as others. Work is in progress to harmonize HL7 trigger events within X12N transactions, as well as in joint data modeling. There has also been some work done at the working group level to harmonize the common data segments of the two respective referral messages. There is ongoing participation by both HL7 committees and X12N work groups to achieve a certain level of data compatibility.
+
+The HL7 Board of Directors has directed HL7 to continue development of the Patient Referral Chapter for the following reasons:
+
+The HL7 - X12 coordination is ongoing, but will not be complete in time for Standard Version 2.7.
+
+The HL7 Patient Referral Chapter addresses business needs that the X12 transaction does not (e.g., transmission of codified clinical data).
+
+Chapter 8 deals with master file maintenance.
+
+Chapter 15 manages operational relationships based on trigger events.
+
+The following items are being discussed in the Financial Management committee for addition to future versions of HL7:
+
+Events E10 (Edit/Adjudication Response), E24 (Authorization Response) and E12 (Request Additional Information) assume that the Payer application is able to process the requests on-line. Future versions of the Standard would include provisions for deferred responses where the Payer responds to the request once it has processed the request offline. In this use case, the Payer would either send the response as unsolicited results, or store the responses on a queue for the Provider application. If left on a queue for the Provider application, then the QVR^Q17^QVR_Q17 (Query for previous events) message might be used by the Provider application to poll the Payer application.
+

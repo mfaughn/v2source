@@ -1,0 +1,26 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 604
+
+xref:Technical_Specs/Message_-_General_Clinical_Order.adoc[Message - General Clinical Order]
+
+xref:Technical_Specs/Message_-_Order_Status_Update.adoc[Message - Order Status Update]
+
+xref:Technical_Specs/Message_-_General_Clinical_Order_with_Supporting_Document.adoc[Message - General Clinical Order with Supporting Document]
+
+xref:Technical_Specs/Message_-_Unsolicited_Observation.adoc[Message - Unsolicited Observation]
+
+xref:Technical_Specs/Message_-_Unsolicited_Point-Of-Care_Observation_without_Existing_Order_–_Place_an_Order.adoc[Message - Unsolicited Point-Of-Care Observation without Existing Order – Place an Order]
+
+xref:Technical_Specs/Message_-_Unsolicited_New_Point-Of-Care_Observation_-_Search_for_an_Order.adoc[Message - Unsolicited New Point-Of-Care Observation - Search for an Order ]
+
+xref:Technical_Specs/Message_-_Unsolicited_Pre-Ordered_Point-Of-Care_Observation.adoc[Message - Unsolicited Pre-Ordered Point-Of-Care Observation]
+
+xref:Technical_Specs/Message_–_Unsolicited_Alert_Observation.adoc[Message – Unsolicited Alert Observation]
+
+xref:Technical_Specs/Message_–_Unsolicited_Device_Event_Observation.adoc[Message – Unsolicited Device Event Observation]
+
+xref:Technical_Specs/Message_–_Unsolicited_Patient-Device_Association_Observation.adoc[Message – Unsolicited Patient-Device Association Observation]
+

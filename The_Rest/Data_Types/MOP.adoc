@@ -1,0 +1,44 @@
+= MOP
+:render_as: Level3
+:v291_section: 2A.2.43+
+
+== MOP - money or percentage
+
+HL7 Component Table – MOP – Money or Percentage
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | | |ID |R |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70148[0148] |Money or Percentage Indicator | |2A.2.35
+
+|2 | |= |NM |R | |Money or Percentage Quantity | |2A.2.47
+
+|3 |3..3 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#ISO0913[0913] |Monetary Denomination | |2A.2.35
+
+|===
+
+Definition: This data type specifies an amount that may be either currency or a percentage. It is a variation on the MO data type that is limited to currency.
+
+*Note:* Replaces the CM data type used in section 6.5.8.5 IN3-5, as of v 2.5. This data type is restricted to this field.
+
+Example: USD is the ISO 4217 code for the U.S. American dollar.
+
+|AT^99.50^USD|
+
+=== Money or Percentage Indicator (ID)
+
+Definition: Specifies whether the amount is currency or a percentage.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70148[_HL7 Table 0__148 –_ _Money or Percentage Indicato_]r for valid values.
+
+=== Money or Percentage Quantity (NM)
+
+=== Monetary Denomination (ID)
+
+Definition: the denomination in which the quantity is expressed where the amount is currency. The values for the denomination component are the three-character codes specified in ISO-4217. See file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#ISO0913[Externally-defined Table 0913 – Monetary Denomination Code].
+
+If the denomination is not specified, the context of the message or _MSH-17 Country Code_, in Chapter 2, section 2.14.9.17, is used to determine the default.
+

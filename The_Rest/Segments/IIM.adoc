@@ -1,0 +1,148 @@
+= IIM
+:render_as: Level3
+:v291_section: 17.5.1+
+
+== IIM - Inventory Item Master Segment
+
+The Inventory Item Master segment (IIM) contains information about the stock of product that can be used to fulfill an ordered test/service. All of the fields in this segment describe the test/service and other basic attributes pertaining to Service Item defined within an Other Observation/Service Item master file. This segment is related to centrally stocked or supply management concerns.
+
+HL7 Attribute Table - IIM - Inventory Item Master
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |CWE |R | | |01897 |Primary Key Value - IIM
+
+|2 | | |CWE |R | | |01799 |Service Item Code
+
+|3 | |250= |ST |O | | |01800 |Inventory Lot Number
+
+|4 | | |DTM |O | | |01801 |Inventory Expiration Date
+
+|5 | | |CWE |O | | |01802 |Inventory Manufacturer Name
+
+|6 | | |CWE |O | | |01803 |Inventory Location
+
+|7 | | |DTM |O | | |01804 |Inventory Received Date
+
+|8 | |12# |NM |O | | |01805 |Inventory Received Quantity
+
+|9 | | |CWE |O | | |01806 |Inventory Received Quantity Unit
+
+|10 | | |MO |O | | |01807 |Inventory Received Item Cost
+
+|11 | | |DTM |O | | |01808 |Inventory On Hand Date
+
+|12 | |12# |NM |O | | |01809 |Inventory On Hand Quantity
+
+|13 | | |CWE |O | | |01810 |Inventory On Hand Quantity Unit
+
+|14 | | |CNE |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70088[0088] |00393 |Procedure Code
+
+|15 | | |CNE |O |Y |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70340[0340] |01316 |Procedure Code Modifier
+
+|===
+
+=== IIM-1 Primary Key Value - IIM (CWE) 01897
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the code assigned by the institution for the purpose of uniquely identifying an inventoried item. It is the identifying key value, and must match _MFE-4 Primary Key Value - MFE_.
+
+=== IIM-2 Service Item Code (CWE) 01799
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the identifier of the service item. It relates the inventory item of this message to an entry in an Other Observation/Service Item master file.
+
+=== IIM-3 Inventory Lot Number (ST) 01800
+
+Definition: This field contains the lot number of the service item in inventory.
+
+*Note:* The lot number is the number printed on the label attached to the item or container holding the substance. If the substance is a vaccine, for example, and a diluent is required, a lot number may appear on the vial containing the diluent; however, any such identifier associated with a diluent is not the identifier of interest. The substance lot number should be reported, not that of the diluent.
+
+=== IIM-4 Inventory Expiration Date (DTM) 01801
+
+Definition: This field contains the expiration date of the service item in inventory.
+
+*Note:* Expiration date does not always have a "day" component; therefore, such a date may be transmitted as YYYYMM.
+
+=== IIM-5 Inventory Manufacturer Name (CWE) 01802
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the manufacturer of the service item in inventory.
+
+=== IIM-6 Inventory Location (CWE) 01803
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the location of the inventory. As an implementation consideration, this location can have a range of specificity. The location can be very general, e.g., a facility where the inventory is warehoused, or very specific, e.g., a shelf location.
+
+=== IIM-7 Inventory Received Date (DTM) 01804
+
+=== IIM-8 Inventory Received Quantity (NM) 01805
+
+=== IIM-9 Inventory Received Quantity Unit (CWE) 01806
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field specifies the unit for _IIM-8 Inventory Received Quantity_ and _IIM-10 Inventory Received Item Cost_.
+
+=== IIM-10 Inventory Received Item Cost (MO) 01807
+
+Components: <Quantity (NM)> ^ <Denomination (ID)>
+
+Definition: This field contains the per-unit cost of the inventory item at the time of receipt. _IIM-9 Inventory Received Quantity Unit_ specifies the per-unit basis of this field.
+
+=== IIM-11 Inventory on Hand Date (DTM) 01808
+
+=== IIM-12 Inventory on Hand Quantity (NM) 01809
+
+=== IIM-13 Inventory on Hand Quantity Unit (CWE) 01810
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field specifies the unit for _IIM-12 Inventory on Hand Quantity_.
+
+=== IIM-14 Procedure Code (CNE) 00393
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains a unique identifier assigned to the service item, if any, associated with the charge. In the United States this is often the HCPCS code. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70088[_Externally Defined Table 0088 - Procedure Code_] in Chapter 2C, Code Tables, for suggested values. This field is a CNE data type for compatibility with clinical and ancillary systems.
+
+As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.
+
+Procedure Code Coding Systems
+
+[width="100%",cols="19%,30%,51%",options="header",]
+
+|===
+
+|Coding System |Description |Comment
+
+|C4 |CPT-4 |American Medical Association, P.O. Box 10946, Chicago IL 60610.
+
+|C5 |CPT-5 |(under development – same contact as above)
+
+|HCPCS |CMS (formerly HCFA) Common Procedure Coding System |HCPCS: contains codes for medical equipment, injectable drugs, transportation services, and other services not found in CPT4.
+
+|HPC |CMS (formerly HCFA) Procedure Codes (HCPCS) |Health Care Financing Administration (HCFA) Common Procedure Coding System (HCPCS) including modifiers.footnote:[The HCPCS code is divided into three "levels." Level I includes the entire CPT-4 code by reference. Level II includes the American Dental Association’s Current Dental Terminology (CDT-2) code by reference. Level II also includes the genuine HCPCS codes, approved and maintained jointly by the Alpha-Numeric Editorial Panel, consisting of CMS, the Health Insurance Association of America, and the Blue Cross and Blue Shield Association. Level III are codes developed locally by Medicare carriers. The HCPCS modifiers are divided into the same three levels, I being CPT-4 modifiers, II CDT-2 and genuine HCPCS modifiers, and III being locally agreed modifiers. +
+
+ +
+
+The genuine HCPCS codes and modifiers of level II can be found at http://www.hcfa.gov/stats/anhcpcdl.htm. CMS distributes the HCPCS codes via the National Technical Information Service (NTIS, http://www.ntis.gov[www.ntis.gov]) and NTIS distribution includes the CDT-2 part of HCPCS Level II, but does not include the CPT-4 part (Level I). CMS may distribute the CPT-4 part to its contractors.]
+
+|===
+
+=== IIM-15 Procedure Code Modifier (CNE) 01316
+
+Components: <Identifier (ST)> ^ <Text (ST)> ^ <Name of Coding System (ID)> ^ <Alternate Identifier (ST)> ^ <Alternate Text (ST)> ^ <Name of Alternate Coding System (ID)> ^ <Coding System Version ID (ST)> ^ <Alternate Coding System Version ID (ST)> ^ <Original Text (ST)> ^ <Second Alternate Identifier (ST)> ^ <Second Alternate Text (ST)> ^ <Name of Second Alternate Coding System (ID)> ^ <Second Alternate Coding System Version ID (ST)> ^ <Coding System OID (ST)> ^ <Value Set OID (ST)> ^ <Value Set Version ID (DTM)> ^ <Alternate Coding System OID (ST)> ^ <Alternate Value Set OID (ST)> ^ <Alternate Value Set Version ID (DTM)> ^ <Second Alternate Coding System OID (ST)> ^ <Second Alternate Value Set OID (ST)> ^ <Second Alternate Value Set Version ID (DTM)>
+
+Definition: This field contains the procedure code modifier to the procedure code reported in _IIM-14 Procedure Code_, when applicable. Procedure code modifiers are defined by USA regulatory agencies such as CMS and the AMA. Multiple modifiers may be reported. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70340[_Externally defined Table 0340 - Procedure Code Modifier_] in Chapter 2C, Code Tables, for suggested values.
+
+As of v2.6, the known applicable external coding systems include those in the table below. If the code set you are using is in this table, then you must use that designation.
+

@@ -1,0 +1,16 @@
+= Registration
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Registration | Index: 13
+
+xref:Registration/Introduction.adoc[Introduction]
+
+xref:Registration/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Registration/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Registration/Technical_Specs.adoc[Technical Specs]
+
+xref:Registration/Examples.adoc[Examples]
+

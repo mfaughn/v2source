@@ -1,0 +1,94 @@
+= XON
+:render_as: Level3
+:v291_section: 2A.2.89+
+
+== XON - extended composite name and identification number for organizations
+
+HL7 Component Table - XON – Extended Composite Name and Identification Number for Organizations
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | |50# |ST |O | |Organization Name | |2A.2.76
+
+|2 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70204[0204] |Organization Name Type Code | |2A.2.36
+
+|3 | | | |W | |ID Number |Withdrawn as of v 2.7. |
+
+|4 | | | |W | |Identifier Check Digit |Withdrawn as of v 2.7. |
+
+|5 | | | |W | |Check Digit Scheme |Withdrawn as of v 2.7. |
+
+|6 | | |HD |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70363[0363] |Assigning Authority | |2A.2.33
+
+|7 |2..5 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70203[0203] |Identifier Type Code | |2A.2.35
+
+|8 | | |HD |O | |Assigning Facility | |2A.2.33
+
+|9 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70465[0465] |Name Representation Code | |2A.2.35
+
+|10 | | |ST |O | |Organization Identifier | |2A.2.76
+
+|===
+
+This data type is used in fields (e.g., PV2-23, NK1-13, PD1-3, OBR-44) to specify the name and ID number of an organization.
+
+Example 1:
+
+The ID for Good Health Hospital was assigned by the Community Health and Hospitals enterprise’s Hospital Master and was first issued at the Central Offices.
+
+Good Health Hospital^L^716^9^M10^&Hospital Master.Community Health and Hospitals&L^XX^&Central Offices.Community Health and Hospitals&L^A
+
+Example 2:
+
+Good Health Hospital has another ID that was issued by CMS. Assigning Authority, CMS, values only the first HD component, an IS data type and assigning facility is not relevant. This information might be transmitted accordingly:
+
+Good Health Hospital^L^4544^3^M10^CMS^XX^^A
+
+=== Organization Name (ST)
+
+=== Organization Identifier (ST)
+
+Definition: This component contains the sequence of characters (the code) that uniquely identifies the item being referenced by _XON.1 Organization Name_. This component replaces _XON.3 ID Number_ as of v 2.5.
+
+*Note:* The check digit and code identifying check digit scheme are null if Organization identifier is alphanumeric.
+
+=== Organization Name Type Code (CWE)
+
+=== ID Number 
+
+=== Identifier Check Digit (NM)
+
+=== Check Digit Scheme (ID)
+
+=== Assigning Authority (HD)
+
+Definition: The assigning authority is a unique identifier of the system (or organization or agency or department) that creates the data. Assigning authorities are unique across a given HL7 implementation. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70363[_User-defined Table 0363 - Assigning_ _Authorit__y_] for suggested values.
+
+*Note:* When the HD data type is used in a given segment as a component of a field of another data type, file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User-defined Table 0300_ _- Namespace ID_] (referenced by the first sub-component of the HD component) may be re-defined (given a different user-defined table number and name) by the technical committee responsible for that segment. +
+
+ +
+
+By site agreement, implementers may continue to use file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User-defined Table 0300 – N__amespace ID_] for the first sub-component.
+
+=== Identifier Type Code (ID)
+
+=== Assigning Facility (HD)
+
+Definition: The place or location identifier where the identifier was first assigned to the person. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.
+
+*Note:* When the HD data type is used in a given segment as a component of a field of another data type, file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[User-defined Table 0300 - Namespace ID] (referenced by the first sub-component of the HD component) may be re-defined (given a different user-defined table number and name) by the technical committee responsible for that segment.
+
+=== Name Representation Code (ID)
+
+Definition: Different <name/address types> and representations of the same <name/address> should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.
+
+*Note:* This new component remains in “alphabetic” representation with each repetition of the field using these data types, i.e. even though the name may be represented in an ideographic character set, this component will remain represented in an alphabetic character set.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70465[_HL7 Table 0465 – Name/address Representation Code_] for valid values.
+
+In general this component provides an indication of the representation provided by the data item. It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired. This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying.
+

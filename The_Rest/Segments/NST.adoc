@@ -1,0 +1,86 @@
+= NST
+:render_as: Level3
+:v291_section: 14.4.3+
+
+== NST – Application Control-Level Statistics Segment
+
+The NST segment allows application control-level statistical information to be passed between the various systems on the network. Some fields in this segment refer to portions of lower level protocols; they contain information that can be used by application management applications monitoring the state of various network links.
+
+*Usage Notes:* Fields 2-15. These are all marked optional since the statistics kept on a particular link and negotiated between the two systems in question will vary. Not all values will apply to each system. Some values are concerned with the type of port, and some values pertain to the lower level protocol.
+
+HL7 Attribute Table – NST[#NST .anchor]#### – Application control level statistics
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |R/O |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 |1..1 | |ID |R | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70136[0136] |01173 |Statistics Available
+
+|2 | | |ST |O | | |01174 |Source Identifier
+
+|3 | | |ID |O | |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70332[0332] |01175 |Source Type
+
+|4 | | |DTM |O | | |01176 |Statistics Start
+
+|5 | | |DTM |O | | |01177 |Statistics End
+
+|6 | | |NM |O | | |01178 |Receive Character Count
+
+|7 | | |NM |O | | |01179 |Send Character Count
+
+|8 | | |NM |O | | |01180 |Messages Received
+
+|9 | | |NM |O | | |01181 |Messages Sent
+
+|10 | | |NM |O | | |01182 |Checksum Errors Received
+
+|11 | | |NM |O | | |01183 |Length Errors Received
+
+|12 | | |NM |O | | |01184 |Other Errors Received
+
+|13 | | |NM |O | | |01185 |Connect Timeouts
+
+|14 | | |NM |O | | |01186 |Receive Timeouts
+
+|15 | | |NM |O | | |01187 |Application control-level Errors
+
+|===
+
+=== NST-1 Statistics Available (ID) 01173 
+
+Definition: This field indicates the availability of statistics. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70136[_HL7 Table 0136 - Yes/no Indicator_] for valid values.
+
+N - the responding application does not keep any statistics. If the value "N" is specified, the response message is used to signify to the initiating application that the communication link between the initiating application and the responding application is operational (and fields 2‑15 are empty in the response message).
+
+Y - the responding application does keep statistics, fields 4 and 5 are required (and the response message contains one or more not empty or not unvalued fields in the range 2‑3, 6‑15).
+
+=== NST-2 Source Identifier (ST) 01174
+
+=== NST-3 Source Type (ID) 01175
+
+=== NST-4 Statistics Start (DTM) 01176
+
+=== NST-5 Statistics End (DTM) 01177
+
+=== NST-6 Receive Character Count (NM) 01178
+
+=== NST-7 Send Character Count (NM) 01179
+
+=== NST-8 Messages Received (NM) 01180
+
+=== NST-9 Messages Sent (NM) 01181
+
+=== NST-10 Checksum Errors Received (NM) 01182
+
+=== NST-11 Length Errors Received (NM) 01183
+
+=== NST-12 Other Errors Received (NM) 01184
+
+=== NST-13 Connect Timeouts (NM) 01185
+
+=== NST-14 Receive Timeouts (NM) 01186
+
+=== NST-15 Application Control-level Errors (NM) 01187
+

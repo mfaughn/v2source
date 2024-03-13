@@ -1,0 +1,40 @@
+= Implementation Considerations
+:render_as: Level4
+:v291_section: 17.4;17.4.1;17.4.3+;17.5
+
+== Trigger Events
+
+This chapter defines trigger events used to communicate supply item information between applications.
+
+The inventory item master file notification trigger events are defined in Chapter 8, Master Files. The sterilization and decontamination related trigger events in this chapter are defined in section _17.5_, "_Inventory Item Master Messages Segments_," and _17.6_, "_Placer Application Requests and Trigger Events_."
+
+== Statuses
+
+The status of a supply item describes the state of the supply item in the item master catalog and at an inventory location. Typical statuses of a supply item may include the following: Active, Pending Inactive, and Inactive.
+
+The status of a load describes the state of a load during a sterilization cycle. Typical statuses of a load may include the following: Pending, Active, Complete, and Canceled.
+
+== Organization of This Chapter: Trigger Events and Message Definitions
+
+This specification contains four functional groupings of trigger events and message definitions. The trigger events within each of the placer, filler, and query functional groupings share the same or similar message definitions.
+
+The first functional grouping of trigger events and message definitions describes the common master file notification messages for use of the record level events for adds, deletes, updates, deactivations, and reactivations. This functional grouping is specific to the item master inventory messages.
+
+The second functional grouping of trigger events and message definitions describes _placer request transactions_. This grouping defines the trigger events and message definitions for transactions from applications acting in a placer application role, and also defines the related filler application response messages sent back by applications fulfilling the auxiliary role. These messages are described in section _17.6_, "_Placer Application Requests and Trigger Events_."
+
+The second functional grouping describes trigger events and message definitions for _unsolicited transactions_ from applications acting in the filler application role. This grouping describes the unsolicited messages originating from an application fulfilling the filler role, and the response messages sent back by applications fulfilling the auxiliary role. These messages are described in section _17.7_, "_Filler Application Messages and Trigger Events Unsolicited_."
+
+The notation used to describe the sequence, optionality, and repetition of segments is described in Chapter 2, "Format for defining abstract messages."
+
+=== Update mode
+
+== Inventory Item Master Messages Segments
+
+This section describes the segments described in the Inventory Item Master File Message (Event M15) and Inventory Item Master File Message - Enhanced (Event M16) master file messages. The description of these events and the messages structures are published in Chapter 8, Master Files. The M15 Inventory Item Master File trigger event and the IIM inventory item master segment is a limited implementation. The M16 Inventory Item Master File - Enhanced trigger event is a comprehensive Materials Management message.
+
+The enhanced inventory item master message communicates additions and updates of supply items and their attributes from a general supply location to additional supply locations within a healthcare facility.
+
+The general supply inventory location sends a transaction to multiple inventory locations with this trigger event, communicating adds and changes to item master catalog and inventory supply items.
+
+The ILT segment formerly published in v2.5 Chapter 8, Master Files, will now be published in this chapter because of its use in the Materials Management domain.
+

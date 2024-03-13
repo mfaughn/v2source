@@ -1,0 +1,186 @@
+= CX
+:render_as: Level3
+:v291_section: 2A.2.14+
+
+== CX - extended composite ID with check digit
+
+HL7 Component Table - CX – Extended Composite ID with Check Digit
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | |15= |ST |R | |ID Number | |2A.2.76
+
+|2 | |4= |ST |O | |Identifier Check Digit | |2A.2.76
+
+|3 |3..3 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70061[0061] |Check Digit Scheme | |2A.2.35
+
+|4 | | |HD |C |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70363[0363] |Assigning Authority | |2A.2.33
+
+|5 |2..5 | |ID |R |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70203[0203] |Identifier Type Code | |2A.2.35
+
+|6 | | |HD |O | |Assigning Facility | |2A.2.33
+
+|7 | | |DT |O | |Effective Date | |2A.2.21
+
+|8 | | |DT |O | |Expiration Date | |2A.2.21
+
+|9 | | |CWE |C | |Assigning Jurisdiction | |2A.2.13
+
+|10 | | |CWE |C | |Assigning Agency or Department | |2A.2.13
+
+|11 | |4= |ST |O | |Security Check | |2.A.74
+
+|12 |3..3 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70904[0904] |Security Check Scheme | |2.A.35
+
+|===
+
+Definition: This data type is used for specifying an identifier with its associated administrative detail.
+
+*Note:* The check digit and check digit scheme are null if ID is alphanumeric.
+
+Example:
+
+|1234567^4^M11^ADT01^MR^University Hospital|
+
+=== ID Number (ST)
+
+=== Assigning Agency or Department (CWE)
+
+Definition: The agency or department that assigned the identifier in component 1. As of v2.7, Assigning Agency or Department is required if neither _CX.4_ nor _CX.9_ are populated.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70530[User-defined Table 0530 – Organizations&#44; agency&#44; department] for suggested values if the administrative unit under whose jurisdiction the identifier was issued is an organization, agency or department. This is populated with site-specific assigning authorities. It also should contain national or international codes when _CX.5 Identifier Type Code_ may be assigned by more than one authority within a governmental or organizational unit. For example, a federal government may have 2 departments that assign a military identifier, its Veterans Affairs department and its Department of Defense. It is *not* recommended to include values for entities such as Social Security Administration (SSA), Immigration and Naturalization Service (INS), Center for Medicare and Medicaid Services (CMS) because they are included in the identifier type table. In these cases the name of the country plus the identifier type yields the correct interpretation of the identifier in component 1. Likewise, entries like department of motor vehicles (DMV) and licensing boards are *not* recommended for inclusion because the combination of state and identifier type yields the correct interpretation of the identifier in component 1. This approach is not to be confused with the detailed information provided in the Chapter 15 segments that have provision for specifying the precise granting body and issuing body information needed in personnel management messages.
+
+Example 1: <Identifier> plus <Visa> yields a unique identifier.
+
+Example 2: <identifier> plus <state> plus <DLN> yields a unique driver’s license number.
+
+Example 3: <identifier> plus <country> plus <INS> yields a unique immigration number.
+
+The reader is referred to the CX.4, if there is a need to transmit this information as an OID.
+
+=== Security Check (ST)
+
+=== Security Check Scheme (ID)
+
+Definition: This component is used to transmit information intended to validate the veracity of the supplied identifier or the presenter of the identifier. For example, this component may be used to ensure that the presenter of a credit card is an authorized user of that card.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70904[HL7 Table 0904 - Security Check Scheme] for valid values.
+
+=== Identifier Check Digit (ST)
+
+=== Check Digit Scheme (ID)
+
+Definition: Contains the code identifying the check digit scheme employed.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70061[_HL7 T__ab__le 00__61 - Check Digit Scheme_] for valid values.
+
+The algorithm for calculating a Mod10 check digit is as follows:
+
+Assume you have an identifier - 12345. Take the odd digit positions, counting from the right, i.e., 531, multiply this number by 2 to get 1062. Take the even digit positions, starting from the right (i.e., 42), prepend these to the 1062 to get 421062. Add all of these six digits together to get 15. Subtract this number from the next highest multiple of 10, i.e., 20 - 15 to get 5. The Mod10 check digit is 5. The Mod10 check digit for 401 is 0; for 9999, it’s 4; for 99999999, it’s 8.
+
+The algorithm for calculating a Mod11 check digit is as follows:
+
+*Terms*
+
+[width="100%",cols="8%,5%,87%",]
+
+|===
+
+|d |= |digit of number starting from units digit, followed by 10’s position, followed by 100’s position, etc.
+
+|w |= |weight of digit position starting with the units position, followed by 10’s position, followed by 100’s position etc. Values for w = 2, 3, 4, 5, 6, 7, 2, 3, 4, 5, 6, 7, etc. (repeats for each group of 6 digits)
+
+|c |= |check digit
+
+|===
+
+*Calculation*
+
+[width="100%",cols="18%,5%,77%",]
+
+|===
+
+|(Step 1) m |= a|
+
+sum of (d * w) for positions 1, 2, etc. starting with units digit
+
+for d = digit value starting with units position to highest order
+
+for w = weight value from 2 to 7 for every six positions starting with units digit
+
+|(Step 2) c1 |= |m mod 11
+
+|(Step 3) if c1 |= |0 then reset c1 = 1
+
+|(Step 4) |= |(11 - c1) mod 10
+
+|===
+
+*Example:*
+
+If the number is 1234567, then the mod 11 check digit = 4
+
+The calculations are:
+
+M = (7*2)+(6*3)+(5*4)+(4*5)+(3*6)+(2*7)+(1*2)
+
+= 14 + 18 + 20 + 20 + 18 + 14 + 2
+
+= 106
+
+c1 = 106 mod 11
+
+= 7
+
+c = (11-c1) mod 10
+
+= 4 mod 10
+
+= 4
+
+Other variants of these check digit algorithms exist and may be used by local bilateral site agreement.
+
+*Note:* The check digit and code identifying check digit scheme are null if ID is alphanumeric.
+
+=== Assigning Authority (HD)
+
+The assigning authority is a unique name and/or identifierof the system (or organization or agency or department) that creates the data. As of v2.7, _CX.4 Assigning Authority_ is required if neither _CX.9_ nor _CX.10_ are populated. Best practice is to always send an OID in the Assigning Authority component
+
+Refer to E:\\V2\\v2.9 final Nov from Frank\\V29_CH02C_Tables.docx#HL70363[_User-defined T__a__ble 0363 - Assigning Authority_] for suggested values.
+
+The reader is referred to the _CX.9_ and the _CX.10_ if there is a need to transmit values with semantic meaning for an assigning jurisdiction or assigning department or agency in addition to, or instead of, an assigning authority. However, all 3 components may be valued. If, in so doing, it is discovered that the values in _CX.9_ and/or _CX.10_ conflict with _CX.4_, the user would look to the Message Profile or other implementation agreement for a statement as to which takes precedence.
+
+*Note:* When the HD data type is used in a given segment as a component of a field of another data type, file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User-defined Table 0300 - Namespace ID_] (referenced by the first sub-component of the HD component) may be re-defined (given a different user-defined table number and name) by the technical committee responsible for that segment. +
+
+ +
+
+By site agreement, implementers may continue to use file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User-defined Table 0300 – Namespace ID_] for the first sub-component.
+
+=== Identifier Type Code (ID)
+
+=== Assigning Facility (HD)
+
+Definition: The place or location identifier where the identifier was first assigned to the patient. This component is not an inherent part of the identifier but rather part of the history of the identifier: as part of this data type, its existence is a convenience for certain intercommunicating systems.
+
+*Note:* When the HD data type is used in a given segment as a component of a field of another data type, file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70300[_User__-defined Table 0300 - Name__space ID_] (referenced by the first sub-component of the HD component), may be re-defined (given a different user-defined table number and name) by the technical committee responsible for that segment.
+
+=== Effective Date (DT)
+
+=== Expiration Date (DT)
+
+=== Assigning Jurisdiction (CWE)
+
+Definition: The geo-political body that assigned the identifier in component 1. As of v2.7, Assigning Jurisdiction is required if neither _CX.4_ nor _CX.10_ are populated.
+
+• Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70399[HL7 Table 0399 – Country Code] for valid values if the administrative unit under whose jurisdiction the identifier was issued is a country.
+
+• Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70347[_User-Defined Table 0347 – State/Province_] for suggested values if the administrative unit under whose jurisdiction the identifier was issued is a state or province. This table is country specific. In the US, postal codes may be used.
+
+• Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70289[_Use__r-defined Table –0289 County/Paris__h_] for suggested values if the administrative unit under whose jurisdiction the identifier was issued is a county or parish.
+
+The reader is referred to the _CX.4_ if there is a need to transmit this information as an OID.
+

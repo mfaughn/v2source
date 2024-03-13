@@ -1,0 +1,14 @@
+= Specimen Shipment Manifest
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Specimen Shipment Manifest | Index: 1452
+
+xref:Specimen_Shipment_Manifest/Introduction.adoc[Introduction]
+
+xref:Specimen_Shipment_Manifest/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Specimen_Shipment_Manifest/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Specimen_Shipment_Manifest/Technical_Specs.adoc[Technical Specs]
+

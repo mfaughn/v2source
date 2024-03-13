@@ -1,0 +1,30 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 1200
+
+xref:Technical_Specs/Message_-_E01_Submit_HealthCare_Services_Invoice.adoc[Message - E01 Submit HealthCare Services Invoice ]
+
+xref:Technical_Specs/Message_-_E02_Cancel_HealthCare_Services_Invoice.adoc[Message - E02 Cancel HealthCare Services Invoice ]
+
+xref:Technical_Specs/Message_-_E03_Query_HealthCare_Services_Invoice_Status.adoc[Message - E03 Query HealthCare Services Invoice Status]
+
+xref:Technical_Specs/Message_-_E04_Re-Assess_HealthCare_Services_Invoice_Request.adoc[Message - E04 Re-Assess HealthCare Services Invoice Request ]
+
+xref:Technical_Specs/Message_-_E10_EditAdjudication_Results.adoc[Message - E10 Edit/Adjudication Results ]
+
+xref:Technical_Specs/Message_-_E12_Request_Additional_Information.adoc[Message - E12 Request Additional Information]
+
+xref:Technical_Specs/Message_-_E13_Additional_Information_Response.adoc[Message - E13 Additional Information Response]
+
+xref:Technical_Specs/Message_-_E15_PaymentRemittance_Advice.adoc[Message - E15 Payment/Remittance Advice]
+
+xref:Technical_Specs/Message_-_E20_Submit_Authorization_Request.adoc[Message - E20 Submit Authorization Request]
+
+xref:Technical_Specs/Message_-_E21_Cancel_Authorization_Request.adoc[Message - E21 Cancel Authorization Request]
+
+xref:Technical_Specs/Message_-_E22_Query_Authorization_Request_Statu.adoc[Message - E22 Query Authorization Request Statu]
+
+xref:Technical_Specs/Message_-_E24_Authorization_Response.adoc[Message - E24 Authorization Response]
+

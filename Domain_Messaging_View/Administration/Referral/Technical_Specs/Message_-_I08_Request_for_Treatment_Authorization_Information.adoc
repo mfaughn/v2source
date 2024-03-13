@@ -1,0 +1,6 @@
+= Message - I08 Request for Treatment Authorization Information
+:render_as: Message Page
+:v291_section: 11.4; 11.4.2
+
+[message-tabs, ["RQA^I08^RQA_I08", "RQI Interaction", "ACK^I08^ACK", "ACK Interaction", "RPA^I08^RPA_I08", "RPA Interaction"]]
+

@@ -1,0 +1,30 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 
+
+Placeholder Text: Technical Specs | Index: 1043
+
+xref:Technical_Specs/Message_-_Register_a_patient_on_a_clinical_trial.adoc[Message - Register a patient on a clinical trial]
+
+xref:Technical_Specs/Message_-_Cancel_a_patient_registration_on_clinical_trial_(for_clerical_mistakes_since_an_intended_registration_should_not_be_canceled).adoc[Message - Cancel a patient registration on clinical trial (for clerical mistakes since an intended registration should not be canceled)]
+
+xref:Technical_Specs/Message_-_Correctupdate_registration_information.adoc[Message - Correct/update registration information]
+
+xref:Technical_Specs/Message_-_Patient_has_gone_off_a_clinical_trial.adoc[Message - Patient has gone off a clinical trial]
+
+xref:Technical_Specs/Message_-_Patient_enters_phase_of_clinical_trial.adoc[Message - Patient enters phase of clinical trial]
+
+xref:Technical_Specs/Message_-_Cancel_patient_entering_a_phase_(clerical_mistake).adoc[Message - Cancel patient entering a phase (clerical mistake)]
+
+xref:Technical_Specs/Message_-_Correctupdate_phase_information.adoc[Message - Correct/update phase information]
+
+xref:Technical_Specs/Message_-_Patient_has_gone_off_phase_of_clinical_trial.adoc[Message - Patient has gone off phase of clinical trial]
+
+xref:Technical_Specs/Message_-_Automated_time_intervals_for_reporting,_like_monthly.adoc[Message - Automated time intervals for reporting, like monthly]
+
+xref:Technical_Specs/Message_-_Patient_completes_the_clinical_trial.adoc[Message - Patient completes the clinical trial]
+
+xref:Technical_Specs/Message_-_Patient_completes_a_phase_of_the_clinical_trial.adoc[Message - Patient completes a phase of the clinical trial]
+
+xref:Technical_Specs/Message_-_Updatecorrection_of_patient_orderresult_information.adoc[Message - Update/correction of patient order/result information]
+

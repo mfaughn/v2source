@@ -1,0 +1,152 @@
+= Examples
+:render_as: Level4
+:v291_section: 8.6+; 8.7.2;8.10.4; 8.16.1
+
+== GENERIC MASTER FILE EXAMPLES
+
+The following are examples of a generic method of updating a standard HL7 table, covering the following two cases:
+
+{empty}1) The case with a site-defined "Z" segment. This message type is used when standard HL7 segments are not available to carry all of the required information on the master file. This message type can also be used in the case where standard HL7 segments are available, but the transaction type is not currently defined by HL7. Refer to Section 8.4.3, "MFN/MFK - Master File Notification - Site Defined (Event M14)," for more information on this message type.
+
+{empty}2) The case without a site-defined "Z" segment. This message type is used when standard HL7 segments are available to carry all of the required information on the master file (in the case of a 'simple' master file that contains only a key and the text value of that key). Refer to Section 8.4.2, "MFN/MFK - Master File Notification - General (Event M13)," for more information on this message type.
+
+The following examples show two records being added to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70006[User-defined Table 0006 - Religion] (in Chapter 2C, Code Tables).
+
+*Note*: A site-defined "Z" table segment ("ZL7" in this example) can be constructed by defining two fields: a table entry field (as a CWE field) and a display-sort-key field (a numeric field) as follows.
+
+=== ZL7 Segment (Proposed Example Only)
+
+HL7 Attribute Table – ZL7 – (proposed example only)
+
+[width="100%",cols="14%,6%,7%,6%,6%,6%,7%,7%,41%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |RP/# |TBL# |ITEM# |ELEMENT NAME
+
+|1 | | |CWE |R | | | |Primary key value - ZL7
+
+|2 | |3= |NM |R | | | |Display-sort-key
+
+|===
+
+==== ZL7-1 Primary Key Value - ZL7 (CWE)
+
+==== ZL7-2 Display-Sort-Key (NM)
+
+=== MFN Message with Original Acknowledgment Mode
+
+==== Example message
+
+The initiating system constructs an MFN^M14 message. In this example, the message contains site-defined "Z" segments. The following message is sent to the responding system:
+
+MSH|^~\&|HL7REG|UH|HL7LAB|CH|200106290544||MFN^M14^MFN_Z99|MSGID001|P|2.9
+
+MFI|HL70006^RELIGION^HL70175||UPD|||AL
+
+MFE|MAD|6772331|200106290500|BUD^Buddhist^HL70006|CWE
+
+ZL7|BUD^Buddhist^HL70006|3
+
+MFE|MAD|6772332|200106290500|BOT^Buddhist: Other^HL70006|CWE
+
+ZL7|BOT^Buddhist: Other^HL70006|4
+
+The responder receives the message and performs necessary validation on the message. In this example, it determines the message just received is acceptable for processing. The following MFK^M14 message is constructed by the responder and sent to the initiating system to indicate acknowledgment of the MFN^M14 message:
+
+MSH|^~\&|HL7LAB|CH|HL7REG|UH|200106290545||MFK^M14^MFK_M01|MSGID99001|P|2.9
+
+MSA|AA|MSGID001
+
+MFI|HL70006^RELIGION^HL70175||UPD|||AL
+
+MFA|MAD|6772331|200106290545|S|BUD^Buddhist^HL70006|CWE
+
+MFA|MAD|6772332|200106290545|S|BOT^Buddhist: Other^HL70006|CWE
+
+Note that _MSA-1 - Acknowledgment Code_ contains 'AA' to indicate the message was received and processed successfully. This value could also have been 'AE' or 'AR' to indicate the message was received but not processed successfully. _MSA-2 - Message Control ID_ contains the value from _MSH-10 - Message Control ID_ in the initiating MFN^M14 message (MSGID001) to link the acknowledgment response to the initiating message.
+
+=== MFN message with enhanced Mode Application-Level Acknowledgment
+
+==== Example message
+
+The initiating system constructs an MFN^M13 message. In this example, the message does not contain site-defined "Z" segments. The following message is sent to the responding system:
+
+MSH|^~\&|HL7REG|UH|HL7LAB|CH|200106290544||MFN^M13^MFN_M13|MSGID004|P|2.9||AL|AL
+
+MFI|HL70006^RELIGION^HL70175||UPD|||AL
+
+MFE|MAD|6772333|200106290500|BUD^Buddhist^HL70006|CWE
+
+MFE|MAD|6772334|200106290500|BOT^Buddhist: Other^HL70006|CWE
+
+The responder receives the message and performs necessary validation on the message. In this example, it determines the message just received is acceptable for processing. Since _MSH-15 - Accept Acknowledgment_ of the initiating message indicates an accept acknowledgment is required ('AL'), the following ACK message is constructed by the responder and sent to the initiating system to indicate acknowledgment of the MFN^M13 message:
+
+MSH|^~\&|HL7LAB|CH|HL7REG|UH|200106290545||ACK^M13^ACK|MSGID99004|P|2.9
+
+MSA|CA|MSGID004
+
+Note that _MSA-1 - Acknowledgment Code_ contains 'CA' to indicate the message was received and committed to safe storage. This value could also have been 'CE' or 'CR' to indicate the message was received but not processed successfully. _MSA-2 - Message Control ID_ contains the value from _MSH-10 - Message Control ID_ in the initiating MFN^M13 message (MSGID004) to link the acknowledgment response to the initiating message.
+
+The initiating system indicated in this example via _MSH-16 - Application Acknowledgment Type_ that it requires an application level acknowledgment ('AL'). The responder, at some point following the sending of the above ACK message to the initiating system, will process the MFN^M13 message. Once message processing is complete, the application acknowledgment is sent from the responder to the initiating system to indicate the message was processed. The responder constructs an MFK^M13 acknowledgment message, and sends it to the initiating system:
+
+MSH|^~\&|HL7LAB|CH|HL7REG|UH|200106290550||MFK^M13^MFK_M13|MSGID99501|P|2.9||AL|
+
+MSA|AA|MSGID004
+
+MFI|HL70006^RELIGION^HL70175||UPD|||AL
+
+MFA|MAD|6772333|200106290550|S|BUD^Buddhist^HL70006|CWE
+
+MFA|MAD|6772334|200106290550|S|BOT^Buddhist: Other^HL70006|CWE
+
+Note that _MSA-1 - Acknowledgment Code_ contains 'AA' to indicate the message was received and processed successfully. This value could also have been 'AE' or 'AR' to indicate the message was received but not processed successfully. This value applies to all MFA segments which follow. _MSA-2 - Message Control ID_ contains the value from _MSH-10 - Message Control ID_ in the initiating MFN^M13 message (MSGID004) to link the application acknowledgment response to the initiating message.
+
+The initiating system receives the application acknowledgment message from the responder, and forms an ACK message to acknowledge it. The following message is sent to the responder system:
+
+MSH|^~\&|HL7REG|UH|HL7LAB|CH|200106290551||ACK^M13^ACK|MSGID445|P|2.9
+
+MSA|CA|MSGID99501
+
+Note that _MSA-2 - Message Control ID_ contains the value from _MSH-10 - Message Control ID_ in the MFK^M13 message just received (MSGID99501), and NOT from the initiating MFN^M13 message.
+
+== Example: Staff and Health Practitioner Master File MFN Message
+
+MSH|^~\&|HL7REG|UH|HL7LAB|CH|200102280700||MFN^M02^MFN_M02|MSGID002|P|2.9|||AL|NE
+
+MFI|PRA^Practitioner Master File^HL70175||UPD|||AL
+
+MFE|MAD|U2246|200102280700|PMF98123789182^^PLW|CWE
+
+STF|PMF98123789182^^PLW|U2246^^^PLW~444444444^^^USSSA^SS|Hippocrates^Harold^H^JR^DR^M.D.|P|M|19511004|A|^ICU|^MED|^WPN^PH^^^555^5551003~^PRN^PH^^^955^5551003|1003 Healthcare Drive ^^Ann Arbor^MI^^^H~4444 Healthcare Dr^^Ann Arbor^MI^^^O|19890125^&Level Seven Healthcare, Inc.&L01||PMF88123453334|74160.2326@COMPUSERV.COM|B
+
+GSP|1|S||76691-5^Gender identity^LN|446151000124109^Identifies as male gender^SCT|20210101
+
+GSP|2|S||90778-2^Personal pronouns – Reported^LN|LA29518-0^he/him/his/his/himself^LN|20210101
+
+PRA|PMF98123789182^^PLW|^Level Seven Healthcare|ST|I|OB/GYN^STATE BOARD OF OBSTETRICS AND GYNECOLOGY^C^19790123|1234887609^UPIN~1234987^CTY^MECOSTA~223987654^TAX~1234987757^DEA~12394433879^MDD^CA|ADMIT&&ADT^MED&&L2^19941231~DISCH&&ADT^MED&&L2^19941231|
+
+AFF|1|AMERICAN MEDICAL ASSOCIATION|123 MAIN STREET^^OUR TOWN^CA^98765^USA^M |19900101|
+
+LAN|1|ESL^SPANISH^ISO639|1^READ^HL70403|1^EXCELLENT^HL70404|
+
+LAN|2|ESL^SPANISH^ISO639|2^WRITE^HL70403|2^GOOD^HL70404|
+
+LAN|3|FRE^FRENCH^ISO639|3^SPEAK^HL70403|3^FAIR^HL70404|
+
+EDU|1|BA|19810901^19850601||19850604|YALE UNIVERSITY^L|U^HL70402|456 CONNECTICUT AVENUE^^NEW HAVEN^CO^87654^USA^M|
+
+EDU|2|MD|19850901^19890601||19890604|HARVARD MEDICAL SCHOOL^L |M^HL70402|123 MASSACHUSETTS AVENUE^^CAMBRIDGE^MA^76543^USA^M|
+
+== Example: MFN Message Charge Description Master File
+
+MSH|^~\&|HL7REG|UH|HL7LAB|CH|19910918060544||MFN^M04^MFN_M04|MSGID002|P|2.9||AL|NE<cr>
+
+MFI|CDM||UPD|||AL<cr>
+
+MFE|MAD|CDM98123789182|199110011230|P2246^^PLW|CWE<cr>
+
+CDM|P2246^^PLW |2445|APPENDECTOMY|APPENDECTOMY|X||244.34|A|2321||||N<cr>
+
+PRC|P2246^^PLW |FAC3|SURG|O~A|100.00^UP |formula |1|1 |100.00^USD|1000.00^USD|19941031||Y|GL545|Y|A|<cr>
+

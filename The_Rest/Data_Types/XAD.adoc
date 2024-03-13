@@ -1,0 +1,176 @@
+= XAD
+:render_as: Level3
+:v291_section: 2A.2.87+
+
+== XAD - extended address
+
+HL7 Component Table - XAD – Extended Address
+
+[width="99%",cols="10%,7%,8%,6%,7%,7%,32%,13%,10%",options="header",]
+
+|===
+
+|SEQ |LEN |C.LEN |DT |OPT |TBL# |COMPONENT NAME |COMMENTS |SEC.REF.
+
+|1 | | |SAD |O | |Street Address | |2A.2.68
+
+|2 | |120# |ST |O | |Other Designation | |2A.2.76
+
+|3 | |50# |ST |O | |City | |2A.2.76
+
+|4 | |50# |ST |O | |State or Province | |2A.2.76
+
+|5 | |12= |ST |O | |Zip or Postal Code | |2A.2.76
+
+|6 |3..3 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70399[0399] |Country | |2A.2.35
+
+|7 |1..3 | |ID |C |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70190[0190] |Address Type | |2A.2.35
+
+|8 | |50# |ST |O | |Other Geographic Designation | |2A.2.76
+
+|9 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70289[0289] |County/Parish Code | |2A.2.36
+
+|10 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70288[0288] |Census Tract | |2A.2.36
+
+|11 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70465[0465] |Address Representation Code | |2A.2.35
+
+|12 | | | |W | |Address Validity Range |Withdrawn as of v2.7. |
+
+|13 | |8= |DTM |O | |Effective Date | |2A.2.22
+
+|14 | |8= |DTM |O | |Expiration Date | |2A.2.22
+
+|15 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70616[0616] |Expiration Reason | |2A.2.13
+
+|16 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70136[0136] |Temporary Indicator | |2A.2.35
+
+|17 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70136[0136] |Bad Address Indicator | |2A.2.35
+
+|18 |1..1 | |ID |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70617[0617] |Address Usage | |2A.2.35
+
+|19 | |199# |ST |O | |Addressee | |2A.2.76
+
+|20 | |199# |ST |O | |Comment | |2A.2.76
+
+|21 | |2= |NM |O | |Preference Order | |2A.2.47
+
+|22 | | |CWE |O |file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70618[0618] |Protection Code | |2A.2.13
+
+|23 | | |EI |O | |Address Identifier | |2A.2.25
+
+|===
+
+*Definition:* This data type specifies the address of a person, place or organization plus associated information.
+
+*Note:* Replaces the AD data type as of v2.3.
+
+Example of usage for US:
+
+|1000 Hospital Lane^Ste. 123^Ann Arbor ^MI^99999^USA^B^^WA^|
+
+This would be formatted for postal purposes as
+
+1000 Hospital Lane
+
+Ste. 123
+
+Ann Arbor MI 99999
+
+Example of usage for Australia:
+
+|14th Floor^1000 Hospital Lane^Sidney^QLD^9999|
+
+This would be formatted for postal purposes using the same rules as for the American example as
+
+14th Floor
+
+1000 Hospital Lane
+
+Sidney QLD 9999
+
+*International note:* Countries typically have a standard method of formatting addresses. This data type does not specify the formatting usages, only the components of a postal address.
+
+=== Street Address (SAD)
+
+=== Census Tract (CWE)
+
+Definition: A code that represents the census tract in which the specified address resides. file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70288[_User-defined Table 0288 - Census Tract_] is used as the HL7 identifier for the user-defined table of values for this component.
+
+Allowable Values: codes defined by government.
+
+=== Address Representation Code (ID) 
+
+Definition: Different <name/address types> and representations of the same name/address should be described by repeating of this field, with different values of the <name/address type> and/or <name/address representation> component.
+
+*Note:* Also note that this new component remains in "alphabetic" representation with each repetition of the fields using these data types. I.e. even though the address may be represented in an ideographic character set, this component will remain represented in an alphabetic character set.
+
+Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70465[_HL7 Table 0465 – Name/address Representatio__n_] for valid values.
+
+In general this component provides an indication of the representation provided by the data item. It does not necessarily specify the character sets used. Thus, even though the representation might provide an indication of what to expect, the sender is still free to encode the contents using whatever character set is desired. This component provides only hints for the receiver, so it can make choices regarding what it has been sent and what it is capable of displaying.
+
+=== Address Validity Range (DR)
+
+=== Effective Date (DTM)
+
+=== Expiration Date (DTM)
+
+=== Expiration Reason (CWE)
+
+=== Temporary Indicator (ID)
+
+=== Bad Address Indicator (ID)
+
+=== Address Usage (ID)
+
+=== Addressee (ST)
+
+=== Other Designation (ST)
+
+=== Comment (ST)
+
+Definition: Descriptive information about the use of the address.
+
+Example: "Do not ring bell."
+
+=== Preference Order (NM)
+
+Definition: For an entity having multiple addresses, indicates which is the 'most preferred' (lowest number) to 'least preferred' (highest number).
+
+If the preference order is unique across all usages for a given type, then it indicates the preference across all usages, (e.g., first try my home address, then my business address). Otherwise, the preference order is assumed to only apply within a specific usage.
+
+Preference order numbers need not be sequential (i.e., four addresses with the priority orders of 10, 1, 5 and 15 are legitimate). The preference order numbers must be non-negative.
+
+=== Protection Code (CWE)
+
+Definition: Identifies that an address needs to be treated with special care or sensitivity.
+
+The specific set of codes and appropriate handling of such addresses will vary by jurisdiction and is subject to site-specific negotiation. For example, a provider address marked as 'unlisted' might not be printed in an internal address listing. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70618[_User-defined Table 0618 – Protection Code_] for valid values.
+
+=== Address Identifier (EI)
+
+Definition: A unique identifier for the address.
+
+This component allows an address to be uniquely identified, and enables the linking of a single address to multiple people and contexts. For example, each member of a family living at the same location would share the same address, having the same identifier. A correction to the address of one family member could be automatically propagated to other members of the family.
+
+=== City (ST)
+
+=== State or Province (ST)
+
+=== Zip or Postal Code (ST)
+
+=== Country (ID)
+
+=== Address Type (ID)
+
+Definition: This component specifies the kind or type of address. Refer to file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70190[_HL7 Ta__ble 0190 - A__ddress Type_] for valid values.
+
+_XAD.7_ is required if there are multiple occurrences of XAD in a field.
+
+=== Other Geographic Designation (ST)
+
+=== County/Parish Code (CWE)
+
+Definition: A code that represents the county in which the specified address resides. file:///E:\V2\v2.9%20final%20Nov%20from%20Frank\V29_CH02C_Tables.docx#HL70289[_User-defined Table 0289 - County/parish_] is used as the HL7 identifier for the user-defined table of values for this component. When this component is used to represent the county (or parish), component 8 <other geographic designation> should not duplicate it (i.e., the use of <other geographic designation> to represent the county is allowed only for the purpose of backward compatibility, and should be discouraged in this and future versions of HL7).
+
+Allowable values: codes defined by government.
+

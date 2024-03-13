@@ -1,0 +1,24 @@
+= Technical Specs
+:render_as: Level4
+:v291_section: 6.4.
+
+The triggering events that follow are served by Detail Financial Transaction (DFT), Add/Change Billing Account (BAR), and General Acknowledgment (ACK) messages.
+
+Each trigger event is documented below, along with the applicable form of the message exchange. The notation used to describe the sequence, optionality, and repetition of segments is described in Chapter 2, "Format for Defining Abstract Messages."
+
+xref:Technical_Specs/Message_-_P01_Add_Patient_Account.adoc[Message - P01 Add Patient Account]
+
+xref:Technical_Specs/Message_-_P02_Purge_Patient_Accounts.adoc[Message - P02 Purge Patient Accounts]
+
+xref:Technical_Specs/Message_-_P03_Post_Detail_Financial_Transactions.adoc[Message - P03 Post Detail Financial Transactions]
+
+xref:Technical_Specs/Message_-_P05_BARACK_-_Update_Account.adoc[Message - P05 BAR/ACK - Update Account]
+
+xref:Technical_Specs/Message_-_P06_BARACK_-_End_Account.adoc[Message - P06 BAR/ACK - End Account ]
+
+xref:Technical_Specs/Message_-_P10_Transmit_Ambulatory_Payment_Classification_(APC)_Groups.adoc[Message - P10 Transmit Ambulatory Payment Classification (APC) Groups]
+
+xref:Technical_Specs/Message_-_P11_Post_Detail_Financial_Transactions_-_Expanded.adoc[Message - P11 Post Detail Financial Transactions - Expanded]
+
+xref:Technical_Specs/Message_-_P12_Update_DiagnosisProcedure.adoc[Message - P12 Update Diagnosis/Procedure]
+

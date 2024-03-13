@@ -1,0 +1,16 @@
+= Immunizations
+:render_as: Level3
+:v291_section: 
+
+Placeholder Text: Immunizations | Index: 871
+
+xref:Immunizations/Introduction.adoc[Introduction]
+
+xref:Immunizations/General_Use_Cases_Background.adoc[General Use Cases / Background]
+
+xref:Immunizations/Implementation_Considerations.adoc[Implementation Considerations]
+
+xref:Immunizations/Technical_Specs.adoc[Technical Specs]
+
+xref:Immunizations/Examples.adoc[Examples]
+

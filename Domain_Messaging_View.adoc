@@ -1,0 +1,16 @@
+= Domain Messaging View
+:render_as: Level1
+:v291_section: 
+
+Placeholder Text: Domain Messaging View | Index: 10
+
+xref:Domain_Messaging_View/Administration.adoc[Administration ]
+
+xref:Domain_Messaging_View/Clinical.adoc[Clinical]
+
+xref:Domain_Messaging_View/Financial.adoc[Financial]
+
+xref:Domain_Messaging_View/ERP.adoc[ERP]
+
+xref:Domain_Messaging_View/Technical.adoc[Technical]
+

@@ -1,0 +1,6 @@
+= Message - I13 Modify Patient Referral
+:render_as: Message Page
+:v291_section: 11.5; 11.5.3
+
+[message-tabs, ["REF^I13^REF_I12", "REF Interaction", "ACK^I13^ACK", "ACK Interaction", "RRI^I13^RRI_I12", "RRI Interaction"]]
+
