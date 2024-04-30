@@ -1,0 +1,13 @@
+= Dev Notes
+
+== How to maintain structure of site
+A structure / map map be created that is a reference and this reference can be used to validate the links that are in individual pages.
+
+- Links will need to be maintained manually in files in order for them to occur in the right places.
+- Not all links will be maintained in the "map".  Obviously we can't do that given that, e.g., all references to data types, fields, segments, etc. will be links.
+
+== How to manage edits by user?
+- We should use branches
+* Should branches be centered on users or issues?  Probably issues.
+* Branches should have names that either A) indication the Jira issue (preferred?) of B) describe the issue
+* No commits/push to main branch.  Edits must be made in a branch and then a PR submitted.
