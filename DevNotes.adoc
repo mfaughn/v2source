@@ -13,13 +13,6 @@ A structure / map map be created that is a reference and this reference can be u
 * No commits/push to main branch.  Edits must be made in a branch and then a PR submitted.
 
 
-== There is no autosave for VSCode online
-This is a bummer...
-
-
-
-
-
 == Requirements (ranked 1-10 importance):
 - 6 - Autosave
 - 9 - Store as files
@@ -27,14 +20,32 @@ This is a bummer...
 - ? - Jira Integration
 - 6 - Rendered as you edit (WYSI(kinda)WYG)
 - 7 - diff between versions / edits
-
+- CI builds
+- branch builds
+- A place to host builds (even if they are done manually).  This should be at HL7.
+- Documentation
+* For tooling maintainers
+* For tooling users
 
 
 == GitLab vs GitHub
-- GitLab WebIDE easier to use
-* Launch from labeled button instead of pressing '.' or changing url
-* preview pane for AsciiDoc not yet available.  Should be soon(??)
-- GitLab diff easier to use
-* GitLab menu item vs GitHub change of url
-- GitLab already integrated with Jira
+=== AutoSave
+* GitHub has autosave feature (as long as you enable it)
+* GitLab doesn't have autosave
+* Autosave is not going to be bulletproof if you are editing the same file in multiple tabs/windows/computers.  This isn't Google Docs.
 
+=== WebIDE easier to use
+* GitLab launches from labeled button 
+* GitHub must press '.' or change url
+
+=== Preview pane (side by side)
+* GitHub has it
+* GitLab not yet available.  Should be soon(??)
+
+=== Diff
+* GitLab easier to use - menu item
+* GitHub must change url with "/compare"
+
+=== Jira integration
+* GitLab already working within HL7
+* GitHub could work
