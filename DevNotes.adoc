@@ -14,6 +14,7 @@ A structure / map map be created that is a reference and this reference can be u
 
 
 == Requirements (ranked 1-10 importance):
+- Generally make things as easy, intuitive, and foolproof as possible for users
 - 6 - Autosave
 - 9 - Store as files
 - 6 - IG Publisher integration?
@@ -26,6 +27,9 @@ A structure / map map be created that is a reference and this reference can be u
 - Documentation
 * For tooling maintainers
 * For tooling users
+** setup
+** editing
+
 
 
 == GitLab vs GitHub
