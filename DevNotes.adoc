@@ -11,3 +11,30 @@ A structure / map map be created that is a reference and this reference can be u
 * Should branches be centered on users or issues?  Probably issues.
 * Branches should have names that either A) indication the Jira issue (preferred?) of B) describe the issue
 * No commits/push to main branch.  Edits must be made in a branch and then a PR submitted.
+
+
+== There is no autosave for VSCode online
+This is a bummer...
+
+
+
+
+
+== Requirements (ranked 1-10 importance):
+- 6 - Autosave
+- 9 - Store as files
+- 6 - IG Publisher integration?
+- ? - Jira Integration
+- 6 - Rendered as you edit (WYSI(kinda)WYG)
+- 7 - diff between versions / edits
+
+
+
+== GitLab vs GitHub
+- GitLab WebIDE easier to use
+* Launch from labeled button instead of pressing '.' or changing url
+* preview pane for AsciiDoc not yet available.  Should be soon(??)
+- GitLab diff easier to use
+* GitLab menu item vs GitHub change of url
+- GitLab already integrated with Jira
+
